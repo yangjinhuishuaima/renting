@@ -2,7 +2,7 @@ import axios from 'axios'
 
 let http = axios.create({
   // 访问的根路径
-  baseURL: 'http://localhost:8090/',
+  baseURL: 'http://localhost:8090/rentings/',
   // 请求超时时间
   timeout: 5000,
   // 是否携带凭证
