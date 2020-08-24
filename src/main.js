@@ -18,5 +18,11 @@ new Vue({
   el: '#app',
   router,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  watch: {
+    $route: function (to, from) {
+      console.log(to)// 当前路径
+      console.log(from) // 前一个访问路径
+    }
+  }
 })
