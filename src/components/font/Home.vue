@@ -1,6 +1,7 @@
 <template>
     <div v-if="watherInfo.cityInfo">
         <div id="header">
+            <!--天气-->
             <div id="watherContent">
                 <div id="today" @mousemove="watherSetState()" @mouseout="watherSetState2()">
                     {{watherInfo.cityInfo.c5}}&nbsp;&nbsp;&nbsp;
@@ -49,7 +50,14 @@
             </div>
         </div>
         <div>
-
+            <div class="block">
+                <span class="demonstration">默认 Hover 指示器触发</span>
+                <el-carousel height="150px">
+                    <el-carousel-item v-for="item in 4" :key="item">
+                        <h3 class="small">{{ item }}</h3>
+                    </el-carousel-item>
+                </el-carousel>
+            </div>
         </div>
     </div>
 </template>
@@ -111,6 +119,7 @@
         height: 50px;
         background-color: gray;
     }
+    /*Start天气*/
     #watherContent{
         margin-left: 1000px;
     }
@@ -153,5 +162,23 @@
         margin-left: 40px;
         font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
         color: lightskyblue;
+    }
+    /*END天气*/
+
+    /*轮播广告*/
+    .el-carousel__item h3 {
+        color: #475669;
+        font-size: 14px;
+        opacity: 0.75;
+        line-height: 150px;
+        margin: 0;
+    }
+
+    .el-carousel__item:nth-child(2n) {
+        background-color: #99a9bf;
+    }
+
+    .el-carousel__item:nth-child(2n+1) {
+        background-color: #d3dce6;
     }
 </style>
