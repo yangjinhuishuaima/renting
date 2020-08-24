@@ -13,7 +13,7 @@ export default new Router({
     {
       path: '/font',
       name: 'font',
-      component: () => import('../components/font/Show')
+      component: () => import('../components/font/Home')
     },
     {
       path: '/',
@@ -23,7 +23,7 @@ export default new Router({
     {
       path: '/Home',
       name: 'Home',
-      component: () => import('../components/back/Home')
+      component: () => import('../components/font/Home')
     },
     {
       path: '/back',
