@@ -21,8 +21,8 @@ new Vue({
   template: '<App/>',
   watch: {
     $route: function (to, from) {
-      console.log(to)// 当前路径
-      console.log(from) // 前一个访问路径
+      /*console.log(to)// 当前路径
+      console.log(from) // 前一个访问路径*/
     }
   }
 })

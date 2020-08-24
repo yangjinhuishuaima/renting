@@ -7,7 +7,7 @@ let http = axios.create({
   timeout: 5000,
   // 是否携带凭证
   withCredentials: true,
-  responseType: 'json'
+  responseType: 'json',
 })
 
 // 添加请求拦截器
