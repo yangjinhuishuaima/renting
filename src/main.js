@@ -18,5 +18,11 @@ new Vue({
   el: '#app',
   router,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+   watch: {
+        $route: function (to, from) {
+            console.log(to)
+            console.log(from)
+        }
+    }
 })
