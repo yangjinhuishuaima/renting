@@ -28,6 +28,22 @@
       </el-dialog>
     </center>
   </div>
+  <div>
+    <!-- model:form表单绑定的数据对象 -->
+    <!-- rules:form表单校验规则 -->
+    <!-- ref:定义表单的名字 -->
+    <el-form label-width="100px" label-suffix="：" :model="user" class="form" :rules="rules" ref="fm">
+      <h3>登录</h3>
+      <el-form-item label="用户名" prop="uname">
+        <!-- 必须去声明绑定的数据模型 -->
+        <el-input v-model="user.uname"></el-input>
+      </el-form-item>
+      <el-form-item label="密码" prop="upwd">
+        <el-input show-password v-model="user.upwd"></el-input>
+      </el-form-item>
+      <el-button type="success" @click="login()">登录</el-button>
+    </el-form>
+  </div>
 </template>
 
 <script>
@@ -124,11 +140,12 @@ export default {
   }
 }
 </script>
-
 <style scoped>
   .form {
     margin-top: 150px;
     border: 1px solid gray;
+    border: 1px solid gray;
+    margin: 100px auto;
     width: 30%;
     border-radius: 25px;
     box-shadow: 0 0 25px lightskyblue;
@@ -146,5 +163,6 @@ export default {
     background-size: 100%;
     background-image: url("../../../static/images/Starry.jpg");
     position: relative;
+    text-align: center;
   }
 </style>

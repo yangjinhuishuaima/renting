@@ -17,6 +17,7 @@
 <script>
 /* eslint-disable eqeqeq,no-undef */
 
+import apis from '../apis/apis'
 export default {
   methods: {
     goBack () {
