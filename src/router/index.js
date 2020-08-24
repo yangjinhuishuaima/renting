@@ -10,11 +10,11 @@ Vue.use(Router)
 export default new Router({
   // 顶层路由视图：App.vue <router-view/>
   routes: [
-    {
-      path: '/font',
-      name: 'font',
-      component: () => import('../components/font/Home')
-    },
+    // {
+    //   path: '/font',
+    //   name: 'font',
+    //   component: () => import('../components/font/Home')
+    // },
     {
       path: '/',
       name: 'rrr',
