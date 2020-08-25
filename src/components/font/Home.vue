@@ -11,54 +11,61 @@
                          style="width: 30px;height: 20px;padding-top: 10px"/>-->
                     {{watherInfo.f1.day_air_temperature}}℃~{{watherInfo.f1.night_air_temperature}}℃
                 </div>
-                <div id="watherInfo" v-show="watherInfoState">
-                    <div style="width: 400px;border-bottom: 1px dotted gainsboro;font-family: Georgia;
+
+            </div>
+        </div>
+        <div id="watherInfo" v-show="watherInfoState">
+            <div style="width: 400px;border-bottom: 1px dotted gainsboro;font-family: Georgia;
             color: lightskyblue;font-size: 20px;padding-top: 20px">
-                        &nbsp;&nbsp;&nbsp;&nbsp;{{watherInfo.cityInfo.c5}}
-                    </div>
-                    <div style="width:400px;height:230px;border-bottom: 1px dotted gainsboro;">
-                        <div class="wat">
-                            今天
-                            <img class="wimg" v-bind:src="watherInfo.f1.day_weather_pic"/>
-                            {{watherInfo.f1.day_weather}}<br>
-                            {{watherInfo.f1.day_air_temperature}}℃~{{watherInfo.f1.night_air_temperature}}℃
-                        </div>
-                        <div class="wat">
-                            明天
-                            <img class="wimg" v-bind:src="watherInfo.f2.day_weather_pic"/>
-                            {{watherInfo.f2.day_weather}}<br>
-                            {{watherInfo.f2.day_air_temperature}}℃~{{watherInfo.f2.night_air_temperature}}℃
-                        </div>
-                        <div class="wat">
-                            后天
-                            <img class="wimg" v-bind:src="watherInfo.f3.day_weather_pic"/>
-                            {{watherInfo.f3.day_weather}}<br>
-                            {{watherInfo.f3.day_air_temperature}}℃~{{watherInfo.f3.night_air_temperature}}℃
-                        </div>
-                    </div>
-                    <div class="infos">
-                        详细信息：<br><br>
-                        白天：{{watherInfo.f1.day_air_temperature}}℃ &nbsp;&nbsp;{{watherInfo.f1.day_weather}}
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        夜间：{{watherInfo.f1.night_air_temperature}}℃ &nbsp;&nbsp;{{watherInfo.f1.night_weather}}<br/>
-                        降水概率：{{watherInfo.f1.jiangshui}}
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        紫外线：{{watherInfo.f1.ziwaixian}}<br>
-                        日出日落：{{watherInfo.f1.sun_begin_end}}
-                    </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;{{watherInfo.cityInfo.c5}}
+            </div>
+            <div style="width:400px;height:230px;border-bottom: 1px dotted gainsboro;">
+                <div class="wat">
+                    今天
+                    <img class="wimg" v-bind:src="watherInfo.f1.day_weather_pic"/>
+                    {{watherInfo.f1.day_weather}}<br>
+                    {{watherInfo.f1.day_air_temperature}}℃~{{watherInfo.f1.night_air_temperature}}℃
+                </div>
+                <div class="wat">
+                    明天
+                    <img class="wimg" v-bind:src="watherInfo.f2.day_weather_pic"/>
+                    {{watherInfo.f2.day_weather}}<br>
+                    {{watherInfo.f2.day_air_temperature}}℃~{{watherInfo.f2.night_air_temperature}}℃
+                </div>
+                <div class="wat">
+                    后天
+                    <img class="wimg" v-bind:src="watherInfo.f3.day_weather_pic"/>
+                    {{watherInfo.f3.day_weather}}<br>
+                    {{watherInfo.f3.day_air_temperature}}℃~{{watherInfo.f3.night_air_temperature}}℃
                 </div>
             </div>
-        </div>
-        <div>
-            <div class="block">
-                <span class="demonstration">默认 Hover 指示器触发</span>
-                <el-carousel height="150px">
-                    <el-carousel-item v-for="item in 4" :key="item">
-                        <h3 class="small">{{ item }}</h3>
-                    </el-carousel-item>
-                </el-carousel>
+            <div class="infos">
+                详细信息：<br><br>
+                白天：{{watherInfo.f1.day_air_temperature}}℃ &nbsp;&nbsp;{{watherInfo.f1.day_weather}}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                夜间：{{watherInfo.f1.night_air_temperature}}℃ &nbsp;&nbsp;{{watherInfo.f1.night_weather}}<br/>
+                降水概率：{{watherInfo.f1.jiangshui}}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                紫外线：{{watherInfo.f1.ziwaixian}}<br>
+                日出日落：{{watherInfo.f1.sun_begin_end}}
             </div>
         </div>
+        <div id="adverInfo">
+            <swiper :options="swiperOption">
+                <!--<swiper-slide><img src="https://fulishoukaijinxiputi.fang.com/" class="simg"></swiper-slide>-->
+                <swiper-slide><img src="https://rentins-1302959334.cos.ap-nanjing.myqcloud.com/guanggao/BigShow/LunBo10.jpg" /></swiper-slide>
+                <swiper-slide><img src="https://rentins-1302959334.cos.ap-nanjing.myqcloud.com/guanggao/BigShow/72631598340781381.jpg" /></swiper-slide>
+                <!--<swiper-slide><img src="../../assets/LunBo02.jpg" class="simg"></swiper-slide>
+                <swiper-slide><img src="../../assets/LunBo03.jpg" class="simg"></swiper-slide>
+                <swiper-slide><img src="../../assets/LunBo04.jpg" class="simg"></swiper-slide>-->
+            </swiper>
+
+            <div class="swiper-scrollbar"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+
     </div>
 </template>
 
@@ -72,7 +79,26 @@
                 /*时间*/
                 hour: '',
                 //天气详情是否显示
-                watherInfoState: false
+                watherInfoState: false,
+
+                swiperOption: {//swiper3
+                    autoplay: 3000,
+                    speed: 1000,
+                    effect: 'slide',
+                    loop: true,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        type: 'bullets',
+                        clickable:true,
+
+                    },
+                    prevButton:'.swiper-button-prev',//上一张
+                    nextButton:'.swiper-button-next',//下一张
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev'
+                    }
+                }
 
             }
         },
@@ -103,8 +129,10 @@
             /*鼠标离开状态*/
             watherSetState2: function () {
                 this.watherInfoState = false
-            }
-        }
+            },
+            /**/
+        },
+
     }
 </script>
 
@@ -119,10 +147,12 @@
         height: 50px;
         background-color: gray;
     }
+
     /*Start天气*/
-    #watherContent{
+    #watherContent {
         margin-left: 1000px;
     }
+
     #today {
         padding-top: 8px;
         width: 300px;
@@ -135,10 +165,14 @@
     }
 
     #watherInfo {
+        position: absolute;
+        top: 58px;
+        left: 1100px;
+        z-index: 99;
         width: 400px;
         height: 400px;
         background-color: gray;
-        /*background-color: rgba(0,0,0,0.2);*/ /*设置透明度*/
+        background-color: rgba(0, 0, 0, 0.6); /*设置透明度*/
     }
 
     .wat {
@@ -163,22 +197,24 @@
         font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
         color: lightskyblue;
     }
+
     /*END天气*/
 
     /*轮播广告*/
-    .el-carousel__item h3 {
-        color: #475669;
-        font-size: 14px;
-        opacity: 0.75;
-        line-height: 150px;
-        margin: 0;
+
+    #adverInfo {
+        /*position: relative;*/
+        width: 100%;
+        height: auto;
+/*        background-color: darkcyan;*/
     }
 
-    .el-carousel__item:nth-child(2n) {
-        background-color: #99a9bf;
+    .simg {
+        width: 1536px;
+        height: 300px;
+    }
+    #dd{
+        position: relative;
     }
 
-    .el-carousel__item:nth-child(2n+1) {
-        background-color: #d3dce6;
-    }
 </style>

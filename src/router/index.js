@@ -51,6 +51,7 @@ export default new Router({
           name: 'rrr',
           component: () => import('../components/rrr')
       },
+      /*前台首页*/
       {
           path: '/Home',
           name: 'Home',
