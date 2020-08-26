@@ -15,50 +15,50 @@
 </template>
 
 <script>
-    /* eslint-disable eqeqeq,no-undef */
+/* eslint-disable eqeqeq,no-undef */
 
-    export default {
-        methods: {
-            goBack () {
-                this.$router.go(-1)
-            },
-            rollBackTables () {
-                var text = '数据还原'
-                apis.shiroApi.rollBackTables()
-                    .then(data => {
-                        var alertText = ''
-                        if (data.data.status == 'SUCCESS') {
-                            text += '成功'
-                            alertText = text + ',请重新登陆'
-                        } else {
-                            text += '失败'
-                            alertText = text + ',请重试'
-                        }
-                        this.$alert(alertText, '提示', {
-                            confirmButtonText: '确定'
-                        })
-                        log(text)
-                    })
-                    .catch(e => {
-                        this.$alert('数据还原异常,请重试', '提示', {
-                            confirmButtonText: '确定'
-                        })
-                        text += '失败'
-                        log(text)
-                    })
-                console.log(text)
+export default {
+  methods: {
+    goBack () {
+      this.$router.go(-1)
+    },
+    rollBackTables () {
+      var text = '数据还原'
+      apis.shiroApi.rollBackTables()
+        .then(data => {
+          var alertText = ''
+          if (data.data.status == 'SUCCESS') {
+            text += '成功'
+            alertText = text + ',请重新登陆'
+          } else {
+            text += '失败'
+            alertText = text + ',请重试'
+          }
+          this.$alert(alertText, '提示', {
+            confirmButtonText: '确定'
+          })
+          log(text)
+        })
+        .catch(e => {
+          this.$alert('数据还原异常,请重试', '提示', {
+            confirmButtonText: '确定'
+          })
+          text += '失败'
+          log(text)
+        })
+      console.log(text)
 
-                function log (text) {
-                    var loginLog = {
-                        ip: returnCitySN['cip'],
-                        city: returnCitySN['cname'] + '-' + text
-                    }
-
-                    apis.shiroApi.loginLog(loginLog)
-                }
-            }
+      function log (text) {
+        var loginLog = {
+          ip: returnCitySN['cip'],
+          city: returnCitySN['cname'] + '-' + text
         }
+
+        apis.shiroApi.loginLog(loginLog)
+      }
     }
+  }
+}
 </script>
 
 <style scoped>
