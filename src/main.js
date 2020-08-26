@@ -9,7 +9,7 @@ import ui from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
 import VueAwesomeSwiper from 'vue-awesome-swiper'
-//require styles
+// require styles
 import 'swiper/dist/css/swiper.css'
 Vue.use(VueAwesomeSwiper)
 
@@ -26,8 +26,8 @@ new Vue({
   template: '<App/>',
   watch: {
     $route: function (to, from) {
-      /*console.log(to)// 当前路径
-      console.log(from) // 前一个访问路径*/
+      /* console.log(to)// 当前路径
+      console.log(from) // 前一个访问路径 */
     }
   }
 })
