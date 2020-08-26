@@ -13,7 +13,7 @@ export default {
       this.$router.push({name: 'Home'})
     },
     'login': function () {
-      this.$router.push({name: 'back'})
+      this.$router.push({name: '/back/Login'})
     }
   }
 }

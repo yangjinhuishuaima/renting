@@ -12,20 +12,6 @@
                 <el-button type="success" @click="login()">登录</el-button>
                 <el-button type="primary" @click="zc()">注册</el-button>
             </el-form>
-            <el-dialog width="100%" title="注册账号" :visible.sync="this.zcState">
-                <el-form label-width="100px" label-suffix=":" :model="u" class="form" :rules="rules2" ref="fm2">
-                    <el-form-item label="用户名" prop="name">
-                        <el-input v-model="u.name"></el-input>
-                    </el-form-item>
-                    <el-form-item label="密码" prop="pwd">
-                        <el-input v-model="u.pwd"></el-input>
-                    </el-form-item>
-                    <div>
-                        <el-button type="primary" @click="add()">提 交</el-button>
-                        <el-button type="success" @click="zcState=false">取 消</el-button>
-                    </div>
-                </el-form>
-            </el-dialog>
         </center>
     </div>
 </template>
@@ -42,25 +28,6 @@ export default {
       pwds: '',
       user: {name: '张三', pwd: '123'},
       rules: {
-        name: [
-          {required: true, message: '用户名不能为空', trigger: 'blur'},
-          {min: 2, max: 10, message: '用户名是3-10位', trigger: ['change', 'blur']},
-          // 自定义校验规则
-          {trigger: ['change', 'blur'],
-            validator: function (rule, value, callback) {
-              if (value.indexOf('_') == -1) {
-                callback()
-              } else {
-                callback(new Error('用户名不能包含_特殊字符'))
-              }
-            }
-          }
-        ],
-        pwd: [
-          {required: true, message: '密码不能为空', trigger: 'blur'}
-        ]
-      },
-      rules2: {
         name: [
           {required: true, message: '用户名不能为空', trigger: 'blur'},
           {min: 2, max: 10, message: '用户名是3-10位', trigger: ['change', 'blur']},
@@ -101,26 +68,7 @@ export default {
             })
         }
       })
-    },
-    add: function () {
-      this.$refs['fm2'].validate(valid => {
-        if (valid) {
-          this.$axios.post('http://localhost:8088/springboot/users/add', this.u)
-            .then(response => {
-              if (response.data > 0) {
-                this.zcState = false
-                this.$message('注册成功')
-              } else {
-                this.$message('注册失败')
-              }
-            })
-            .catch(err => {
-              this.$message('失败')
-            })
-        }
-      })
     }
-
   }
 }
 </script>
