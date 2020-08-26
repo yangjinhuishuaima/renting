@@ -10,7 +10,6 @@
                     <el-input show-password v-model="user.pwd"></el-input>
                 </el-form-item>
                 <el-button type="success" @click="login()">登录</el-button>
-                <el-button type="primary" @click="zc()">注册</el-button>
             </el-form>
         </center>
     </div>
