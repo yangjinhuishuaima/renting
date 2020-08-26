@@ -31,98 +31,98 @@
 </template>
 
 <script>
-    /* eslint-disable eqeqeq,handle-callback-err,no-undef,standard/object-curly-even-spacing */
+/* eslint-disable eqeqeq,handle-callback-err,no-undef,standard/object-curly-even-spacing */
 
-    export default {
-        name: 'Login',
-        data: function () {
-            return {
-                zcState: false,
-                u: {},
-                pwds: '',
-                user: {name: '张三', pwd: '123'},
-                rules: {
-                    name: [
-                        {required: true, message: '用户名不能为空', trigger: 'blur'},
-                        {min: 2, max: 10, message: '用户名是3-10位', trigger: ['change', 'blur']},
-                        // 自定义校验规则
-                        {trigger: ['change', 'blur'],
-                            validator: function (rule, value, callback) {
-                                if (value.indexOf('_') == -1) {
-                                    callback()
-                                } else {
-                                    callback(new Error('用户名不能包含_特殊字符'))
-                                }
-                            }
-                        }
-                    ],
-                    pwd: [
-                        {required: true, message: '密码不能为空', trigger: 'blur'}
-                    ]
-                },
-                rules2: {
-                    name: [
-                        {required: true, message: '用户名不能为空', trigger: 'blur'},
-                        {min: 2, max: 10, message: '用户名是3-10位', trigger: ['change', 'blur']},
-                        // 自定义校验规则
-                        {trigger: ['change', 'blur'],
-                            validator: function (rule, value, callback) {
-                                if (value.indexOf('_') == -1) {
-                                    callback()
-                                } else {
-                                    callback(new Error('用户名不能包含_特殊字符'))
-                                }
-                            }
-                        }
-                    ],
-                    pwd: [
-                        {required: true, message: '密码不能为空', trigger: 'blur'}
-                    ]
-                }
+export default {
+  name: 'Login',
+  data: function () {
+    return {
+      zcState: false,
+      u: {},
+      pwds: '',
+      user: {name: '张三', pwd: '123'},
+      rules: {
+        name: [
+          {required: true, message: '用户名不能为空', trigger: 'blur'},
+          {min: 2, max: 10, message: '用户名是3-10位', trigger: ['change', 'blur']},
+          // 自定义校验规则
+          {trigger: ['change', 'blur'],
+            validator: function (rule, value, callback) {
+              if (value.indexOf('_') == -1) {
+                callback()
+              } else {
+                callback(new Error('用户名不能包含_特殊字符'))
+              }
             }
-        },
-        methods: {
-            zc: function () {
-                this.zcState = true
-            },
-            login: function () {
-                this.$refs['fm'].validate(valid => {
-                    if (valid) {
-                        this.$axios.post('http://localhost:8088/springboot/users/querypwd', this.user)
-                            .then(response => {
-                                if (response.data === '') {
-                                    this.$message('账号密码错误')
-                                } else {
-                                    this.$router.push({name: 'Home', params: {loginUser: response.data}})
-                                }
-                            })
-                            .catch(err => {
-                                this.$message('失败')
-                            })
-                    }
-                })
-            },
-            add: function () {
-                this.$refs['fm2'].validate(valid => {
-                    if (valid) {
-                        this.$axios.post('http://localhost:8088/springboot/users/add', this.u)
-                            .then(response => {
-                                if (response.data > 0) {
-                                    this.zcState = false
-                                    this.$message('注册成功')
-                                } else {
-                                    this.$message('注册失败')
-                                }
-                            })
-                            .catch(err => {
-                                this.$message('失败')
-                            })
-                    }
-                })
+          }
+        ],
+        pwd: [
+          {required: true, message: '密码不能为空', trigger: 'blur'}
+        ]
+      },
+      rules2: {
+        name: [
+          {required: true, message: '用户名不能为空', trigger: 'blur'},
+          {min: 2, max: 10, message: '用户名是3-10位', trigger: ['change', 'blur']},
+          // 自定义校验规则
+          {trigger: ['change', 'blur'],
+            validator: function (rule, value, callback) {
+              if (value.indexOf('_') == -1) {
+                callback()
+              } else {
+                callback(new Error('用户名不能包含_特殊字符'))
+              }
             }
-
-        }
+          }
+        ],
+        pwd: [
+          {required: true, message: '密码不能为空', trigger: 'blur'}
+        ]
+      }
     }
+  },
+  methods: {
+    zc: function () {
+      this.zcState = true
+    },
+    login: function () {
+      this.$refs['fm'].validate(valid => {
+        if (valid) {
+          this.$axios.post('http://localhost:8088/springboot/users/querypwd', this.user)
+            .then(response => {
+              if (response.data === '') {
+                this.$message('账号密码错误')
+              } else {
+                this.$router.push({name: 'Home', params: {loginUser: response.data}})
+              }
+            })
+            .catch(err => {
+              this.$message('失败')
+            })
+        }
+      })
+    },
+    add: function () {
+      this.$refs['fm2'].validate(valid => {
+        if (valid) {
+          this.$axios.post('http://localhost:8088/springboot/users/add', this.u)
+            .then(response => {
+              if (response.data > 0) {
+                this.zcState = false
+                this.$message('注册成功')
+              } else {
+                this.$message('注册失败')
+              }
+            })
+            .catch(err => {
+              this.$message('失败')
+            })
+        }
+      })
+    }
+
+  }
+}
 </script>
 <style scoped>
     .form {

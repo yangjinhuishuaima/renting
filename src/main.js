@@ -7,14 +7,14 @@ import router from './router'
 import http from './util/http'
 import ui from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-
+import axios from 'axios'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 // require styles
 import 'swiper/dist/css/swiper.css'
 Vue.use(VueAwesomeSwiper)
 
 http.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'
-Vue.prototype.$axios = http
+Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 Vue.use(ui)
 

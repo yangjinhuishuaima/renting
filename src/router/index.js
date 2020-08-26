@@ -25,6 +25,11 @@ export default new Router({
           path: '/back/*',
           name: '/back/404',
           component: () => import('../components/back/404')
+        },
+        {
+          path: '/back/house',
+          name: '/back/House',
+          component: () => import('../components/back/House')
         }
       ]
     },
