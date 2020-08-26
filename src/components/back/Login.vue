@@ -53,19 +53,20 @@ export default {
     },
     login: function () {
       this.$refs['fm'].validate(valid => {
-        if (valid) {
-          this.$axios.post('http://localhost:8088/springboot/users/querypwd', this.user)
-            .then(response => {
-              if (response.data === '') {
-                this.$message('账号密码错误')
-              } else {
-                this.$router.push({name: 'Home', params: {loginUser: response.data}})
-              }
-            })
-            .catch(err => {
-              this.$message('失败')
-            })
-        }
+        // if (valid) {
+        //   this.$axios.post('http://localhost:8088/springboot/users/querypwd', this.user)
+        //     .then(response => {
+        //       if (response.data === '') {
+        //         this.$message('账号密码错误')
+        //       } else {
+        // this.$router.push({name: 'Home', params: {loginUser: response.data}})
+        this.$router.push({name: '/back/Home'})
+        //   }
+        // })
+        // .catch(err => {
+        //   this.$message('失败')
+        // })
+        // }
       })
     }
   }
