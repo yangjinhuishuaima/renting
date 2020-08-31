@@ -1,0 +1,161 @@
+* {
+    box-sizing: border-box;
+    font-family: "Microsoft Yahei";
+}
+.clearfix {
+    zoom: 1;
+}
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+
+.fl {
+    float: left;
+}
+.fr {
+    float: right !important;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+}
+a, input {
+    outline: 0 none;
+}
+a{
+    cursor: pointer;
+}
+
+a img {
+    border: 0 none;
+    cursor: pointer;
+}
+ol, ul {
+    list-style-type: none;
+    text-align: center;
+}
+html, body, div, p, span, label, img, a, ol, ul, dl, dt, dd, li, table, tr, td, th, tbody, thead, tfoot, form, fieldset, legent, h1, h2, h3, h4, h5, h6, strong, b, em, blockquote, cite, pre, code, hr, br, input, button, textarea, article, aside, details, figcaption, figure, footer, header, group, menu, nav, section {
+    padding: 0px;
+    margin: 0px;
+    /*line-height: 100%;*/
+}
+body {
+    /*background: #fff;*/
+    /*-webkit-text-size-adjust: 100%;*/
+    /*-ms-text-size-adjust: 100%;*/
+    /*font-size: 14px;*/
+    /*color: #333;*/
+    font-family: "MicrosoftYaHei";
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    font-size: 1em;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+caption, cite, code, em, th, var, i {
+    font-weight: normal;
+    font-style: normal;
+}
+img, input, select {
+    vertical-align: middle;
+}
+.mgAuto {
+    margin: auto;
+}
+.mb56{
+    margin-bottom: 56px !important;
+}
+.mt56 {
+    margin-top: 56px !important;
+}
+.mt30 {
+    margin-top: 30px;
+}
+.mt8{
+    margin-top: 8px;
+}
+.mt32 {
+    margin-top: 32px !important;
+}
+.mt24{
+    margin-top: 24px !important;
+}
+.mt16 {
+    margin-top: 16px;
+}
+.mt38{
+    margin-top: 38px !important;
+}
+.mr24{
+    margin-right: 24px;
+}
+.mr0{
+    margin-right: 0;
+}
+.ml16{
+    margin-left: 16px;
+}
+.ml32{
+    margin-left: 32px;
+}
+.ml24{
+    margin-left: 24px;
+}
+.ml8{
+    margin-left: 8px;
+}
+.mt2_5{
+    margin-top: 2.5px;
+}
+.mt9{
+    margin-top: 9px;
+}
+.height_339 {
+    height: 339px;
+}
+.over_auto {
+    overflow: auto;
+}
+.over_hidden{
+    overflow: hidden;
+}
+.height_41{
+    height: 41px;
+}
+.height_80 {
+    height: 80px;
+}
+
+.height_83 {
+    height: 83px;
+}
+.height_144 {
+    height: 144px;
+}
+
+.width_606{
+    width: 606px !important;
+}
+
+.width_582{
+    width: 582px !important;
+}
+
+.line{
+    height:1px;
+    background:rgba(219,222,226,1);
+}
+
+.div_module {
+    width: 1200px;
+    margin: auto;
+    overflow: auto;
+    font-size: 0;
+}

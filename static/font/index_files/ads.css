@@ -1,0 +1,138 @@
+.adsHurdle img{
+    height: 70px;
+    width: 1200px;
+}
+.adv_module
+{
+    width: 1200px;
+    margin: auto;
+    overflow: auto;
+    font-size: 0;
+}
+.ps_rl{
+    position: relative;
+}
+.ads_tl ul li{
+    display: none;
+}
+.ads_tl ul li.current{
+    display: block;
+}
+.ads_tl .adv_img img{
+    height: 70px;
+    width: 1200px;
+}
+.ads_tl .adv_article_list_img img{
+    width: 330px;
+    height: 467px;
+}
+.ads_tl ol{
+    position: absolute;
+    width: 1200px;
+    bottom: 6px;
+    margin: auto;
+}
+.ads_tl .scroll_article_list{
+    width: 330px!important;
+}
+.ads_tl ol li{
+    width:12px;
+    height:2px;
+    background:rgba(255,255,255,0.5);
+    border-radius:10px;
+    display: inline-block;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.ads_tl ol li:last-child{
+    margin-right: 0;
+}
+
+.ads_tl ol li.current{
+    width:16px;
+    height:2px;
+    background:rgba(255,255,255,1);
+    border-radius:10px;
+}
+
+.float_ads{
+    position: absolute;
+    top:530px;
+    z-index: 999;
+}
+
+.float_ads img{
+    width: 140px;
+    height: 140px;
+}
+
+.float_ads_close{
+    width:20px;
+    height:20px;
+    position:absolute;
+    left:120px;
+    top:0;
+    background:linear-gradient(180deg,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.7) 100%);
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+
+.adv_kp{
+    width: 100%;
+    height: 100%;
+    background:rgba(0,0,0,0.5);
+    z-index: 9999;
+    top:0;
+    position: fixed;
+    text-align: center;
+}
+.adv_kp img{
+    width: 1200px;
+    height: 600px;
+}
+.adv_kp .adv_img{
+    width: 1200px;
+    height: 600px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.adv_kp .close_kp{
+    cursor: pointer;
+    position: absolute;
+    right: 32px;
+    top: 32px;
+    width: 40px;
+    height: 40px;
+    background: url("../img2.0/close_kp.png") no-repeat;
+}
+.adv_right_bottom{
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    z-index: 99;
+    width: 300px;
+    height: 200px;
+}
+.close_right_bottom{
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top:10px;
+    right: 10px;
+    font-size: 26px;
+    /*background:linear-gradient(180deg,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.7) 100%);*/
+    line-height: 20px;
+    color: white;
+    text-align: center;
+}
+
+.adv_right_bottom img{
+    width: 300px;
+    height: 200px;
+}

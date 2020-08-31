@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+    <script src="../axios.min.js"></script>
+    <script src="../jquery-3.1.1.js"></script>
+    <script src="../vue.min.js"></script>
+    <script src="../myaxios.js"></script>
+    <script>
+       $(function () {
+           /*new Vue({
+               el:"#info",
+               data(){
+                   return{
+
+                       fuzzySearch: {
+                           'hadress':'',
+                           'harea':"",
+                           'hcommunity':'',
+                           'hprice':'',
+                           'hmode':'',
+                           'htshi':'',
+                           'htdirect':'',
+                           'hfloor':'',
+                           'htype':''
+                       },
+                   }
+               },
+               created:function () {
+                   let  that = this
+
+               }
+           })*/
+           /*)*/
+           let n = {id:1,name:"张三"}
+           console.log(n)
+           let a = JSON.stringify(n)
+           let v = {test_y:{id:1,name:'张三'},pageNum:2,pageSize:8};
+           let e = JSON.stringify({hadress:'二七区',harea:'双湖大道西段199号'});
+               let pageNum=1;
+               let pageSize=5
+           alert(JSON.stringify(e))
+           $.ajax({
+               type:'POST',
+               url:'http://localhost:8090/rentings/ty/t',
+               dataType:'json',
+               contentType:"application/json; charset=utf-8",
+               data:{searchInfo:e,pageNum,pageSize},
+
+               success:function (data) {
+                   console.log(data)
+               }
+           })
+       })
+
+    </script>
+</head>
+<body>
+<div id="#info">
+
+</div>
+</body>
+</html>

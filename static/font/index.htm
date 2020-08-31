@@ -1,0 +1,710 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Stict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style class="vjs-styles-defaults">
+        .video-js {
+            width: 300px;
+            height: 150px;
+        }
+
+        .vjs-fluid {
+            padding-top: 56.25%
+        }
+
+        /*Start天气*/
+        #watherContent {
+            margin-left: 500px;
+        }
+
+        #today {
+            position: relative;
+            width: 150px;
+            height: 40px;
+            /*background-color: gray;*/
+            color: black;
+            font-family: 微软雅黑;
+            line-height: 40px;
+            text-align: center;
+        }
+
+        #watherInfo {
+            position: absolute;
+            top: 58px;
+            left: 500px;
+            z-index: 99;
+            width: 400px;
+            height: 400px;
+            background-color: gray;
+            background-color: rgba(0, 0, 0, 0.6); /*设置透明度*/
+        }
+
+        .wat {
+            font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+            color: lightskyblue;
+            text-align: center;
+            float: left;
+            margin-top: 20px;
+            width: 110px;
+            height: 200px;
+            margin-left: 17px;
+        }
+
+        .wimg {
+            width: 90px;
+            height: 90px;
+        }
+
+        .infos {
+            margin-left: 40px;
+            font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+            color: lightskyblue;
+        }
+
+        /* #wather{
+             display: none;
+         }*/
+    </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="sogou_site_verification" content="ojP49dO3yi">
+    <meta name="360-site-verification" content="987ccdcf25e1f9ad2367c24686651a42">
+    <title>郑州搜房网，郑州房产信息，郑州房地产门户-郑州搜房 </title>
+    <meta name="keywords" content="郑州房产,搜房网,搜房,买房,租房,新房,二手房,写字楼,商铺,豪宅,别墅">
+    <meta name="description"
+          content="搜房网是著名的中国房地产信息平台，搜房网提供全面实时的房地产资讯内容，为广大网民提供专业的新房、二手房、租房、豪宅别墅、写字楼、商铺等全方位资讯信息。为业主、客户及房地产业内精英们提供高效专业的信息推广服务。">
+
+    <link rel="icon" href="https://bj.sofang.com/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="index_files/base.css">
+    <link rel="stylesheet" href="index_files/footer.css">
+    <link rel="stylesheet" type="text/css" href="index_files/layui.css">
+    <script src="index_files/jquery-1.js"></script>
+    <script src="index_files/jquery_002.js"></script>
+
+    <script src="index_files/layui.js"></script>
+    <!--<link id="layuicss-laydate" rel="stylesheet" href="index_files/laydate.css" media="all">
+    <link id="layuicss-layer" rel="stylesheet" href="index_files/layer.css" media="all">
+    <link id="layuicss-skincodecss" rel="stylesheet" href="/index_files/code.css" media="all">-->
+    <script src="index_files/component.js"></script>
+
+    <link rel="stylesheet" href="index_files/index.css">
+    <link rel="stylesheet" href="index_files/ads.css">
+    <link rel="stylesheet" href="index_files/neplayer.css">
+    <script type="text/javascript" src="index_files/commmenAdvertising.js"></script>
+    <script type="text/javascript" src="index_files/indexGCH.js"></script>
+    <script type="text/javascript" src="index_files/index.js"></script>
+    <script type="text/javascript" src="index_files/ads.js"></script>
+    <script type="text/javascript" src="index_files/neplayer.js"></script>
+    <script type="text/javascript" src="index_files/hchart.js"></script>
+    <!--vue插件-->
+    <script src="../../../static/vue.min.js"></script>
+    <!--axios插件-->
+    <script src="../../../static/axios.min.js"></script>
+    <script src="../myaxios.js"></script>
+    <style>
+        .adv_img li .index3_ad {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            color: #ededed;
+            opacity: 0.8;
+            font-size: 12px;
+        }
+
+        .main_adv_blank {
+            width: 100%;
+            height: 20px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            new Vue({
+                el: '#wather',
+                data () {
+                    return {
+                        'watherInfo': {},
+                        /*时间*/
+                        hour: '',
+                        //天气详情是否显示
+                        watherInfoState: false,
+                    }
+                }, created: function () {
+                    this.watherShow()
+                    this.hours()
+                },
+                methods: {
+                    /*赋值*/
+                    watherShow: function () {
+                        let that = this
+                        axiosGetRequst('http://localhost:8090/rentings/wather/getWather')
+                            .then(response => {
+                                if (response.showapi_res_body != null) {
+                                    that.watherInfo = response.showapi_res_body
+                                }
+                            }).catch(error => console.log(error))
+                    },
+                    'hours': function () {
+                        this.hour = new Date().getHours()
+                    },
+                    /*悬浮状态*/
+                    watherSetState: function () {
+                        this.watherInfoState = true
+                    },
+                    /*鼠标离开状态*/
+                    watherSetState2: function () {
+                        this.watherInfoState = false
+                    },
+                }
+            })
+        })
+
+
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('#enterSearch').click(function () {
+                //alert($("#searchInfo").val())
+                window.location.href = 'http://localhost:8080/static/font/search.htm'
+            })
+        })
+    </script>
+</head>
+
+<body>
+
+<!--页面流水号（路径-毫秒级时间-浏览器信息-ip地址通过md5生成）-->
+<input type="hidden" name="viewBill" value="415090f01b52f9ea3938d92a2b19afd5">
+<link rel="stylesheet" href="index_files/header.css">
+<!--导航栏-->
+<div class="headbg" id="info">
+
+    <div class="head clearfix">
+        <h1 class="fl">
+            <a href="https://zz.sofang.com/"><img src="
+https://rentins-1302959334.cos.ap-nanjing.myqcloud.com/guanggao/BigShow/index_files/tab_logo.png" alt="搜房网"></a>
+            <span>搜房网</span>
+        </h1>
+        <div class="fl local" style="display: ;">
+            <div class="clearfix">
+                <b class="fl">郑州</b>
+                <i class="fl"></i>
+            </div>
+            <div></div>
+            <div class="citylist">
+            </div>
+        </div>
+        <ul class="fl nav">
+            <li>
+                <a href="https://zz.sofang.com/">首页</a>
+            </li>
+            <li>
+                <a href="https://zz.sofang.com/esfrent/area">租房</a>
+                <div class="nav_list">
+                    <i class="arrow"></i>
+                    <ul>
+                        <li><a href="https://zz.sofang.com/esfrent/area/ar1">整租房源</a></li>
+                        <li><a href="https://zz.sofang.com/esfrent/area/ar2">合租房源</a></li>
+                        <li><a href="https://zz.sofang.com/rentesb/area">找小区</a></li>
+                        <li><a href="https://zz.sofang.com/map/rent/house">地图搜房</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <a href="https://zz.sofang.com/theme/special/28" target="_blank">加盟招募</a>
+            </li>
+        </ul>
+
+        <!--天气-->
+        <div id="wather" v-if="watherInfo.cityInfo">
+            <div id="watherContent">
+                <div id="today" @mousemove="watherSetState()" @mouseout="watherSetState2()">
+                    天气&nbsp;&nbsp;
+                    <span v-if="hour<16 && hour>4">{{watherInfo.f1.day_weather}}</span>
+                    <span v-else>{{watherInfo.f1.night_weather}}</span>&nbsp;
+
+                    {{watherInfo.f1.day_air_temperature}}℃~{{watherInfo.f1.night_air_temperature}}℃
+                </div>
+            </div>
+            <div id="watherInfo" v-show="watherInfoState">
+                <div style="width: 400px;border-bottom: 1px dotted gainsboro;font-family: Georgia;
+            color: lightskyblue;font-size: 20px;padding-top: 20px">
+                    &nbsp;&nbsp;&nbsp;&nbsp;{{watherInfo.cityInfo.c5}}
+                </div>
+                <div style="width:400px;height:230px;border-bottom: 1px dotted gainsboro;">
+                    <div class="wat">
+                        今天
+                        <img class="wimg" v-bind:src="watherInfo.f1.day_weather_pic"/>
+                        {{watherInfo.f1.day_weather}}<br>
+                        {{watherInfo.f1.day_air_temperature}}℃~{{watherInfo.f1.night_air_temperature}}℃
+                    </div>
+                    <div class="wat">
+                        明天
+                        <img class="wimg" v-bind:src="watherInfo.f2.day_weather_pic"/>
+                        {{watherInfo.f2.day_weather}}<br>
+                        {{watherInfo.f2.day_air_temperature}}℃~{{watherInfo.f2.night_air_temperature}}℃
+                    </div>
+                    <div class="wat">
+                        后天
+                        <img class="wimg" v-bind:src="watherInfo.f3.day_weather_pic"/>
+                        {{watherInfo.f3.day_weather}}<br>
+                        {{watherInfo.f3.day_air_temperature}}℃~{{watherInfo.f3.night_air_temperature}}℃
+                    </div>
+                </div>
+                <div class="infos">
+                    详细信息：<br><br>
+                    白天：{{watherInfo.f1.day_air_temperature}}℃ &nbsp;&nbsp;{{watherInfo.f1.day_weather}}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    夜间：{{watherInfo.f1.night_air_temperature}}℃ &nbsp;&nbsp;{{watherInfo.f1.night_weather}}<br/>
+                    降水概率：{{watherInfo.f1.jiangshui}}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    紫外线：{{watherInfo.f1.ziwaixian}}<br>
+                    日出日落：{{watherInfo.f1.sun_begin_end}}
+                </div>
+            </div>
+        </div>
+
+        <ul class="fr top_r" style=" position: relative;top: -35px">
+            <li class="logintip">
+                <a href="https://zz.sofang.com/userChoose.html" target="_blank">登录/注册</a>
+                <a href="http://agent.sofang.com/" style="margin-left:10px;" target="_blank">经纪人登录</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--banner-->
+<div class="bigbanner" id="">
+    <ul class="rslides" id="slider">
+        <li class="current"
+            style="background:url(https://img5.sofang.com/sofangcityagent/image/2033560/2019110716/5dc3cf485e4eb8.65760108.png) no-repeat top;  background-size:100% 100%;  ">
+            <a class="banner_img" onclick="updateAdsClickCount('1771','http://jn.sofang.com/theme/special/28')"></a>
+        </li>
+    </ul>
+    <div class="point rslides_point"></div>
+    <div class="search clearfix">
+        <div class="txt search_txt clearfix">
+            <div class="searchjt" id="searchjtId2" style="display: block;"></div>
+            <div class="searchjt" id="searchjtId3" style="margin-left: 65px; display: none;"></div>
+            <div class="searchjt" id="searchjtId4" style="margin-left: 137px; display: none;"></div>
+            <div class="searchjt" id="searchjtId7" style="margin-left: 203px; display: none;"></div>
+            <div class="searchjt" id="searchjtId1" style="margin-left: 268px; display: none;"></div>
+            <div class="searchjt" id="searchjtId5" style="margin-left: 343px; display: none;"></div>
+
+            <input type="text" id="searchInfo" tp="new" autocomplete="off" placeholder="请输入内容"
+                   class="buildname searchInput">
+            <input type="button" value="搜索" class="btn ss" id="enterSearch">
+            <ul class="js-searchlist mai mai1"></ul>
+        </div>
+        <!-- 搜索提交  start99 -->
+        <form action="/new/area" id="search_Submit" method="get" target="_blank">
+            <input type="hidden" id="search_Intro" name="kw" value="">
+        </form>
+        <input type="hidden" id="token" name="_token" value="RZFwjm0ikXbVIPTKiU3gVdWfYzCPbR9qE483SgCD">
+        <!-- 提过提交  end   -->
+    </div>
+</div>
+
+
+<!-- 广告通栏租房顶部 -->
+<!--搜房租房-->
+<div class="moduleBlock">
+    <div class="moduleHead">
+
+        <a href="https://zz.sofang.com/esfrent/area" target="_blank">更多租房 &gt;</a>
+    </div>
+    <span class="moduleLine"></span>
+    <div class="esf modulInfo over_auto">
+        <div class="leftInfo">
+            <div class="cat">
+                <ul class="height_144">
+                    <li>
+                        <a href="https://zz.sofang.com/esfrent/area/aa696" target="_blank">中原</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aa697" target="_blank">二七</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aa698" target="_blank">管城</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aa699" target="_blank">金水</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aa701" target="_blank">中牟</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aa702" target="_blank">巩义</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aa703" target="_blank">荥阳</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aa704" target="_blank">新密</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aa705" target="_blank">新郑</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aa706" target="_blank">登封</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aa707" target="_blank">郑东新区</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aa708" target="_blank">惠济</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aa709" target="_blank">高新区</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aa710" target="_blank">经济开发区</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aa711" target="_blank">郑东</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aa716" target="_blank">上街</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aa3636" target="_blank">航空港区</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aa3687" target="_blank">管城回族</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aa3688" target="_blank">经开区</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aa3689" target="_blank">郑州周边</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aa3690" target="_blank">平原新区</a>
+                        <em></em>
+                    </li>
+                    <li>
+                        <a href="https://zz.sofang.com/esfrent/area/aq1" target="_blank">一居</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aq2" target="_blank">二居</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aq3" target="_blank">三居</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aq4" target="_blank">四居</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aq5" target="_blank">五居</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/aq6" target="_blank">五居以上</a>
+                    </li>
+                    <li>
+                        <a href="https://zz.sofang.com/esfrent/area" target="_blank">住宅</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/sprent/area" target="_blank">商铺</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/xzlrent/area" target="_blank">办公楼</a>
+
+                    </li>
+                    <li>
+                        <a href="https://zz.sofang.com/esfrent/area/" target="_blank">不限
+                            &nbsp;&nbsp;</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/ao1" target="_blank">500以下
+                            &nbsp;&nbsp;</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/ao2" target="_blank">500-1000
+                            &nbsp;&nbsp;</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/ao3" target="_blank">1000-2000
+                            &nbsp;&nbsp;</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/ao4" target="_blank">2000-3000
+                            &nbsp;&nbsp;</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/ao5" target="_blank">3000-5000
+                            &nbsp;&nbsp;</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/ao6" target="_blank">5000-8000
+                            &nbsp;&nbsp;</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/ao7" target="_blank">8000-10000
+                            &nbsp;&nbsp;</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/ao8" target="_blank">10000以上
+                            &nbsp;&nbsp;</a>
+                        <em></em>
+                    </li>
+                    <li>
+                        <a href="https://zz.sofang.com/esfrent/area/ar1" target="_blank">整租</a>
+                        <em></em>
+                        <a href="https://zz.sofang.com/esfrent/area/ar2" target="_blank">合租</a>
+                    </li>
+
+                </ul>
+            </div>
+            <img class="mt32" src="index_files/zfdefault.png">
+
+        </div>
+        <div class="rightInfo">
+            <ul class="catInfo" style="display: block;">
+                <li>
+                    <a href="https://zz.sofang.com/housedetail/sr2020060000077364.html" target="_blank">
+                        <img class="lazy" alt="整租 美景菩提 3室2厅1卫 90㎡"
+                             data-original="https://img5.sofang.com/otherSize/house/rent/2020_06/23/101758_498_EVJH_2.jpg"
+                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
+                        <h3>整租 美景菩提 3室2厅1卫 90㎡</h3>
+                    </a>
+                    <label>郑州市高新区高新技术开发区科学大道59号(信息工程大学对面)</label>
+                    <h5>
+                        2200元/月
+                    </h5>
+                </li>
+                <li>
+                    <a href="https://zz.sofang.com/housedetail/sr2020080000072627.html" target="_blank">
+                        <img class="lazy" alt="整租 南关街东三马路 3室1厅1卫 89㎡"
+                             data-original="https://img5.sofang.com/house/2020_08/25/6d91c41e7764111cb2f0532309902884.png"
+                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
+                        <h3>整租 南关街东三马路 3室1厅1卫 89㎡</h3>
+                    </a>
+                    <label>河南省郑州市管城回族区</label>
+                    <h5>
+                        1800元/月
+                    </h5>
+                </li>
+                <li>
+                    <a href="https://zz.sofang.com/housedetail/sr2019080000048310.html" target="_blank">
+                        <img class="lazy" alt="整租 建业运河上院 3室2厅1卫 90㎡"
+                             data-original="https://img5.sofang.com/house/2019_08/25/35342b2617843cd89fde925d22a2bf06.png"
+                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
+                        <h3>整租 建业运河上院 3室2厅1卫 90㎡</h3>
+                    </a>
+                    <label>河南省郑州市惠济区前花王</label>
+                    <h5>
+                        1500元/月
+                    </h5>
+                </li>
+            </ul>
+            <ul class="listInfo">
+                <li>
+                    <a href="https://zz.sofang.com/housedetail/sr2020080000060733.html" target="_blank">
+                        <h3>整租 橡树玫瑰城 2室1厅1卫 69㎡</h3>
+                    </a>
+                    <label>郑州市管城回族区南三环与文兴路交叉路口往北约50米(紫英佳苑南侧约50米)</label>
+                    <h5>
+                        1800元/月
+                    </h5>
+                </li>
+                <li>
+                    <a href="https://zz.sofang.com/housedetail/sr2020080000074226.html" target="_blank">
+                        <h3>华中路11号院27所家属院</h3>
+                    </a>
+                    <label>河南省郑州市二七区</label>
+                    <h5>
+                        1100元/月
+                    </h5>
+                </li>
+                <li>
+                    <a href="https://zz.sofang.com/housedetail/sr2020080000061586.html" target="_blank">
+                        <h3>合租 绿云小区 4室2厅2卫</h3>
+                    </a>
+                    <label>淮南街16号</label>
+                    <h5>
+                        550元/月
+                    </h5>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<!--右下角广告-->
+<script type="text/javascript">
+    var setInter = setInterval(checkoutAdvertising, 500)
+
+    function checkoutAdvertising () {
+        if ($('.rslides').length > 0) {
+            var len = $('.rslides li').length
+            if (len > 1) {
+                $('.rslides_left').show()
+                $('.rslides_right').show()
+                var html = '<span class="current"></span>'
+                for (var i = 0; i < len - 1; i++) {
+                    html += '<span></span>'
+                }
+                $('.rslides_point').html(html)
+
+                // var lBtn=$('.rslides_left');
+                // var rBtn=$('.rslides_right');
+                var pointBtn = $('.rslides_point span')
+                var picList = $('.rslides li')
+                var focus = $('.rslides')
+                var cur = 0
+                picList.eq(0).addClass('current')
+                pointBtn.on('click', function () {
+                    var index = $(this).index()
+                    cur = index
+                    tochangetab(cur)
+                })
+                var timer = null
+                if (picList.length > 1) {
+                    clearInterval(timer)
+                    timer = setInterval(tochange, 5000)
+                }
+                focus.on('mouseover', function () {
+                    clearInterval(timer)
+                })
+                focus.on('mouseout', function () {
+                    if (picList.length > 1) {
+                        clearInterval(timer)
+                        timer = setInterval(tochange, 5000)
+                    }
+                })
+                // lBtn.on('click',function(){
+                //     cur--;
+                //     if(cur<=-1){
+                //         cur=pointBtn.length-1;
+                //     }
+                //     tochangetab(cur);
+                // });
+                // rBtn.on('click',function(){
+                //     tochange();
+                // });
+                function tochangetab (cur) {
+                    picList.removeClass('current')
+                    pointBtn.removeClass('current')
+                    pointBtn.eq(cur).addClass('current')
+                    picList.eq(cur).addClass('current')
+                }
+
+                function tochange () {
+                    cur++
+                    if (cur >= pointBtn.length) {
+                        cur = 0
+                    }
+                    tochangetab(cur)
+                }
+            }
+            clearInterval(setInter)
+        }
+    }
+
+    /*$(function () {
+        /!*$.ajax({
+            url: '/ajax/cityprice',
+            type: 'Get',
+            success: function (data) {
+                var monthPrice = $('#monthPrice').text()
+                if (parseInt(monthPrice) <= 0 && typeof(data[1][0]) != 'undefined') {
+                    $('#monthPrice').text(data[1][0])
+                    var beHid = true
+                    for (i = 0; i < data[1].length; i++) {
+                        if (i > 0 && data[1][i] != data[1][i - 1]) {
+                            beHid = false
+                            break
+                        }
+                    }
+                    // if(beHid)
+                    // {
+                    //     $('.fjzs').parent().hide();
+                    // }
+                }
+                $('#price_chart').highcharts({
+                    chart: {
+                        type: 'spline'
+                    },
+                    credits: enabled = false,
+                    xAxis: {
+                        tickInterval: 1,
+                        categories: data[0],
+                        labels: {
+                            formatter: function () {
+                                return this.value.toString().substr(4, 2) + '月'
+                            }
+                        }
+                    },
+                    title: {
+                        text: '',
+                        x: 0
+                        //align:'left'
+                    },
+                    yAxis: {
+                        title: {
+                            text: null
+                        },
+                        plotLines: [{
+                            value: 0,
+                            width: 1,
+                            color: '#808080'
+                        }],
+                        lineWidth: 1,
+                        labels: {
+                            formatter: function () {
+                                return Highcharts.numberFormat(this.value, 0, '.', ',')
+                            }
+                        }
+                    },
+                    tooltip: {
+                        valueSuffix: '元/平米'
+                    },
+                    legend: {
+                        enabled: false,
+                        layout: 'horizontal',
+                        align: 'right',
+                        verticalAlign: 'top',
+                        borderWidth: 0
+                    },
+                    series: [{
+                        name: '二手房售价',
+                        data: data[1]
+                    }]
+                })
+            }
+        })*!/
+    })*/
+</script>
+<!--页脚-->
+<div class="footer">
+    <div class="ftInfo">
+        <div class="ftAbout">
+            <a href="https://zz.sofang.com/about/aboutus.html" target="_blank">关于我们</a>
+            <a href="https://zz.sofang.com/about/contactusNew.html" target="_blank">联系我们</a>
+            <a href="https://zz.sofang.com/about/disclaimer.html" target="_blank">免责声明</a>
+            <a href="https://zz.sofang.com/about/recruit.html" target="_blank">招聘信息</a>
+            <a href="https://zz.sofang.com/about/secret.html" target="_blank">隐私协议</a>
+            <a href="https://zz.sofang.com/questionHelp/usehelp.html" target="_blank">使用帮助</a>
+        </div>
+        <span class="line mt32" style="display: none;"></span>
+        <ul class="ftCat" style="display: none;">
+            <li class="current">搜房家庭</li>
+
+        </ul>
+        <ul class="tjInfo current" style="display: none;">
+            <li><a href="https://zz.sofang.com/sofangAPP/index.html" target="_blank">搜房网APP</a></li>
+            <<!--li><a href="https://zz.sofang.com/about/download.html">搜房网经纪人APP</a></li>-->
+        </ul>
+
+        <span class="line mt16" style="display: none;"></span>
+        <div class="footLayout">
+            <div class="song">
+                <em>北京道杰士投资咨询服务有限责任公司 | 网络经营许可证 京ICP备13049052号-2 | © Copyright© 2020 Sofang.com, All Rights Reserved
+                    |</em>
+                <a href="https://zz.sofang.com/pdf/company_img.pdf" target="_blank">营业执照</a>
+            </div>
+            <div class="songh">
+                <img src="index_files/bottom_icp.png">
+                <a href="http://www.beian.miit.gov.cn/" target="_blank">京ICP备13049052号-2</a>
+                <a class="ba" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502032964"
+                   target="_blank"><i></i>京公网安备11010502032964号</a>
+                <a id="_pingansec_bottomimagesmall_brand" target="_blank"
+                   href="https://si.trustutn.org/info?sn=441200525039643716099&amp;certType=1"><img
+                    style="width: auto; height: auto;" src="index_files/brand_realname_small_img.png"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.footer .ftInfo .ftCat li').mouseover(function () {
+            $('.footer .ftInfo .ftCat li').removeClass('current')
+            $(this).addClass('current')
+            var index = $(this).index()
+            $('.footer .ftInfo .tjInfo').removeClass('current')
+            $('.footer .ftInfo .tjInfo').eq(index).addClass('current')
+        })
+    })
+    $(function () {
+        /*$.ajax({
+            type: 'POST',
+            url: '/about/takenotes',
+            data: {_token: 'RZFwjm0ikXbVIPTKiU3gVdWfYzCPbR9qE483SgCD'},
+            success: function (data) {
+            },
+            error: function () {
+            }
+        })*/
+    })
+</script>
+<script type="text/javascript" src="index_files/weblog.js"></script>
+<script type="text/javascript" src="index_files/jquery.js"></script>
+</body>
+</html>

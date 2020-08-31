@@ -25,11 +25,6 @@ export default new Router({
           path: '/back/*',
           name: '/back/404',
           component: () => import('../components/back/404')
-        },
-        {
-          path: '/back/house',
-          name: '/back/House',
-          component: () => import('../components/back/House')
         }
       ]
     },
@@ -43,25 +38,20 @@ export default new Router({
       name: '/back/404',
       component: () => import('../components/back/404')
     },
-    /* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 */
-    /* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 */
-    /* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 */
-    /* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 */
-    /* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 */
-    /* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 */
-    /* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 */
-    /* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 *//* 下边代码王兵你别动 */
-    {
-      path: '/',
-      name: 'rrr',
-      component: () => import('../components/rrr')
-    },
-    /* 前台首页 */
-    {
-      path: '/Home',
-      name: 'Home',
-      component: () => import('../components/font/Home')
-    }
+
+      {
+          path: '/',
+          name: 'rrr',
+          component: () => import('../components/rrr')
+      },
+      /*前台首页*/
+      {
+          path: '/Home',
+          name: 'Home',
+          component: () => import('../components/font/Home')
+      },
+
   ]
+
 
 })

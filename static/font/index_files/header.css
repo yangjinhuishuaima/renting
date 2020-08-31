@@ -1,0 +1,215 @@
+.headbg {
+    width: 100%;
+    height: 70px;
+    background: #FFFFFF;
+    #position: absolute;
+    left: 0;
+    top: 0;
+    #z-index: 19;
+}
+
+.head {
+    width: 1200px;
+    margin: 0 auto;
+    padding-top: 15px;
+    height: 70px;
+    box-sizing: border-box;
+}
+.head h1 {
+    position: relative;
+    width: 86px;
+    margin-right: 15px;
+}
+.local {
+    color: #303133;
+    margin-right: 20px;
+    margin-top: 12px;
+    cursor: pointer;
+    width: auto;
+    height: 43px;
+}
+
+.local:hover .citylist{
+    display: block;
+}
+
+.local b {
+    font-size: 12px;
+    /*font-family: MicrosoftYaHei;*/
+    color: rgba(48,49,51,1);
+    line-height: 16px;
+}
+.local i {
+    display: inline-block;
+    width: 12px;
+    height: 9px;
+    background: url(../img2.0/cityDown.png) no-repeat;
+    margin: 5px 0 0 8px;
+}
+.nav {
+    height: 100%;
+}
+.nav > li {
+    box-sizing: border-box;
+    float: left;
+    position: relative;
+    /* line-height: 32px; */
+    padding: 11px 24px 25px 0px;
+    /* margin-top: 11px; */
+    /* margin-right: 24px; */
+}
+.nav > li > a {
+    color: #303133;
+    /* border-bottom: 3px solid transparent; */
+    /* padding-bottom: 4px; */
+    margin-top: 26px;
+    font-size: 14px;
+    /*font-family: MicrosoftYaHei;*/
+    color: rgba(48,49,51,1);
+    line-height: 19px;
+}
+.top_r {
+    position: relative;
+    margin-top: 11px;
+}
+.logintip {
+    /*line-height: 32px;*/
+    position: relative;
+}
+
+.logintip a {
+    color: #303133;
+    line-height: 19px;
+    float: left;
+    font-size: 14px;
+}
+.logintip a:hover {
+    color: #0097FF;
+}
+.citylist {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    margin-left: -600px;
+    width: 364px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(219, 222, 226, 1);
+    padding: 23px 24px 16px 24px;
+    box-sizing: border-box;
+    z-index: 19;
+    float: left;
+}
+.citylist .first {
+    margin-bottom: 24px;
+}
+.colorFlag {
+    width: 4px;
+    height: 16px;
+    background: rgba(0, 151, 255, 1);
+    float: left;
+    margin-right: 8px;
+}
+.citylist .cat {
+    width: 56px;
+    height: 19px;
+    font-size: 14px;
+    /*font-family: MicrosoftYaHei;*/
+    color: rgba(48, 49, 51, 1);
+    line-height: 19px;
+    /*-webkit-text-stroke: 1px rgba(48, 49, 51, 1);*/
+    /*text-stroke: 1px rgba(48, 49, 51, 1);*/
+}
+.citylist .more {
+    /*width: 25px;*/
+    height: 16px;
+    font-size: 12px;
+    /*font-family: MicrosoftYaHei;*/
+    color: rgba(144, 147, 153, 1);
+    line-height: 16px;
+    float: right;
+}
+.citylist .more:hover {
+    color: #0097FF;
+}
+.citylist ul li label {
+    font-size: 12px;
+    /*font-family: MicrosoftYaHei;*/
+    color: #303133;
+    line-height: 16px;
+    float: left;
+    width: 27px;
+}
+.citylist ul li > span {
+    margin-left: 4px;
+    float: left;
+    width: 283px;
+}
+.citylist ul li > span > span {
+    font-size: 12px;
+    /*font-family: MicrosoftYaHei;*/
+    line-height: 16px;
+    margin-left: 12px;
+    margin-bottom: 16px;
+    float: left;
+}
+.citylist ul li > span > span a {
+    color: #606266;
+}
+.citylist ul li > span > span a:hover {
+    color: #0097FF;
+}
+
+.head h1 span {
+    display: block;
+    text-indent: -999em;
+}
+.nav_list {
+    display: none;
+    position: absolute;
+    top: 44px;
+    left: -40px;
+    background: #FFFFFF;
+    width: 108px;
+    padding: 17px !important;
+    box-shadow: 0 3px 2px #b6b3ad;
+    border-radius: 4px;
+    border: 1px solid rgba(219, 222, 226, 1);
+    z-index: 99;
+}
+.nav_list .arrow {
+    position: absolute;
+    top: -8px;
+    left: 43%;
+    width: 100%;
+    height: 8px;
+    background: url(../img2.0/caidan.png) no-repeat;
+}
+.nav_list li {
+    /* list-style: disc; */
+    /* align-content: center; */
+    color: #303133;
+    margin-bottom: 16px;
+    /* margin-left: 24px; */
+    font-size: 14px;
+    /*font-family: MicrosoftYaHei;*/
+    line-height: 19px;
+}
+.nav > li:hover .nav_list {
+    display: block;
+}
+.nav > li:hover > a {
+    color: #0097FF;
+    #border-bottom: 3px solid #efcd4b;
+}
+.nav_list li a {
+    color: #7f7f7f;
+}
+/*.nav_list li:hover{*/
+/*    color: #0097FF;*/
+/*}*/
+
+.nav_list li:hover a {
+    color: #0097FF;
+}
