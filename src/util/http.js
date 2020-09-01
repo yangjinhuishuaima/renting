@@ -2,12 +2,12 @@ import axios from 'axios'
 
 let http = axios.create({
   // 访问的根路径
-  baseURL: 'http://localhost:8090/rentings/',
+  baseURL: 'http://localhost:8090/renting/',
   // 请求超时时间
   timeout: 5000,
   // 是否携带凭证
   withCredentials: true,
-  responseType: 'json',
+  responseType: 'json'
 })
 
 // 添加请求拦截器

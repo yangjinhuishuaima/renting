@@ -11,47 +11,58 @@ export default new Router({
   // 顶层路由视图：App.vue <router-view/>
   routes: [
     {
-      path: '/back/',
-      name: '/back/Login',
-      component: () => import('../components/back/Login')
-    }, {
-      path: '/back/home',
-      name: '/back/Home',
-      component: () => import('../components/back/Home'),
-      // 二级路由视图：Home.vue <router-view/>
+      path: '/back',
+      name: 'back',
+      component: () => import('../components/back/BLogin')
+    },
+    {
+      path: '/',
+      name: 'rrr',
+      component: () => import('../components/rrr')
+    },
+    {
+      path: '/login',
+      name: 'FLogin',
+      component: () => import('../components/font/FLogin')
+    },
+    {
+      path: '/bhome',
+      name: 'BHome',
+      component: () => import('../components/back/BHome'),
+      redirect: {name: 'Hello'},
+      // 二级路由视图：BHome.vue <router-view/>
       // 嵌套路由，子路由在父路由的组件内部的路由视图中显示
       children: [
         {
-          path: '/back/*',
-          name: '/back/404',
-          component: () => import('../components/back/404')
+          path: '/hello',
+          name: 'Hello',
+          component: () => import('../components/back/Hello')
+        },
+        {
+          path: '/role',
+          name: 'Role',
+          component: () => import('../components/back/Role')
+        }, {
+          path: 'mana',
+          name: 'Mana',
+          component: () => import('../components/back/mana')
         }
+        // {
+        //   path: 'permission',
+        //   name: 'permission',
+        //   component: () => import('../components/permission')
+        // },
+        // {
+        //   path: 'customer',
+        //   name: 'customer',
+        //   component: () => import('../components/customer')
+        // }
       ]
     },
     {
-      path: '/back/403',
-      name: '/back/403',
-      component: () => import('../components/back/403')
-    },
-    {
-      path: '/back/*',
-      name: '/back/404',
-      component: () => import('../components/back/404')
-    },
-
-      {
-          path: '/',
-          name: 'rrr',
-          component: () => import('../components/rrr')
-      },
-      /*前台首页*/
-      {
-          path: '/Home',
-          name: 'Home',
-          component: () => import('../components/font/Home')
-      },
-
+      path: '/*',
+      // name: '404',
+      component: () => import('../components/404')
+    }
   ]
-
-
 })
