@@ -2187,10 +2187,12 @@
                         houseAddress: '',
                         lag: '',
                         lat: '',
+                        aid:'',
                     }
                 },
                 created: function () {
                     this.houseByIdShow()
+                    this.getAcHouses()
 
                 }, methods: {
                     getHid: function () {
@@ -2214,21 +2216,19 @@
                                 that.account_y = that.thisHouse.account_y
                                 that.houseAddress = '郑州市' + that.thisHouse.hadress + that.thisHouse.harea + that.thisHouse.hcommunity
                                 /*that.getBaiDuGPS()*/
+                                that.aid = that.thisHouse.aid
                             }
                         })
                     },
-                    /*getBaiDuGPS: function () {
+                    /*getAcHouses:function () {
+                        this.getHid()
                         let that = this
-                        /!*window.location.href='http://api.map.baidu.com/geocoding/v3/?address='+that.houseAddress+'&output=json&ak=A7eGAgLZQBs3s0LG4wm6WGRfoMA9e403&callback=showLocation'*!/
                         $.ajax({
-                            type:'GET',
-                            url: 'http://api.map.baidu.com/geocoding/v3/?address='+encodeURIComponent(that.houseAddress) + '&output=json&ak=A7eGAgLZQBs3s0LG4wm6WGRfoMA9e403&callback=showLocation',
-                            dataType:'JSONP',
+                            url: 'http://localhost:8090/rentings/houseShow/findById?aid=' + that.aid+'&hid='+that.thisHouse.hid,
+                            type: 'POST',
+                            dataType: 'json',
                             success:function (data) {
-                                sessionStorage.setItem("lag",data.result.location.lat);
-                                sessionStorage.setItem("lat",data.result.location.lng);
-                                sessionStorage.setItem('hco',that.thisHouse.hcommunity)
-                                sessionStorage.setItem('hre',that.thisHouse.harea)
+                                console.log(data)
                             }
                         })
                     }*/

@@ -1,7 +1,8 @@
+/*
 $(document).ready(function(e) {
   //city
 	var oCity=document.getElementById('city');
-	var oBtn=oCity.children[0];
+	/!*var oBtn=oCity.children[0];*!/
 	var oList=oCity.children[1];
 	var oN=oBtn.children[0];
 	var n=200;
@@ -109,3 +110,4 @@ $(document).ready(function(e) {
 });
 
 
+*/

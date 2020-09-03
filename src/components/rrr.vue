@@ -1,12 +1,8 @@
 <template>
     <div>
         <el-button @click="login()">后台</el-button>
-<<<<<<< Updated upstream
-        <el-button @click="home()">前台</el-button>
-=======
         <a href="../../static/font/index.htm">前台</a>
         <a href="../../static/font/HouseInfo.html">3333</a>
->>>>>>> Stashed changes
     </div>
 </template>
 

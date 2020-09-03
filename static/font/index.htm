@@ -60,7 +60,21 @@
             font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
             color: lightskyblue;
         }
+        .el-carousel__item h3 {
+            color: #475669;
+            font-size: 14px;
+            opacity: 0.75;
+            line-height: 200px;
+            margin: 0;
+        }
 
+        .el-carousel__item:nth-child(2n) {
+            background-color: #99a9bf;
+        }
+
+        .el-carousel__item:nth-child(2n+1) {
+            background-color: #d3dce6;
+        }
         /* #wather{
              display: none;
          }*/
@@ -170,6 +184,36 @@
             })
         })
     </script>
+<script type="text/javascript">
+    $(function () {
+        new Vue({
+            el:'#limit',
+            data(){
+                return{
+                    houses:{},
+                }
+            },
+            created:function () {
+                this.getHouse()
+            },
+            methods:{
+                getHouse:function () {
+                    let that = this
+                    $.ajax({
+                        url:'http://localhost:8090/rentings/houseShow/findLimit',
+                        dataType:'json',
+                        success:function (data) {
+                            that.houses = data
+                        }
+                    })
+                },
+                getHouseInfo:function (val) {
+                    window.location.href = 'http://localhost:8080/static/font/HouseInfo.html?hid=' + val
+                }
+            }
+        })
+    })
+</script>
 </head>
 
 <body>
@@ -189,11 +233,11 @@ https://rentins-1302959334.cos.ap-nanjing.myqcloud.com/guanggao/BigShow/index_fi
         <div class="fl local" style="display: ;">
             <div class="clearfix">
                 <b class="fl">郑州</b>
-                <i class="fl"></i>
+                <!--<i class="fl"></i>-->
             </div>
             <div></div>
-            <div class="citylist">
-            </div>
+            <!--<div class="citylist">
+            </div>-->
         </div>
         <ul class="fl nav">
             <li>
@@ -201,19 +245,6 @@ https://rentins-1302959334.cos.ap-nanjing.myqcloud.com/guanggao/BigShow/index_fi
             </li>
             <li>
                 <a href="http://localhost:8080/static/font/search.htm">租房</a>
-                <div class="nav_list">
-                    <i class="arrow"></i>
-                    <ul>
-                        <li><a href="https://zz.sofang.com/esfrent/area/ar1">整租房源</a></li>
-                        <li><a href="https://zz.sofang.com/esfrent/area/ar2">合租房源</a></li>
-                        <li><a href="https://zz.sofang.com/rentesb/area">找小区</a></li>
-                        <li><a href="https://zz.sofang.com/map/rent/house">地图搜房</a></li>
-                    </ul>
-                </div>
-            </li>
-
-            <li>
-                <a href="https://zz.sofang.com/theme/special/28" target="_blank">加盟招募</a>
             </li>
         </ul>
 
@@ -310,170 +341,57 @@ https://rentins-1302959334.cos.ap-nanjing.myqcloud.com/guanggao/BigShow/index_fi
 <!--搜房租房-->
 <div class="moduleBlock">
     <div class="moduleHead">
-
-        <a href="http://localhost:8080/static/font/search.htm" target="_blank">更多租房 &gt;</a>
+        <span style="font-size: 24px;font-weight: bolder">推荐房源</span>
+        <a href="http://localhost:8080/static/font/search.htm">更多租房 &gt;</a>
     </div>
     <span class="moduleLine"></span>
-    <div class="esf modulInfo over_auto">
-        <!--<div class="leftInfo">
-            <div class="cat">
-                <ul class="height_144">
-                    <li>
-                        <a href="http://localhost:8080/static/font/search.htm?searchs=中原" target="_blank">中原</a>
-                        <em></em>
-                        <a href="http://localhost:8080/static/font/search.htm?searchs=二七" target="_blank">二七</a>
-                        <em></em>
-                        <a href="http://localhost:8080/static/font/search.htm?searchs=管城" target="_blank">管城</a>
-                        <em></em>
-                        <a href="http://localhost:8080/static/font/search.htm?searchs=金水" target="_blank">金水</a>
-                        <em></em>
-                        <a href="http://localhost:8080/static/font/search.htm?searchs=中牟" target="_blank">中牟</a>
-                        <em></em>
-                        <a href="http://localhost:8080/static/font/search.htm?searchs=巩义" target="_blank">巩义</a>
-                        <em></em>
-                        <a href="http://localhost:8080/static/font/search.htm?searchs=荥阳" target="_blank">荥阳</a>
-                        <em></em>
-                        <a href="http://localhost:8080/static/font/search.htm?searchs=新密" target="_blank">新密</a>
-                        <em></em>
-                        <a href="http://localhost:8080/static/font/search.htm?searchs=新郑" target="_blank">新郑</a>
-                        <em></em>
-                        <a href="http://localhost:8080/static/font/search.htm?searchs=登封" target="_blank">登封</a>
-                        <em></em>
-
-                    </li>
-                    <li>
-                        <a href="https://zz.sofang.com/esfrent/area/aq1" target="_blank">一居</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aq2" target="_blank">二居</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aq3" target="_blank">三居</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aq4" target="_blank">四居</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aq5" target="_blank">五居</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aq6" target="_blank">五居以上</a>
-                    </li>
-                    <li>
-                        <a href="https://zz.sofang.com/esfrent/area" target="_blank">住宅</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/sprent/area" target="_blank">商铺</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/xzlrent/area" target="_blank">办公楼</a>
-
-                    </li>
-                    <li>
-                        <a href="https://zz.sofang.com/esfrent/area/" target="_blank">不限
-                            &nbsp;&nbsp;</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/ao1" target="_blank">500以下
-                            &nbsp;&nbsp;</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/ao2" target="_blank">500-1000
-                            &nbsp;&nbsp;</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/ao3" target="_blank">1000-2000
-                            &nbsp;&nbsp;</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/ao4" target="_blank">2000-3000
-                            &nbsp;&nbsp;</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/ao5" target="_blank">3000-5000
-                            &nbsp;&nbsp;</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/ao6" target="_blank">5000-8000
-                            &nbsp;&nbsp;</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/ao7" target="_blank">8000-10000
-                            &nbsp;&nbsp;</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/ao8" target="_blank">10000以上
-                            &nbsp;&nbsp;</a>
-                        <em></em>
-                    </li>
-                    <li>
-                        <a href="https://zz.sofang.com/esfrent/area/ar1" target="_blank">整租</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/ar2" target="_blank">合租</a>
-                    </li>
-
-                </ul>
-            </div>
-            <img class="mt32" src="index_files/zfdefault.png">
-
-        </div>-->
-        <div class="rightInfo">
-            <ul class="catInfo" style="display: block;">
-                <li>
-                    <a href="https://zz.sofang.com/housedetail/sr2020060000077364.html" target="_blank">
-                        <img class="lazy" alt="整租 美景菩提 3室2厅1卫 90㎡"
-                             data-original="https://img5.sofang.com/otherSize/house/rent/2020_06/23/101758_498_EVJH_2.jpg"
-                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-                        <h3>整租 美景菩提 3室2厅1卫 90㎡</h3>
-                    </a>
-                    <label>郑州市高新区高新技术开发区科学大道59号(信息工程大学对面)</label>
-                    <h5>
-                        2200元/月
-                    </h5>
-                </li>
-                <li>
-                    <a href="https://zz.sofang.com/housedetail/sr2020080000072627.html" target="_blank">
-                        <img class="lazy" alt="整租 南关街东三马路 3室1厅1卫 89㎡"
-                             data-original="https://img5.sofang.com/house/2020_08/25/6d91c41e7764111cb2f0532309902884.png"
-                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-                        <h3>整租 南关街东三马路 3室1厅1卫 89㎡</h3>
-                    </a>
-                    <label>河南省郑州市管城回族区</label>
-                    <h5>
-                        1800元/月
-                    </h5>
-                </li>
-                <li>
-                    <a href="https://zz.sofang.com/housedetail/sr2019080000048310.html" target="_blank">
-                        <img class="lazy" alt="整租 建业运河上院 3室2厅1卫 90㎡"
-                             data-original="https://img5.sofang.com/house/2019_08/25/35342b2617843cd89fde925d22a2bf06.png"
-                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-                        <h3>整租 建业运河上院 3室2厅1卫 90㎡</h3>
-                    </a>
-                    <label>河南省郑州市惠济区前花王</label>
-                    <h5>
-                        1500元/月
-                    </h5>
-                </li>
-            </ul>
-            <ul class="listInfo">
-                <li>
-                    <a href="https://zz.sofang.com/housedetail/sr2020080000060733.html" target="_blank">
-                        <h3>整租 橡树玫瑰城 2室1厅1卫 69㎡</h3>
-                    </a>
-                    <label>郑州市管城回族区南三环与文兴路交叉路口往北约50米(紫英佳苑南侧约50米)</label>
-                    <h5>
-                        1800元/月
-                    </h5>
-                </li>
-                <li>
-                    <a href="https://zz.sofang.com/housedetail/sr2020080000074226.html" target="_blank">
-                        <h3>华中路11号院27所家属院</h3>
-                    </a>
-                    <label>河南省郑州市二七区</label>
-                    <h5>
-                        1100元/月
-                    </h5>
-                </li>
-                <li>
-                    <a href="https://zz.sofang.com/housedetail/sr2020080000061586.html" target="_blank">
-                        <h3>合租 绿云小区 4室2厅2卫</h3>
-                    </a>
-                    <label>淮南街16号</label>
-                    <h5>
-                        550元/月
-                    </h5>
-                </li>
-            </ul>
-        </div>
+    <div id = "limit" v-if="houses">
+        <ul v-for=" h in houses">
+           <li>
+               <a href="javascript:void(0)" @click="getHouseInfo(h.hid)">
+               <img v-bind:src="h.list[0].hphoto"><br/>
+               <span class="hc">{{h.hcommunity}}</span><br>
+               {{h.hadress}}{{h.harea}}<br>
+               {{h.htshi}} {{h.hting}} {{h.htwei}}<br/>
+               <span class="py">{{h.hprice}}元/月</span>&nbsp;{{h.hpaymethod}}
+               </a>
+               <hr>
+           </li>
+        </ul>
     </div>
 </div>
+<style>
+    #limit{
+        width: 1400px;
+        height: 300px;
+        margin-left: -100px;
+    }
+    #limit ul li{
+        border: 1px solid gainsboro;
+        background: white;
+        border-radius: 6px;
+        float: left;
+        margin-left: 73px;
+        list-style: none;
+        font-size: 18px;
+        margin-top: 30px;
 
+    }
+    #limit ul li img{
+        width: 260px;
+        height: 220px;
+    }
+    .hc{
+        font-weight: bolder;
+        color: orangered;
+        font-family: 微软雅黑;
+    }
+    .py{
+        font-weight: bolder;
+        color: orange;
+        font-size: 22px;
+    }
+</style>
 
 <!--右下角广告-->
 <script type="text/javascript">
@@ -546,79 +464,7 @@ https://rentins-1302959334.cos.ap-nanjing.myqcloud.com/guanggao/BigShow/index_fi
         }
     }
 
-    /*$(function () {
-        /!*$.ajax({
-            url: '/ajax/cityprice',
-            type: 'Get',
-            success: function (data) {
-                var monthPrice = $('#monthPrice').text()
-                if (parseInt(monthPrice) <= 0 && typeof(data[1][0]) != 'undefined') {
-                    $('#monthPrice').text(data[1][0])
-                    var beHid = true
-                    for (i = 0; i < data[1].length; i++) {
-                        if (i > 0 && data[1][i] != data[1][i - 1]) {
-                            beHid = false
-                            break
-                        }
-                    }
-                    // if(beHid)
-                    // {
-                    //     $('.fjzs').parent().hide();
-                    // }
-                }
-                $('#price_chart').highcharts({
-                    chart: {
-                        type: 'spline'
-                    },
-                    credits: enabled = false,
-                    xAxis: {
-                        tickInterval: 1,
-                        categories: data[0],
-                        labels: {
-                            formatter: function () {
-                                return this.value.toString().substr(4, 2) + '月'
-                            }
-                        }
-                    },
-                    title: {
-                        text: '',
-                        x: 0
-                        //align:'left'
-                    },
-                    yAxis: {
-                        title: {
-                            text: null
-                        },
-                        plotLines: [{
-                            value: 0,
-                            width: 1,
-                            color: '#808080'
-                        }],
-                        lineWidth: 1,
-                        labels: {
-                            formatter: function () {
-                                return Highcharts.numberFormat(this.value, 0, '.', ',')
-                            }
-                        }
-                    },
-                    tooltip: {
-                        valueSuffix: '元/平米'
-                    },
-                    legend: {
-                        enabled: false,
-                        layout: 'horizontal',
-                        align: 'right',
-                        verticalAlign: 'top',
-                        borderWidth: 0
-                    },
-                    series: [{
-                        name: '二手房售价',
-                        data: data[1]
-                    }]
-                })
-            }
-        })*!/
-    })*/
+
 </script>
 <!--页脚-->
 <div class="footer">
@@ -638,7 +484,6 @@ https://rentins-1302959334.cos.ap-nanjing.myqcloud.com/guanggao/BigShow/index_fi
         </ul>
         <ul class="tjInfo current" style="display: none;">
             <li><a href="https://zz.sofang.com/sofangAPP/index.html" target="_blank">搜房网APP</a></li>
-            <<!--li><a href="https://zz.sofang.com/about/download.html">搜房网经纪人APP</a></li>-->
         </ul>
 
         <span class="line mt16" style="display: none;"></span>
@@ -669,17 +514,6 @@ https://rentins-1302959334.cos.ap-nanjing.myqcloud.com/guanggao/BigShow/index_fi
             $('.footer .ftInfo .tjInfo').removeClass('current')
             $('.footer .ftInfo .tjInfo').eq(index).addClass('current')
         })
-    })
-    $(function () {
-        /*$.ajax({
-            type: 'POST',
-            url: '/about/takenotes',
-            data: {_token: 'RZFwjm0ikXbVIPTKiU3gVdWfYzCPbR9qE483SgCD'},
-            success: function (data) {
-            },
-            error: function () {
-            }
-        })*/
     })
 </script>
 <script type="text/javascript" src="index_files/weblog.js"></script>
