@@ -30,954 +30,1074 @@
     <script src="../myaxios.js"></script>
 </head>
 <body>
-<input type="hidden" name="viewBill" value="0b379c5536929cb345c657a5c2c4ad16">
-<!-- PC共用头部   可定义头部，自定义头部需要有logo返回首页和登录注册功能 -->
-<script src="search_files/index3.js"></script>
+<div id="houseList">
+    <input type="hidden" name="viewBill" value="0b379c5536929cb345c657a5c2c4ad16">
+    <!-- PC共用头部   可定义头部，自定义头部需要有logo返回首页和登录注册功能 -->
+    <script src="search_files/index3.js"></script>
 
-<div class="topbg headerTop clearfix">
-    <div class="headbg">
-        <div class="head detailHead clearfix">
-            <h1 class="fl">
-                <a href="https://zz.sofang.com/"><img src="search_files/logo.png" alt="搜房网"></a>
-            </h1>
-            <div class="fl local localCity">
-                <div class="top_l sf_logo">
-                    <div class="city" id="city">
-                        <a class="fl local_city"><span>郑州</span><i class="fl"></i></a>
+    <div class="topbg headerTop clearfix">
+        <div class="headbg">
+            <div class="head detailHead clearfix">
+                <h1 class="fl">
+                    <a href="http://localhost:8080/static/font/index.htm">
+                        <img
+                            src="https://rentins-1302959334.cos.ap-nanjing.myqcloud.com/guanggao/BigShow/index_files/tab_logo.png"
+                            alt="搜房网"></a>
+                </h1>
+                <div class="fl local localCity">
+                    <div class="top_l sf_logo">
+                        <div class="city" id="city">
+                            <a class="fl local_city"><span>郑州</span><i class="fl"></i></a>
 
+                        </div>
                     </div>
                 </div>
-            </div>
-            <ul class="fl nav">
-                <li>
-                    <a href="https://zz.sofang.com/">首页</a>
-                </li>
-
-                <li>
-                    <a href="https://zz.sofang.com/esfrent/area" class=" default ">租房</a>
-                    <div class="nav_list">
-                        <i class="arrow"></i>
-                        <ul>
-                            <li><a href="https://zz.sofang.com/esfrent/area/ar1">整租房源</a></li>
-                            <li><a href="https://zz.sofang.com/esfrent/area/ar2">合租房源</a></li>
-                            <li><a href="https://zz.sofang.com/rentesb/area">找小区</a></li>
-                            <li><a href="https://zz.sofang.com/map/rent/house">地图搜房</a></li>
-                        </ul>
-                    </div>
-                </li>
-
-                <ul class="fr top_r" style="margin-left: 700px">
-                    <li class="logintip user">
-                        <a href="https://zz.sofang.com/userChoose.html" target="_blank">登录/注册</a>
-
-                        <a href="http://agent.sofang.com/" style="margin-left:10px;" target="_blank">经纪人登录</a>
+                <ul class="fl nav">
+                    <li>
+                        <a href="http://localhost:8080/static/font/index.htm">首页</a>
                     </li>
+
+                    <li>
+                        <a href="http://localhost:8080/static/font/search.htm" class=" default ">租房</a>
+                        <div class="nav_list">
+                            <i class="arrow"></i>
+                            <ul>
+                                <li><a href="https://zz.sofang.com/esfrent/area/ar1">整租房源</a></li>
+                                <li><a href="https://zz.sofang.com/esfrent/area/ar2">合租房源</a></li>
+                                <li><a href="https://zz.sofang.com/rentesb/area">找小区</a></li>
+                                <li><a href="https://zz.sofang.com/map/rent/house">地图搜房</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <ul class="fr top_r" style="margin-left: 700px">
+                        <li class="logintip user">
+                            <a href="https://zz.sofang.com/userChoose.html" target="_blank">登录/注册</a>
+
+                            <a href="http://agent.sofang.com/" style="margin-left:10px;" target="_blank">经纪人登录</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function (e) {
+            $('.top_r .user1').hover(function () {
+                $(this).addClass('click')
+                $(this).find('p').show()
+            }, function () {
+                $(this).removeClass('click')
+                $(this).find('p').hide()
+            })
+        })
+    </script>
+    <!-- PC共用头部  end -->
+
+
+    <script src="search_files/housecompare.js"></script>
+    <script src="search_files/point_interest.js"></script>
+    <script src="search_files/list.js"></script>
+    <script src="search_files/village_detail.js"></script>
+    <script type="text/javascript" src="search_files/commmenAdvertising.js"></script>
+    <link rel="stylesheet" href="search_files/indexcommon.css">
+
+    <!-- 必须先引入vue，  后使用element-ui -->
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>-->
+    <!--引入 element-ui 的样式，-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+    <!-- 引入element 的组件库-->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+
+    <div class="ad_left" id="advertising0">
+    </div>
+    <div class="ad_right" id="advertising1">
+    </div>
+    <div class="village_con">
+        <div class="search_con clearfix">
+            <div class="village_search clearfix">
+                <form action="/esfrent/area" id="build" method="get">
+                    <input type="text" class="txt fl" tp="spsale" autocomplete="off" id="keyword"
+                           placeholder="请输入搜索地址，如：（区/县/街道/小区）">
+                    <input type="button" id="searchBtn" class="btn fl" value="搜索" @click="getSearchs()">
+                </form>
+                <input type="hidden" id="linkurl" value="/esfrent/area">
+                <input type="hidden" id="par" value="">
+                <input type="hidden" id="token" value="sVQQhn8tN3ZzH7RYuBsTJFpzxKZJLGx8NX4gwGEe">
+            </div>
+            <div class="mai mai1" style="display: none;">
+                <ul class="search_lsit" style="display: none;">
                 </ul>
+            </div>
         </div>
     </div>
-</div>
-<script type="text/javascript">
-    $(document).ready(function (e) {
-        $('.top_r .user1').hover(function () {
-            $(this).addClass('click')
-            $(this).find('p').show()
-        }, function () {
-            $(this).removeClass('click')
-            $(this).find('p').hide()
-        })
-    })
-</script>
-<!-- PC共用头部  end -->
-
-
-<script src="search_files/housecompare.js"></script>
-<script src="search_files/point_interest.js"></script>
-<script src="search_files/list.js"></script>
-<script src="search_files/village_detail.js"></script>
-<script type="text/javascript" src="search_files/commmenAdvertising.js"></script>
-<link rel="stylesheet" href="search_files/indexcommon.css">
-
-<!-- 必须先引入vue，  后使用element-ui -->
-<!--<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>-->
-<!--引入 element-ui 的样式，-->
-<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-
-<!-- 引入element 的组件库-->
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
-
-
-<div class="ad_left" id="advertising0">
-</div>
-<div class="ad_right" id="advertising1">
-</div>
-<div class="village_con">
-    <div class="search_con clearfix">
-        <div class="village_search clearfix">
-            <form action="/esfrent/area" id="build" method="get">
-                <input type="text" class="txt fl" tp="spsale" autocomplete="off" id="keyword" onclick="$(this).focus();"
-                       name="kw" placeholder="请输入关键字(楼盘名)">
-                <input type="button" id="searchBtn" class="btn fl" value="搜索">
-            </form>
-            <input type="hidden" id="linkurl" value="/esfrent/area">
-            <input type="hidden" id="par" value="">
-            <input type="hidden" id="token" value="sVQQhn8tN3ZzH7RYuBsTJFpzxKZJLGx8NX4gwGEe">
-        </div>
-        <div class="mai mai1" style="display: none;">
-            <ul class="search_lsit" style="display: none;">
-            </ul>
-        </div>
-    </div>
-</div>
-<script type="text/javascript">
-    var houseurl = $('#linkurl').val()
-    var url = $('#par').val()
-    /** 关键字下拉搜索 **/
-    var num = -1
-    var searchKeyWords = {keyword: '', tp: '', tp1: '', sr: '', obj: null}
-    $('#searchBtn').on('click', function () {
-        var kw = 'kw=' + $('#keyword').val().replace(/(^\s*)|(\s*$)/g, '')
-        window.location.href = houseurl + '/' + url + '?' + kw
-    })
-    $('#keyword').on('keyup focus', function (ev) {
-        var obj = $(this)
-        if (ev.keyCode == 40) {
-            num++
-            navSelectNextWord(obj)
-            return false
-        } else if (ev.keyCode == 38) {
-            num--
-            navSelectLastWord(obj)
-            return false
-        } else if (ev.keyCode == 13) {
+    <script type="text/javascript">
+        var houseurl = $('#linkurl').val()
+        var url = $('#par').val()
+        /** 关键字下拉搜索 **/
+        var num = -1
+        var searchKeyWords = {keyword: '', tp: '', tp1: '', sr: '', obj: null}
+        /*$('#searchBtn').on('click', function () {
             var kw = 'kw=' + $('#keyword').val().replace(/(^\s*)|(\s*$)/g, '')
-            url = zhunhuan(url, 'ba')
-            if (kw != 'kw=') {
-                window.location.href = houseurl + '/' + url + '?' + kw
-            } else {
-                window.location.href = houseurl + '/' + url
-            }
-        } else if (ev.keyCode == 37 || ev.keyCode == 39) {
-            return false
-        } else {
-            var xtp = $(obj).attr('tp')
-            var val = $.trim($(obj).val())
-            if (xtp == 'new' || xtp == 'shops' || xtp == 'office' || xtp == 'villa') {
-                searchKeyWords.tp = 'new'
-                searchKeyWords.sr = 2
-                if (xtp == 'new' || xtp == 'villa') {
-                    searchKeyWords.tp1 = '3'
-                } else if (xtp == 'office') {
-                    searchKeyWords.tp1 = '2'
+            window.location.href = houseurl + '/' + url + '?' + kw
+        })*/
+        /*$('#keyword').on('keyup focus', function (ev) {
+            var obj = $(this)
+            if (ev.keyCode == 40) {
+                num++
+                navSelectNextWord(obj)
+                return false
+            } else if (ev.keyCode == 38) {
+                num--
+                navSelectLastWord(obj)
+                return false
+            } else if (ev.keyCode == 13) {
+                var kw = 'kw=' + $('#keyword').val().replace(/(^\s*)|(\s*$)/g, '')
+                url = zhunhuan(url, 'ba')
+                if (kw != 'kw=') {
+                    window.location.href = houseurl + '/' + url + '?' + kw
                 } else {
-                    searchKeyWords.tp1 = '1'
+                    window.location.href = houseurl + '/' + url
                 }
+            } else if (ev.keyCode == 37 || ev.keyCode == 39) {
+                return false
             } else {
-                searchKeyWords.tp = 'old'
-                if (xtp == 'saleesb') {
-                    searchKeyWords.tp1 = '3'
+                var xtp = $(obj).attr('tp')
+                var val = $.trim($(obj).val())
+                if (xtp == 'new' || xtp == 'shops' || xtp == 'office' || xtp == 'villa') {
+                    searchKeyWords.tp = 'new'
                     searchKeyWords.sr = 2
-                } else if (xtp == 'rentesb') {
-                    searchKeyWords.tp1 = '3'
-                    searchKeyWords.sr = 1
+                    if (xtp == 'new' || xtp == 'villa') {
+                        searchKeyWords.tp1 = '3'
+                    } else if (xtp == 'office') {
+                        searchKeyWords.tp1 = '2'
+                    } else {
+                        searchKeyWords.tp1 = '1'
+                    }
                 } else {
-                    if (xtp.indexOf('sale') == '-1') {
-                        searchKeyWords.sr = 1
-                        if (xtp == 'esfrent' || xtp == 'bsrent') {
-                            searchKeyWords.tp1 = '3'
-                        } else if (xtp == 'xzlrent') {
-                            searchKeyWords.tp1 = '2'
-                        } else {
-                            searchKeyWords.tp1 = '1'
-                        }
-                    } else {
+                    searchKeyWords.tp = 'old'
+                    if (xtp == 'saleesb') {
+                        searchKeyWords.tp1 = '3'
                         searchKeyWords.sr = 2
-                        if (xtp == 'esfsale' || xtp == 'bssale') {
-                            searchKeyWords.tp1 = '3'
-                        } else if (xtp == 'xzlsale') {
-                            searchKeyWords.tp1 = '2'
-                        } else {
-                            searchKeyWords.tp1 = '1'
-                        }
-                    }
-                }
-            }
-            searchKeyWords.keyword = val
-            searchKeyWords.obj = obj
-            //console.log(searchKeyWords);
-            x_getRecommend(searchKeyWords)
-            $('.mai').show()
-        }
-    })
-    $(document).click(function (ev) {
-        //alert(ev.target.className.indexOf('border_blue'))
-        if (ev.target.className.indexOf('border_blue') == -1) {
-            $('div.mai').hide()
-        }
-    })
-    //楼盘搜索
-    var versionNum = 0
-
-    function x_getRecommend (searchKeyWords) {
-        var token = 'sVQQhn8tN3ZzH7RYuBsTJFpzxKZJLGx8NX4gwGEe'
-        var x_url = '/home_search_only'
-        versionNum++
-        $.ajax({
-            type: 'get',
-            url: x_url,
-            data: {
-                _token: token,
-                keywords: searchKeyWords.keyword,
-                tp: searchKeyWords.tp,
-                tp1: searchKeyWords.tp1,
-                sr: searchKeyWords.sr,
-                v: versionNum
-            },
-            success: function (data) {
-                if (data == 0) {
-                    searchKeyWords.obj.next('.mai').html('')
-                    return false
-                }
-                if (parseInt(data.versionNum) == versionNum) {
-                    data = data.res
-                    //var dataList = '<ul class="search_lsit">';
-                    var dataList = ''
-                    for (var i in data) {
-                        var comName = data[i]._source.name ? data[i]._source.name : data[i]._source.communityName
-                        if (typeof comName != 'undefined') {
-                            dataList += '<li><a class="selectSearch" value="' + data[i]._source.id + '">' + comName + '</a></li>'
-                        }
-                    }
-                    //dataList += '</ul>';
-                    //searchKeyWords.obj.next('.mai').html(dataList);
-                    //searchKeyWords.obj.next('.mai').show();
-                    //$(".search_con").append(dataList);
-                    $('.search_lsit').html(dataList)
-                    $('.search_lsit').show()
-                    if ($('#searchStatus').val() == 1) {
-                        $('.selectSearch').click(function () {
-                            window.location.href = '/checkprice/' + $(this).attr('value')
-                        })
+                    } else if (xtp == 'rentesb') {
+                        searchKeyWords.tp1 = '3'
+                        searchKeyWords.sr = 1
                     } else {
-                        $('.selectSearch').click(function () {
-                            var kw = 'kw=' + $(this).text().replace(/(^\s*)|(\s*$)/g, '')//encodeURI(encodeURI($('#keyword').val()))
-                            url = zhunhuan(url, 'ba')
-                            if (kw != 'kw=') {
-                                window.location.href = houseurl + '/' + url + '?' + kw
+                        if (xtp.indexOf('sale') == '-1') {
+                            searchKeyWords.sr = 1
+                            if (xtp == 'esfrent' || xtp == 'bsrent') {
+                                searchKeyWords.tp1 = '3'
+                            } else if (xtp == 'xzlrent') {
+                                searchKeyWords.tp1 = '2'
                             } else {
-                                window.location.href = houseurl + '/' + url
+                                searchKeyWords.tp1 = '1'
                             }
-                        })
+                        } else {
+                            searchKeyWords.sr = 2
+                            if (xtp == 'esfsale' || xtp == 'bssale') {
+                                searchKeyWords.tp1 = '3'
+                            } else if (xtp == 'xzlsale') {
+                                searchKeyWords.tp1 = '2'
+                            } else {
+                                searchKeyWords.tp1 = '1'
+                            }
+                        }
                     }
                 }
+                searchKeyWords.keyword = val
+                searchKeyWords.obj = obj
+                //console.log(searchKeyWords);
+                x_getRecommend(searchKeyWords)
+                $('.mai').show()
+            }
+        })*/
+        $(document).click(function (ev) {
+            //alert(ev.target.className.indexOf('border_blue'))
+            if (ev.target.className.indexOf('border_blue') == -1) {
+                $('div.mai').hide()
             }
         })
-    }
+        //楼盘搜索
+        var versionNum = 0
 
-    // 查出搜索的关键字后，可以通过导航键来选择下一个
-    function navSelectNextWord (obj) {
-        var mai = obj.parent().parent().next().find('li')
-        $(mai).css('background-color', '#fff')
-        var m = mai.length
-        if (num >= m) {
-            num = 0
-            $(mai[num]).css('background-color', '#e8e8e8')
-            obj.val($(mai[num]).children('a').text())
-
-        } else {
-            $(mai[num]).css('background-color', '#e8e8e8')
-            obj.val($(mai[num]).children('a').text())
+        function x_getRecommend (searchKeyWords) {
+            var token = 'sVQQhn8tN3ZzH7RYuBsTJFpzxKZJLGx8NX4gwGEe'
+            var x_url = '/home_search_only'
+            versionNum++
+            $.ajax({
+                type: 'get',
+                url: x_url,
+                data: {
+                    _token: token,
+                    keywords: searchKeyWords.keyword,
+                    tp: searchKeyWords.tp,
+                    tp1: searchKeyWords.tp1,
+                    sr: searchKeyWords.sr,
+                    v: versionNum
+                },
+                success: function (data) {
+                    if (data == 0) {
+                        searchKeyWords.obj.next('.mai').html('')
+                        return false
+                    }
+                    if (parseInt(data.versionNum) == versionNum) {
+                        data = data.res
+                        //var dataList = '<ul class="search_lsit">';
+                        var dataList = ''
+                        for (var i in data) {
+                            var comName = data[i]._source.name ? data[i]._source.name : data[i]._source.communityName
+                            if (typeof comName != 'undefined') {
+                                dataList += '<li><a class="selectSearch" value="' + data[i]._source.id + '">' + comName + '</a></li>'
+                            }
+                        }
+                        //dataList += '</ul>';
+                        //searchKeyWords.obj.next('.mai').html(dataList);
+                        //searchKeyWords.obj.next('.mai').show();
+                        //$(".search_con").append(dataList);
+                        $('.search_lsit').html(dataList)
+                        $('.search_lsit').show()
+                        if ($('#searchStatus').val() == 1) {
+                            $('.selectSearch').click(function () {
+                                window.location.href = '/checkprice/' + $(this).attr('value')
+                            })
+                        } else {
+                            $('.selectSearch').click(function () {
+                                var kw = 'kw=' + $(this).text().replace(/(^\s*)|(\s*$)/g, '')//encodeURI(encodeURI($('#keyword').val()))
+                                url = zhunhuan(url, 'ba')
+                                if (kw != 'kw=') {
+                                    window.location.href = houseurl + '/' + url + '?' + kw
+                                } else {
+                                    window.location.href = houseurl + '/' + url
+                                }
+                            })
+                        }
+                    }
+                }
+            })
         }
-//        setCursorPosition($('#keyword'), $('#keyword').val().length);
-    }
 
-    // 查出搜索的关键字后，可以通过导航键来选择上一个
-    function navSelectLastWord (obj) {
-        var mai = obj.parent().parent().next().find('li')
-        $(mai).css('background-color', '#fff')
-        var m = mai.length
-        if (num < 0) {
-            num = m - 1
-            $(mai[num]).css('background-color', '#e8e8e8')
-            obj.val($(mai[num]).children('a').text())
+        // 查出搜索的关键字后，可以通过导航键来选择下一个
+        function navSelectNextWord (obj) {
+            var mai = obj.parent().parent().next().find('li')
+            $(mai).css('background-color', '#fff')
+            var m = mai.length
+            if (num >= m) {
+                num = 0
+                $(mai[num]).css('background-color', '#e8e8e8')
+                obj.val($(mai[num]).children('a').text())
 
-        } else {
-            $(mai[num]).css('background-color', '#e8e8e8')
-            obj.val($(mai[num]).children('a').text())
-        }
-//        setCursorPosition($('#keyword'), $('#keyword').val().length);
-    }
-
-    //获取已选择条件的链接
-    function zhunhuan (url, par, pid) {
-        url = url.replace(/bl[\w\|,]*/, 'bl1')//默认为第一页
-        if (par == 'aa') {
-            url = url.replace(/ab[\w,]*/, '')
-        }
-        if (par == 'ac') {
-            url = url.replace(/ad[\w,]*/, '')
-        }
-        var urls = []
-        if (url.length != 0) {
-            urls = url.split('-')
-            if (par == 'aa') {
-                urls = xunique(urls)
+            } else {
+                $(mai[num]).css('background-color', '#e8e8e8')
+                obj.val($(mai[num]).children('a').text())
             }
+//        setCursorPosition($('#keyword'), $('#keyword').val().length);
         }
-        if (par == 'bh') {
-            for (var i in urls) {
-                if (urls[i].substr(0, 2) == 'bh') {
-                    var pp = urls[i].substr(2).replace(pid, '')
-                    if (pp != '') {
-                        pp = xunique(pp.split('|'))
-                        urls[i] = 'bh' + pp.join('|')
-                    } else {
+
+        // 查出搜索的关键字后，可以通过导航键来选择上一个
+        function navSelectLastWord (obj) {
+            var mai = obj.parent().parent().next().find('li')
+            $(mai).css('background-color', '#fff')
+            var m = mai.length
+            if (num < 0) {
+                num = m - 1
+                $(mai[num]).css('background-color', '#e8e8e8')
+                obj.val($(mai[num]).children('a').text())
+
+            } else {
+                $(mai[num]).css('background-color', '#e8e8e8')
+                obj.val($(mai[num]).children('a').text())
+            }
+//        setCursorPosition($('#keyword'), $('#keyword').val().length);
+        }
+
+        //获取已选择条件的链接
+        function zhunhuan (url, par, pid) {
+            url = url.replace(/bl[\w\|,]*/, 'bl1')//默认为第一页
+            if (par == 'aa') {
+                url = url.replace(/ab[\w,]*/, '')
+            }
+            if (par == 'ac') {
+                url = url.replace(/ad[\w,]*/, '')
+            }
+            var urls = []
+            if (url.length != 0) {
+                urls = url.split('-')
+                if (par == 'aa') {
+                    urls = xunique(urls)
+                }
+            }
+            if (par == 'bh') {
+                for (var i in urls) {
+                    if (urls[i].substr(0, 2) == 'bh') {
+                        var pp = urls[i].substr(2).replace(pid, '')
+                        if (pp != '') {
+                            pp = xunique(pp.split('|'))
+                            urls[i] = 'bh' + pp.join('|')
+                        } else {
+                            urls.splice(i, 1)
+                        }
+                    }
+                }
+            } else {
+                for (var i in urls) {
+                    if (urls[i].substr(0, 2) == par) {
                         urls.splice(i, 1)
                     }
                 }
             }
-        } else {
-            for (var i in urls) {
-                if (urls[i].substr(0, 2) == par) {
-                    urls.splice(i, 1)
-                }
+            if (urls.length == 0) {
+                return ''
+            } else {
+                return urls.join('-')
             }
         }
-        if (urls.length == 0) {
-            return ''
-        } else {
-            return urls.join('-')
+
+        window.onclick = function (ev) {
+            if (!checkParent(ev.target, 'mai1')) {
+                hideSearchList()
+            }
         }
-    }
 
-    window.onclick = function (ev) {
-        if (!checkParent(ev.target, 'mai1')) {
-            hideSearchList()
+        function hideSearchList () {
+            $('.search_lsit').hide()
         }
-    }
 
-    function hideSearchList () {
-        $('.search_lsit').hide()
-    }
-
-    // 计算出该次事件对象e 的 父元素是否有class 'par'
-    function checkParent (e, par) {
-        if (!e.parentNode) return false
-        if (e.parentNode.className && e.parentNode.className.split(' ').indexOf(par) >= 0) {
-            return true
-        } else {
-            return checkParent(e.parentNode, par)
+        // 计算出该次事件对象e 的 父元素是否有class 'par'
+        function checkParent (e, par) {
+            if (!e.parentNode) return false
+            if (e.parentNode.className && e.parentNode.className.split(' ').indexOf(par) >= 0) {
+                return true
+            } else {
+                return checkParent(e.parentNode, par)
+            }
         }
-    }
 
-    /** 关键字下拉搜索结束 **/
-</script>
-<script type="text/javascript">
+        /** 关键字下拉搜索结束 **/
+    </script>
+    <script type="text/javascript">
 
-    $(function () {
+        $(function () {
 
-        /*import qs from "qs"*/
-        new Vue({
-            el: '#houseList',
-            data () {
-                return {
-                    houseInfo: {},
-                    currentPage2: 1,
-                    //上/下一页
-                    pageNum: 1,
-                    pageSize: 10,
-                    /*模糊搜索条件*/
-                    fuzzySearch: {
+            /*import qs from "qs"*/
+            new Vue({
+                el: '#houseList',
+                data () {
+                    return {
+                        houseInfo: {},
+                        currentPage2: 1,
+                        //上/下一页
                         pageNum: 1,
-                        pageSize: 10
+                        pageSize: 10,
+                        /*模糊搜索条件*/
+                        fuzzySearch: {
+                            pageNum: 1,
+                            pageSize: 10
+                        },
+                        //区/县
+                        streetlist: {},
+                        //选中城市的街道信息
+                        streetInfo: {},
+                        //街道是否显示
+                        streetState: false,
+                        /*朝向*/
+                        htdirectVal: '',
+                        htdirect: [
+                            {
+                                value: '东',
+                                lable: '东'
+                            }, {
+                                value: '西',
+                                lable: '西'
+                            },
+                            {
+                                value: '南',
+                                lable: '南'
+                            },
+                            {
+                                value: '北',
+                                lable: '北'
+                            },
+                            {
+                                value: '东南',
+                                lable: '东南'
+                            },
+                            {
+                                value: '东北',
+                                lable: '东北'
+                            },
+                            {
+                                value: '西南',
+                                lable: '西南'
+                            },
+                            {
+                                value: '西北',
+                                lable: '西北'
+                            }
+                        ],
+                        /*楼层*/
+                        hfloorVal: '',
+                        hfloor: [{value: '低层', label: '低'}, {value: '中层', label: '中'}, {value: '高层', label: '高'}],
+                        /*装修*/
+                        htypeVal: '',
+                        htype: [{value: '简装', label: '简装'}, {value: '中装', label: '中装'}, {value: '精装', label: '精装'}],
+                        /*配套保留*/
+                        /*价钱按钮*/
+                        priceBtnState: false,
+                    }
+                }, created: function () {
+                    this.getSearch()
+                    this.houseShow()
+                    this.getStreet()
+                }, methods: {
+                    /*获取首页地址栏跳转时传过来的参数*/
+                    getSearch: function () {
+                        var name = 'searchs'
+                        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)') //构造一个含有目标参数的正则表达式对象
+                        var r = decodeURI(window.location.search).substr(1).match(reg)  //匹配目标参数
+                        if (r != null) this.fuzzySearch.searchs = unescape(r[2]) //返回参数值
                     },
-                    //区/县
-                    streetlist: {},
-                    //选中城市的街道信息
-                    streetInfo: {},
-                    //街道是否显示
-                    streetState: false,
-                    /*朝向*/
-                    htdirectVal: '',
-                    htdirect: [
-                        {
-                            value: '东',
-                            lable: '东'
-                        }, {
-                            value: '西',
-                            lable: '西'
-                        },
-                        {
-                            value: '南',
-                            lable: '南'
-                        },
-                        {
-                            value: '北',
-                            lable: '北'
-                        },
-                        {
-                            value: '东南',
-                            lable: '东南'
-                        },
-                        {
-                            value: '东北',
-                            lable: '东北'
-                        },
-                        {
-                            value: '西南',
-                            lable: '西南'
-                        },
-                        {
-                            value: '西北',
-                            lable: '西北'
-                        }
-                    ],
-                    /*楼层*/
-                    hfloorVal: '',
-                    hfloor: [{value: '低层', label: '低'}, {value: '中层', label: '中'}, {value: '高层', label: '高'}],
-                    /*装修*/
-                    htypeVal: '',
-                    htype: [{value: '简装', label: '简装'}, {value: '中装', label: '中装'}, {value: '精装', label: '精装'}],
-                    /*配套保留*/
-                    /*价钱按钮*/
-                    priceBtnState: false,
-                }
-            }, created: function () {
-                this.houseShow()
-                this.getStreet()
-            }, methods: {
-                houseShow: function () {
-                    console.log(this.fuzzySearch)
-                    let that = this
-                    $.ajax({
-                        type: 'POST',
-                        url: 'http://localhost:8090/rentings/houseShow/findAll',
-                        dataType: 'json',
-                        contentType: 'application/json; charset=utf-8',
-                        data: JSON.stringify(that.fuzzySearch),
-                        success: function (data) {
-                            that.houseInfo = data
-                        }
-                    })
+                    getSearchs: function () {
+                        var v = $('#keyword').val()
+                        this.fuzzySearch.searchs = v
+                        this.houseShow()
+                    },
+ /*                   removeSession:function(){
+                            sessionStorage.removeItem("lag")
+                            sessionStorage.removeItem("lat")
+                            sessionStorage.removeItem("hco")
+                            sessionStorage.removeItem("hre")
 
-                },
-                handleSizeChange (val) {
-                    this.fuzzySearch.pageSize = val
-                    this.houseShow()
-                },
-                handleCurrentChange (val) {
-                    this.fuzzySearch.pageNum = val
-                    this.houseShow()
-                },
-                getStreet: function () {
-                    let that = this
-                    axiosGetRequst('street.json')
-                        .then(response => {
-                            that.streetlist = response
-                        }).catch(error => console.log(error))
-                },
-                /*选择区/县模糊查询*/
-                setAddress: function (val) {
-                    this.$delete(this.fuzzySearch, 'harea')
-                    $('[name=\'harea\']').removeClass('fontRed')
-                    this.fuzzySearch.hadress = val
-                    this.streetInfo = this.streetlist['' + val + '']
-                    this.streetState = true
-                    this.fuzzySearch.pageNum = 1
-                    this.fuzzySearch.pageSize = 10
-                    this.houseShow()
-                },
-                /*街道模糊查询*/
-                setHarea: function (val) {
-                    this.fuzzySearch.harea = val
-                    this.fuzzySearch.pageNum = 1
-                    this.fuzzySearch.pageSize = 10
-                    this.houseShow()
-
-                },
-                /*租金模糊搜索*/
-                setHprice: function (val1, val2) {
-                    if (val1 == 0) {
-                        this.fuzzySearch.hprice1 = 1
-                    } else {
-                        this.fuzzySearch.hprice1 = val1
-                    }
-                    this.fuzzySearch.hprice2 = val2
-                    this.fuzzySearch.pageNum = 1
-                    this.fuzzySearch.pageSize = 10
-                    this.houseShow()
-                },
-                /*租赁方式模糊搜索*/
-                setHmode: function (val) {
-                    this.fuzzySearch.hmode = val
-                    this.fuzzySearch.pageNum = 1
-                    this.fuzzySearch.pageSize = 10
-                    this.houseShow()
-                },
-                /*户型模糊搜索*/
-                setHtshi: function (val) {
-                    this.fuzzySearch.htshi = val
-                    this.fuzzySearch.pageNum = 1
-                    this.fuzzySearch.pageSize = 10
-                    this.houseShow()
-                },
-                /*朝向模糊搜索*/
-                setHtdirect: function (event) {
-                    this.fuzzySearch.pageNum = 1
-                    this.fuzzySearch.pageSize = 10
-                    if (event.length == 0) {
-                        this.$delete(this.fuzzySearch, 'htdirect')
-                    }
-                    if (event.length > 0) {
-                        this.fuzzySearch.htdirect = event
-                    }
-                    this.houseShow()
-                },
-                /*楼层模糊搜索*/
-                setHfloor: function (event) {
-                    this.fuzzySearch.pageNum = 1
-                    this.fuzzySearch.pageSize = 10
-                    if (event.length == 0) {
-                        this.$delete(this.fuzzySearch, 'hfloor')
-                    }
-                    if (event.length > 0) {
-                        this.fuzzySearch.hfloor = event
-                    }
-                    this.houseShow()
-                },
-                /*装修模糊搜索*/
-                setHtype: function (event) {
-                    this.fuzzySearch.pageNum = 1
-                    this.fuzzySearch.pageSize = 10
-                    if (event.length == 0) {
-                        this.$delete(this.fuzzySearch, 'htype')
-                    }
-                    if (event.length > 0) {
-                        this.fuzzySearch.htype = event
-                    }
-                    this.houseShow()
-                },
-                /*点击字体颜色*/
-                setSearchColor: function (event) {
-                    let id = event.target.id
-                    let name = event.target.name
-                    if (name == 'hadress') {
-                        $('[name="hadress"]').siblings().removeClass('fontRed')
-                        $('[id=' + id + ']').addClass('fontRed')
-                    }
-                    if (name == 'harea') {
-                        $('.subnav').children().children(('[name="harea"]')).removeClass('fontRed')
-                        $('[id=' + id + ']').addClass('fontRed')
-                    }
-                    if (name = 'hprice') {
-                        $('[name="hprice"]').siblings().removeClass('fontRed')
-                        $('[id=' + id + ']').addClass('fontRed')
-                    }
-                    if (name = 'hmode') {
-                        $('[name="hmode"]').siblings().removeClass('fontRed')
-                        $('[id=' + id + ']').addClass('fontRed')
-                    }
-                    if (name = 'htshi') {
-                        $('[name="htshi"]').siblings().removeClass('fontRed')
-                        $('[id=' + id + ']').addClass('fontRed')
-                    }
-                },
-                /*点击不限恢复设置*/
-                setColor: function (name) {
-                    if (name == 'hadress') {
+                    },*/
+                    houseShow: function () {
+                        /*this.removeSession()*/
+                        console.log(this.fuzzySearch)
+                        if (this.fuzzySearch.searchs == '' || this.fuzzySearch.searchs == '') {
+                            this.$delete(this.fuzzySearch, 'searchs')
+                        }
+                        let that = this
+                        $.ajax({
+                            type: 'POST',
+                            url: 'http://localhost:8090/rentings/houseShow/findAll',
+                            dataType: 'json',
+                            contentType: 'application/json; charset=utf-8',
+                            data: JSON.stringify(that.fuzzySearch),
+                            success: function (data) {
+                                that.houseInfo = data
+                                /*that.fuzzySearch.searchs=null*/
+                                that.$delete(that.fuzzySearch, 'searchs')
+                            }
+                        })
+                    },
+                    handleSizeChange (val) {
+                        this.fuzzySearch.pageSize = val
+                        this.houseShow()
+                    },
+                    handleCurrentChange (val) {
+                        this.fuzzySearch.pageNum = val
+                        this.houseShow()
+                    },
+                    getStreet: function () {
+                        let that = this
+                        axiosGetRequst('street.json')
+                            .then(response => {
+                                that.streetlist = response
+                            }).catch(error => console.log(error))
+                    },
+                    /*选择区/县模糊查询*/
+                    setAddress: function (val) {
+                        this.$delete(this.fuzzySearch, 'harea')
                         $('[name=\'harea\']').removeClass('fontRed')
-                        this.streetState = false
+                        this.fuzzySearch.hadress = val
+                        this.streetInfo = this.streetlist['' + val + '']
+                        this.streetState = true
+                        this.fuzzySearch.pageNum = 1
+                        this.fuzzySearch.pageSize = 10
+                        this.houseShow()
+                    },
+                    /*街道模糊查询*/
+                    setHarea: function (val) {
+                        this.fuzzySearch.harea = val
+                        this.fuzzySearch.pageNum = 1
+                        this.fuzzySearch.pageSize = 10
+                        this.houseShow()
+
+                    },
+                    /*租金模糊搜索*/
+                    setHprice: function (val1, val2) {
+                        $("[name='setPrice1']").val("")
+                        $("[name='setPrice2']").val("")
+                        if (val1 == 0) {
+                            this.fuzzySearch.hprice1 = 1
+                            return
+                        } else {
+                            this.fuzzySearch.hprice1 = val1
+                        }
+                        this.fuzzySearch.hprice2 = val2
+                        this.fuzzySearch.pageNum = 1
+                        this.fuzzySearch.pageSize = 10
+                        this.houseShow()
+                    },
+                    /*租赁方式模糊搜索*/
+                    setHmode: function (val) {
+                        this.fuzzySearch.hmode = val
+                        this.fuzzySearch.pageNum = 1
+                        this.fuzzySearch.pageSize = 10
+                        this.houseShow()
+                    },
+                    /*户型模糊搜索*/
+                    setHtshi: function (val) {
+                        this.fuzzySearch.htshi = val
+                        this.fuzzySearch.pageNum = 1
+                        this.fuzzySearch.pageSize = 10
+                        this.houseShow()
+                    },
+                    /*朝向模糊搜索*/
+                    setHtdirect: function (event) {
+                        this.fuzzySearch.pageNum = 1
+                        this.fuzzySearch.pageSize = 10
+                        if (event.length == 0) {
+                            this.$delete(this.fuzzySearch, 'htdirect')
+                        }
+                        if (event.length > 0) {
+                            this.fuzzySearch.htdirect = event
+                        }
+                        this.houseShow()
+                    },
+                    /*楼层模糊搜索*/
+                    setHfloor: function (event) {
+                        this.fuzzySearch.pageNum = 1
+                        this.fuzzySearch.pageSize = 10
+                        if (event.length == 0) {
+                            this.$delete(this.fuzzySearch, 'hfloor')
+                        }
+                        if (event.length > 0) {
+                            this.fuzzySearch.hfloor = event
+                        }
+                        this.houseShow()
+                    },
+                    /*装修模糊搜索*/
+                    setHtype: function (event) {
+                        this.fuzzySearch.pageNum = 1
+                        this.fuzzySearch.pageSize = 10
+                        if (event.length == 0) {
+                            this.$delete(this.fuzzySearch, 'htype')
+                        }
+                        if (event.length > 0) {
+                            this.fuzzySearch.htype = event
+                        }
+                        this.houseShow()
+                    },
+                    /*点击字体颜色*/
+                    setSearchColor: function (event) {
+                        let id = event.target.id
+                        let name = event.target.name
+                        if (name == 'hadress') {
+
+                            $('[name="hadress"]').siblings().removeAttr("style")
+                            $('[id=' + id + ']').css({color:'red',fontWeight:'bolder'})
+                            return
+
+                        }
+                        if (name == 'harea') {
+                            $('.subnav').children().children(('[name="harea"]')).removeAttr("style")
+                            $('[id=' + id + ']').css({color:'red',fontWeight:'bolder'})
+                            return
+                        }
+                        if (name == 'hprice') {
+                            $('[name="hprice"]').removeAttr("style")
+                            $('[id=' + id + ']').css({color:'red',fontWeight:'bolder'})
+                            return
+                        }
+                        if (name == 'hmode') {
+                            $('[name="hmode"]').siblings().removeAttr("style")
+                            $('[id=' + id + ']').css({color:'red',fontWeight:'bolder'})
+                            return
+                        }
+                        if (name == 'htshi') {
+                            $('[name="htshi"]').siblings().removeAttr("style")
+                            $('[id=' + id + ']').css({color:'red',fontWeight:'bolder'})
+                            return
+                        }
+                    },
+                    /*点击不限恢复设置*/
+                    setColor: function (name) {
+                        if (name == 'hadress') {
+                            $('[name=\'hadress\']').removeAttr("style")
+                            $('[name=\'harea\']').removeAttr("style")
+                            this.$delete(this.fuzzySearch, 'hadress')
+                            this.$delete(this.fuzzySearch, 'harea')
+                            this.streetState = false
+                            this.houseShow()
+                            return
+                        }
+                        if (name == 'hprice') {
+                            $('[name=\'setPrice1\']').val('')
+                            $('[name=\'setPrice2\']').val('')
+                            $('[name=\'hprice\']').removeAttr("style")
+                            this.$delete(this.fuzzySearch, 'hprice1')
+                            this.$delete(this.fuzzySearch, 'hprice2')
+                            this.priceBtnState = false
+                            this.houseShow()
+                            return
+                        }else{
+                            $('[name='+name+']').removeAttr("style")
+                            this.$delete(this.fuzzySearch, name)
+                            this.houseShow()
+                            return
+
+                        }
+
+                    },
+                    /*输入及提交租金*/
+                    prictBtnEnter: function () {
+                        $('[name=\'hprice\']').removeAttr("style")
+                        let p1 = $('[name=\'setPrice1\']').val()
+                        let p2 = $('[name=\'setPrice2\']').val()
+                        if(parseFloat(p1) < 0 || parseFloat(p2) < 0 ){
+                            this.$message.warning('租金必须大于0！')
+                            return
+                        }
+                        if (p1.length == 0 || p2.length == 0) {
+                            this.$message.warning('请输入租金！')
+                            return
+                        }
+                        if (isNaN(p1) || isNaN(p2)) {
+                            this.$message.warning('请输入数字！0~9')
+                            return
+                        }
+                        if (parseFloat(p1) > parseFloat(p2)) {
+                            this.$message.warning('请先输入最低租金，再输入最高租金！')
+                            return
+                        }else{
+                            this.fuzzySearch.hprice1 = p1
+                            this.fuzzySearch.hprice2 = p2
+                            this.houseShow()
+                        }
+
+                    },
+                    /*默认*/
+                    resit: function () {
+                        this.fuzzySearch = {}
+                        this.fuzzySearch.pageNum = 1
+                        this.fuzzySearch.pageSize = 10
+                        $('#f1').text('↑↓')
+                        $('#f2').text('↑↓')
+                        this.houseShow()
+                        /*window.location.href='http://localhost:8080/static/font/search.htm'*/
+                    },
+                    /*租金排序*/
+                    orderPrice: function () {
+                        this.fuzzySearch.hspaceOrder = ''
+                        this.fuzzySearch.pageNum = 1
+                        this.fuzzySearch.pageSize = 10
+                        if ($('#f1').text() == '↑↓') {
+                            $('#f1').text('↑')
+                            this.fuzzySearch.hpriceOrder = 'ASC'
+                            this.houseShow()
+                            return
+                        }
+                        if ($('#f1').text() == '↑') {
+                            this.fuzzySearch.hpriceOrder = 'DESC'
+                            $('#f1').text('↓')
+                            this.houseShow()
+                            return
+                        }
+                        if ($('#f1').text() == '↓') {
+                            $('#f1').text('↑')
+                            this.fuzzySearch.hpriceOrder = 'ASC'
+                            this.houseShow()
+                            return
+                        }
+
+                    },
+                    /*面积排序*/
+                    orderSpace: function () {
+                        this.fuzzySearch.hpriceOrder = ''
+                        this.fuzzySearch.pageNum = 1
+                        this.fuzzySearch.pageSize = 10
+                        if ($('#f2').text() == '↑↓') {
+                            $('#f2').text('↑')
+                            this.fuzzySearch.hspaceOrder = 'ASC'
+                            this.houseShow()
+                            return
+                        }
+                        if ($('#f2').text() == '↑') {
+                            $('#f2').text('↓')
+                            this.fuzzySearch.hspaceOrder = 'DESC'
+                            this.houseShow()
+                            return
+                        }
+                        if ($('#f2').text() == '↓') {
+                            $('#f2').text('↑')
+                            this.fuzzySearch.hspaceOrder = 'ASC'
+                            this.houseShow()
+                            return
+                        }
+                    },
+                    /*跳转详情页面*/
+                    goHouseInfo: function (val) {
+                        window.location.href = 'http://localhost:8080/static/font/HouseInfo.html?hid=' + val
                     }
-                    if (name = 'hprice') {
-                        $('[name=\'setPrice1\']').val('')
-                        $('[name=\'setPrice2\']').val('')
-                        this.priceBtnState = false
-                    }
-                    $('[name=' + name + ']').removeClass('fontRed')
-                    this.$delete(this.fuzzySearch, name)
-                    this.houseShow()
                 },
-                prictBtnEnter: function () {
-                    let p1 = $('[name=\'setPrice1\']').val()
-                    let p2 = $('[name=\'setPrice2\']').val()
-                    if (p1.length == 0 || p2.length == 0) {
-                        this.$message.warning('请输入租金！')
-                    }
-                    if (isNaN(p1) || isNaN(p2)) {
-                        this.$message.warning('请输入数字！0~9')
-                    }
-                    if (parseFloat(p1) > parseFloat(p2)) {
-                        this.$message.warning('请先输入最低租金，再输入最高租金！')
-                    }
-                    this.fuzzySearch.hprice1 = p1
-                    this.fuzzySearch.hprice2 = p2
-                    this.show()
-                }
-            },
+            })
+
         })
 
-    })
+    </script>
+    <script type="text/javascript">
+    </script>
+    <div v-if="houseInfo">
 
-</script>
-<script type="text/javascript">
-</script>
-<div id="houseList" v-if="houseInfo">
-    <div class="search_list" id="search_list">
-        <p class="search_nav clearfix">
-            <span>查询</span>
-        </p>
-        <div class="search_info">
-            <dl>
-                <dt>区域：&nbsp;</dt>
-                <dd>
-                    <a href="javascript:void (0)" @click="setColor('hadress')" class="colorR acon">不限</a>
-                    <a href="javascript:void (0)" @click="setAddress('中原'),setSearchColor($event)" name="hadress"
-                       id="中原">中原</a>
-                    <a href="javascript:void (0)" @click="setAddress('二七'),setSearchColor($event)" name="hadress"
-                       id="二七">二七</a>
-                    <a href="javascript:void (0)" @click="setAddress('管城'),setSearchColor($event)" name="hadress"
-                       id="管城">管城</a>
-                    <a href="javascript:void (0)" @click="setAddress('金水'),setSearchColor($event)" name="hadress"
-                       id="金水">金水</a>
-                    <a href="javascript:void (0)" @click="setAddress('中牟'),setSearchColor($event)" name="hadress"
-                       id="中牟">中牟</a>
-                    <a href="javascript:void (0)" @click="setAddress('巩义'),setSearchColor($event)" name="hadress"
-                       id="巩义">巩义</a>
-                    <a href="javascript:void (0)" @click="setAddress('荥阳'),setSearchColor($event)" name="hadress"
-                       id="荥阳">荥阳</a>
-                    <a href="javascript:void (0)" @click="setAddress('新密'),setSearchColor($event)" name="hadress"
-                       id="新密">新密</a>
-                    <a href="javascript:void (0)" @click="setAddress('新郑'),setSearchColor($event)" name="hadress"
-                       id="新郑">新郑</a>
-                    <a href="javascript:void (0)" @click="setAddress('登封'),setSearchColor($event)" name="hadress"
-                       id="登封">登封</a>
-                    <a href="javascript:void (0)" @click="setAddress('惠济'),setSearchColor($event)" name="hadress"
-                       id="惠济">惠济</a>
-                    <a href="javascript:void (0)" @click="setAddress('上街'),setSearchColor($event)" name="hadress"
-                       id="上街">上街</a>
-                </dd>
+        <!--{{houseInfo}}-->
+        <div class="search_list" id="search_list">
+            <p class="search_nav clearfix">
+                <span>查询</span>
+            </p>
+            <div class="search_info">
+                <dl>
+                    <dt>区域：&nbsp;</dt>
+                    <dd>
+                        <a href="javascript:void (0)" @click="setColor('hadress')" class="colorR acon">不限</a>
+                        <a href="javascript:void (0)" @click="setAddress('中原'),setSearchColor($event)" name="hadress"
+                           id="中原">中原</a>
+                        <a href="javascript:void (0)" @click="setAddress('二七'),setSearchColor($event)" name="hadress"
+                           id="二七">二七</a>
+                        <a href="javascript:void (0)" @click="setAddress('管城'),setSearchColor($event)" name="hadress"
+                           id="管城">管城</a>
+                        <a href="javascript:void (0)" @click="setAddress('金水'),setSearchColor($event)" name="hadress"
+                           id="金水">金水</a>
+                        <a href="javascript:void (0)" @click="setAddress('中牟'),setSearchColor($event)" name="hadress"
+                           id="中牟">中牟</a>
+                        <a href="javascript:void (0)" @click="setAddress('巩义'),setSearchColor($event)" name="hadress"
+                           id="巩义">巩义</a>
+                        <a href="javascript:void (0)" @click="setAddress('荥阳'),setSearchColor($event)" name="hadress"
+                           id="荥阳">荥阳</a>
+                        <a href="javascript:void (0)" @click="setAddress('新密'),setSearchColor($event)" name="hadress"
+                           id="新密">新密</a>
+                        <a href="javascript:void (0)" @click="setAddress('新郑'),setSearchColor($event)" name="hadress"
+                           id="新郑">新郑</a>
+                        <a href="javascript:void (0)" @click="setAddress('登封'),setSearchColor($event)" name="hadress"
+                           id="登封">登封</a>
+                        <a href="javascript:void (0)" @click="setAddress('惠济'),setSearchColor($event)" name="hadress"
+                           id="惠济">惠济</a>
+                        <a href="javascript:void (0)" @click="setAddress('上街'),setSearchColor($event)" name="hadress"
+                           id="上街">上街</a>
+                    </dd>
 
-                <dd class="subnav" v-show="streetState" v-if="streetInfo">
-                    <a class="colorR acon" @click="setColor('harea')">不限</a>
-                    <label v-for="(val,key,i) in streetInfo">
-                        <span>{{key}}</span>
-                        <a href="javascript:void(0)" v-for="(item,i) in val"
-                           @click="setHarea(item),setSearchColor($event)" name="harea" v-bind:id="item">{{item}}</a>
-                    </label>
-                </dd>
-            </dl>
-            <dl>
-                <dt>
-                    租金：&nbsp;
-                </dt>
-                <dd class="prc">
-                    <a href="javascript:void(0)" class="colorR acon" @click="setColor('hprice')">不限</a>
-                    <a href="javascript:void(0)" @click="setHprice(0,500),setSearchColor($event)" name="hprice" id="h1">500以下</a>
-                    <a href="javascript:void(0)" @click="setHprice(500,1000),setSearchColor($event)" name="hprice"
-                       id="h2">500-1000</a>
-                    <a href="javascript:void(0)" @click="setHprice(1000,2000),setSearchColor($event)" name="hprice"
-                       id="h3">1000-2000</a>
-                    <a href="javascript:void(0)" @click="setHprice(2000,3000),setSearchColor($event)" name="hprice"
-                       id="h4">2000-3000</a>
-                    <a href="javascript:void(0)" @click="setHprice(3000,5000),setSearchColor($event)" name="hprice"
-                       id="h5">3000-5000</a>
-                    <a href="javascript:void(0)" @click="setHprice(5000,8000),setSearchColor($event)" name="hprice"
-                       id="h6">5000-8000</a>
-                    <a href="javascript:void(0)" @click="setHprice(8000,10000),setSearchColor($event)" name="hprice"
-                       id="h7">8000-10000</a>
-                    <a href="javascript:void(0)" @click="setHprice(10000,99999999),setSearchColor($event)" name="hprice"
-                       id="h8">10000以上</a>
-                    <span class="unit">单位（元/月）</span>
-                    <input type="text" class="txt startprice" name="setPrice1" @click="priceBtnState=true">
-                    <input type="text" class="txt endprice" name="setPrice2" @click="priceBtnState=true">
-                    <el-button v-show="priceBtnState" size="mini" style="margin-top: 13px;margin-left:8px;height: 23px;"
-                               @click="prictBtnEnter()">确定
-                    </el-button>
-                    <!--<input type="button" v-show="priceBtnState" class="btn avgbtn" value="确定">-->
-                </dd>
-            </dl>
-            <!--面积-->
-            <dl>
-                <dt>租赁：&nbsp;</dt>
-                <dd class="prc">
-                    <a href="javascript:void(0)" class="colorR acon" attr="0" @click="setColor('hmode')">不限</a>
-                    <a href="javascript:void(0)" @click="setHmode(0),setSearchColor($event)" name="hmode" id="zz">整租</a>
-                    <a href="javascript:void(0)" @click="setHmode(1),setSearchColor($event)" name="hmode" id="hz">合租</a>
-                </dd>
-            </dl>
-            <dl>
-                <dt>户型：&nbsp;</dt>
-                <dd class="prc">
-                    <a href="hjavascript:void(0)" class="colorR acon" attr="0" @click="setColor('htshi')">不限</a>
-                    <a href="javascript:void(0)" @click="setHtshi('1室'),setSearchColor($event)" name="htshi"
-                       id="yj">一居</a>
-                    <a href="javascript:void(0)" @click="setHtshi('2室'),setSearchColor($event)" name="htshi"
-                       id="ej">二居</a>
-                    <a href="javascript:void(0)" @click="setHtshi('3室'),setSearchColor($event)" name="htshi"
-                       id="sj">三居</a>
-                    <a href="javascript:void(0)" @click="setHtshi('4室'),setSearchColor($event)" name="htshi"
-                       id="ssj">四居</a>
-                    <a href="javascript:void(0)" @click="setHtshi('5室'),setSearchColor($event)" name="htshi"
-                       id="wj">五居</a>
-                    <a href="javascript:void(0)" @click="setHtshi('6室'),setSearchColor($event)" name="htshi" id="lj">五居以上</a>
-                </dd>
-
-            </dl>
-        </div>
-        <!--更多条件开始-->
-
-        <div class="more_screen clearfix">
-            <span>更多条件：</span>
-            <el-select v-model="htdirectVal" placeholder="朝向" clearable @change="setHtdirect($event)"
-                       @click="setSelect()" style="height: 30px;width: 70px;margin-top: 7px" size="mini">
-                <el-option v-for="item in htdirect" :key="item.value" :label="item.label" :value="item.value">
-                </el-option>
-            </el-select>
-            <el-select v-model="hfloorVal" placeholder="楼层" clearable @change="setHfloor($event)"
-                       style="height: 30px;width: 70px;margin-top: 7px" size="mini">
-                <el-option v-for="item in hfloor" :key="item.value" :label="item.label" :value="item.value">
-                </el-option>
-            </el-select>
-            <el-select v-model="htypeVal" placeholder="装修" clearable @change="setHtype($event)"
-                       style="height: 30px;width: 70px;margin-top: 7px" size="mini">
-                <el-option v-for="item in htype" :key="item.value" :label="item.label" :value="item.value">
-                </el-option>
-            </el-select>
-
-        </div>
-        <!--更多条件结束-->
-    </div>
-    <div class="list_info clearfix">
-        <div class="list_l">
-            <div class="tab_nav">
-                <p class="tab_l">
-                    <span class="house" href="/esfrent/area" alt="">全部房源</span>
-                </p>
-                <p class="tab_r">
-                    <a href="javascript:void(0)"class="click">默认</a>
-                    <a href="javascript:void(0)" class="sort_icon " type="price2">
-                        <span alt="1">租金↑↓</span></a>
-                    <a href="javascript:void(0)" class="sort_icon ">
-                        <span alt="1">面积↑↓</span></a>
-                </p>
-            </div>
-            <!--房源置顶开始-->
-            <!--房源置顶结束-->
-            <!--付费房源s-->
-            <!--付费房源结束-->
-            <!--免费房源开始-->
-
-            <div class="list list_free" id="" v-if="houseInfo">
-                <dl v-for="h in houseInfo.list">
+                    <dd class="subnav" v-show="streetState" v-if="streetInfo">
+                        <a class="colorR acon" @click="setColor('harea')">不限</a>
+                        <label v-for="(val,key,i) in streetInfo">
+                            <span>{{key}}</span>
+                            <a href="javascript:void(0)" v-for="(item,i) in val"
+                               @click="setHarea(item),setSearchColor($event)" name="harea" v-bind:id="item">{{item}}</a>
+                        </label>
+                    </dd>
+                </dl>
+                <dl>
                     <dt>
-                        <a href="https://zz.sofang.com/housedetail/sr2020070000061417.html" target="_blank"><img
-                            v-bind:src="h.list[0].hphoto" alt="房源图片"></a>
-                        <span class="yz_rent"></span>
+                        租金：&nbsp;
                     </dt>
-                    <dt>
-                        <a href="https://zz.sofang.com/housedetail/sr2020070000061417.html" target="_blank"><img
-                            v-bind:src="h.list[1].hphoto" alt="房源图片"></a>
-                        <span class="yz_rent"></span>
-                    </dt>
-                    <dd class="house_msg">
-                        <p class="name">
-                            <a href="https://zz.sofang.com/housedetail/sr2020070000061417.html" target="_blank">
-                                <span v-if="h.hmode==0">整租</span>
-                                <span v-else>合租</span>
-                                &nbsp;&nbsp;{{h.harea}}&nbsp;&nbsp;{{h.hcommunity}}</a>
-                        </p>
-                        <div class="house_info no_back">
-                            <p class="area clearfix">
-                                <a href="https://zz.sofang.com/esfrent/area/ba166811"><strong>{{h.hcommunity}}</strong></a>
-                                <span class="address">{{h.hadress}}{{h.harea}}</span>
-                                <span class="address" style="font-weight: bolder;color: #00FF00;margin-left: 10px">{{h.house_mating.htype}}</span>
-
-                            </p>
-                            <p class="type clearfix">
-                                <span v-if="h.hmode==0">整租</span>
-                                <span v-else>合租</span>
-                                <span class="dotted"></span>
-                                <span>{{h.htshi}}{{h.hting}}</span>
-                                <span class="dotted"></span>
-                                <span>{{h.hspace}}</span>
-                                <span class="dotted"></span>
-                                <span>{{h.house_mating.hfloor}}/{{h.house_mating.hfloors}}层</span>
-                                <span class="dotted"></span>
-                                <span>{{h.house_mating.htdirect}}</span>
-
-                                <span
-                                    style="font-weight:bolder;text-align:left;font-size: 25px;width: auto;color: red; float: right;text-align: left;position: relative;top: -40px;left: 30px">{{h.hprice}}元/月</span>
-                            </p>
-                            <p class="tag clearfix">
-                                <a class="broker_name"><i></i>郭先生</a>
-                                <span class="tag_nav">{{h.account_y.aphone}}</span>
-                            </p>
-                        </div>
+                    <dd class="prc">
+                        <a href="javascript:void(0)" class="colorR acon" @click="setColor('hprice')">不限</a>
+                        <a href="javascript:void(0)" @click="setHprice(0,500),setSearchColor($event)" name="hprice"
+                           id="h1">500以下</a>
+                        <a href="javascript:void(0)" @click="setHprice(500,1000),setSearchColor($event)" name="hprice"
+                           id="h2">500-1000</a>
+                        <a href="javascript:void(0)" @click="setHprice(1000,2000),setSearchColor($event)" name="hprice"
+                           id="h3">1000-2000</a>
+                        <a href="javascript:void(0)" @click="setHprice(2000,3000),setSearchColor($event)" name="hprice"
+                           id="h4">2000-3000</a>
+                        <a href="javascript:void(0)" @click="setHprice(3000,5000),setSearchColor($event)" name="hprice"
+                           id="h5">3000-5000</a>
+                        <a href="javascript:void(0)" @click="setHprice(5000,8000),setSearchColor($event)" name="hprice"
+                           id="h6">5000-8000</a>
+                        <a href="javascript:void(0)" @click="setHprice(8000,10000),setSearchColor($event)" name="hprice"
+                           id="h7">8000-10000</a>
+                        <a href="javascript:void(0)" @click="setHprice(10000,99999999),setSearchColor($event)"
+                           name="hprice"
+                           id="h8">10000以上</a>
+                        <span class="unit">单位（元/月）</span>
+                        <input type="text" class="txt startprice" name="setPrice1" @click="priceBtnState=true">
+                        <input type="text" class="txt endprice" name="setPrice2" @click="priceBtnState=true">
+                        <el-button v-show="priceBtnState" size="mini"
+                                   style="margin-top: 13px;margin-left:8px;height: 23px;"
+                                   @click="prictBtnEnter()">确定
+                        </el-button>
+                        <!--<input type="button" v-show="priceBtnState" class="btn avgbtn" value="确定">-->
+                    </dd>
+                </dl>
+                <!--面积-->
+                <dl>
+                    <dt>租赁：&nbsp;</dt>
+                    <dd class="prc">
+                        <a href="javascript:void(0)" class="colorR acon" attr="0" @click="setColor('hmode')">不限</a>
+                        <a href="javascript:void(0)" @click="setHmode(0),setSearchColor($event)" name="hmode"
+                           id="zz">整租</a>
+                        <a href="javascript:void(0)" @click="setHmode(1),setSearchColor($event)" name="hmode"
+                           id="hz">合租</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>户型：&nbsp;</dt>
+                    <dd class="prc">
+                        <a href="hjavascript:void(0)" class="colorR acon" attr="0" @click="setColor('htshi')">不限</a>
+                        <a href="javascript:void(0)" @click="setHtshi('1室'),setSearchColor($event)" name="htshi"
+                           id="yj">一居</a>
+                        <a href="javascript:void(0)" @click="setHtshi('2室'),setSearchColor($event)" name="htshi"
+                           id="ej">二居</a>
+                        <a href="javascript:void(0)" @click="setHtshi('3室'),setSearchColor($event)" name="htshi"
+                           id="sj">三居</a>
+                        <a href="javascript:void(0)" @click="setHtshi('4室'),setSearchColor($event)" name="htshi"
+                           id="ssj">四居</a>
+                        <a href="javascript:void(0)" @click="setHtshi('5室'),setSearchColor($event)" name="htshi"
+                           id="wj">五居</a>
+                        <a href="javascript:void(0)" @click="setHtshi('6室'),setSearchColor($event)" name="htshi"
+                           id="lj">五居以上</a>
                     </dd>
 
                 </dl>
-                <div class="block" id="pageBlock" style="margin-top: 30px;margin-left: 180px">
-                    <el-pagination
-                        @size-change="handleSizeChange"
-                        @current-change="handleCurrentChange"
-                        :current-page.sync="currentPage2"
-                        :page-sizes="[10,20,30,40,50]"
-                        :pager-count="11"
-                        :page-size="6"
-                        layout="sizes, prev, pager, next"
-                        :total="houseInfo.total">
-                    </el-pagination>
+            </div>
+            <!--更多条件开始-->
+
+            <div class="more_screen clearfix">
+                <span>更多条件：</span>
+                <el-select v-model="htdirectVal" placeholder="朝向" clearable @change="setHtdirect($event)"
+                           @click="setSelect()" style="height: 30px;width: 70px;margin-top: 7px" size="mini">
+                    <el-option v-for="item in htdirect" :key="item.value" :label="item.label" :value="item.value">
+                    </el-option>
+                </el-select>
+                <el-select v-model="hfloorVal" placeholder="楼层" clearable @change="setHfloor($event)"
+                           style="height: 30px;width: 70px;margin-top: 7px" size="mini">
+                    <el-option v-for="item in hfloor" :key="item.value" :label="item.label" :value="item.value">
+                    </el-option>
+                </el-select>
+                <el-select v-model="htypeVal" placeholder="装修" clearable @change="setHtype($event)"
+                           style="height: 30px;width: 70px;margin-top: 7px" size="mini">
+                    <el-option v-for="item in htype" :key="item.value" :label="item.label" :value="item.value">
+                    </el-option>
+                </el-select>
+
+            </div>
+            <!--更多条件结束-->
+        </div>
+        <div class="list_info clearfix">
+            <div class="list_l">
+                <div class="tab_nav">
+                    <p class="tab_l">
+                        <span class="house" href="/esfrent/area" alt="">全部房源</span>
+                    </p>
+                    <p class="tab_r">
+                        <a href="javascript:void(0)" id="b1" class="borderCss" @click="resit">默认</a>
+                        <a href="javascript:void(0)" class="sort_icon " type="price2" id="pc" @click="orderPrice">
+                            <span alt="1">租金<span id="f1">↑↓</span></span></a>
+                        <a href="javascript:void(0)" class="sort_icon " id="sp" @click="orderSpace">
+                            <span alt="1">面积<span id="f2">↑↓</span></span></a>
+                    </p>
+                </div>
+                <!--房源置顶开始-->
+                <!--房源置顶结束-->
+                <!--付费房源s-->
+                <!--付费房源结束-->
+                <!--免费房源开始-->
+
+                <div class="list list_free" id="" v-if="houseInfo">
+                    <dl v-for="h in houseInfo.list">
+                        <dt>
+                            <a href="javascript:void (0)" @click="goHouseInfo(h.hid)"><img
+                                v-bind:src="h.list[0].hphoto" alt="房源图片"></a>
+                            <span class="yz_rent"></span>
+                        </dt>
+                        <dt>
+                            <a href="javascript:void (0)" @click="goHouseInfo(h.hid)"><img
+                                v-bind:src="h.list[1].hphoto" alt="房源图片"></a>
+                            <span class="yz_rent"></span>
+                        </dt>
+                        <dd class="house_msg">
+                            <p class="name">
+                                <a href="javascript:void (0)" @click="goHouseInfo(h.hid)">
+                                    <span v-if="h.hmode==0">整租</span>
+                                    <span v-else>合租</span>
+                                    &nbsp;&nbsp;{{h.harea}}&nbsp;&nbsp;{{h.hcommunity}}</a>
+                            </p>
+                            <div class="house_info no_back">
+                                <p class="area clearfix">
+                                    <!--https://zz.sofang.com/esfrent/area/ba166811-->
+                                    <a href="javascript:void(0)"><strong>{{h.hcommunity}}</strong></a>
+                                    <span class="address">{{h.hadress}}{{h.harea}}</span>
+                                    <span class="address" style="font-weight: bolder;color: #00FF00;margin-left: 10px">{{h.house_mating.htype}}</span>
+
+                                </p>
+                                <p class="type clearfix">
+                                    <span v-if="h.hmode==0">整租</span>
+                                    <span v-else>合租</span>
+                                    <span class="dotted"></span>
+                                    <span>{{h.htshi}}{{h.hting}}</span>
+                                    <span class="dotted"></span>
+                                    <span>{{h.hspace}}</span>
+                                    <span class="dotted"></span>
+                                    <span>{{h.house_mating.hfloor}}/{{h.house_mating.hfloors}}层</span>
+                                    <span class="dotted"></span>
+                                    <span>{{h.house_mating.htdirect}}</span>
+
+                                    <span
+                                        style="font-weight:bolder;text-align:left;font-size: 25px;width: auto;color: red; float: right;text-align: left;position: relative;top: -40px;left: 30px">{{h.hprice}}元/月</span>
+                                </p>
+                                <p class="tag clearfix">
+                                    <a class="broker_name"><i></i>{{h.account_y.aname}}</a>
+                                    <span class="tag_nav">{{h.account_y.aphone}}</span>
+                                </p>
+                            </div>
+                        </dd>
+
+                    </dl>
+                    <div class="block" id="pageBlock" style="margin-top: 30px;margin-left: 180px">
+                        <el-pagination
+                            @size-change="handleSizeChange"
+                            @current-change="handleCurrentChange"
+                            :current-page.sync="currentPage2"
+                            :page-sizes="[10,20,30,40,50]"
+                            :pager-count="11"
+                            :page-size="6"
+                            layout="sizes, prev, pager, next"
+                            :total="houseInfo.total">
+                        </el-pagination>
+                    </div>
                 </div>
             </div>
+
         </div>
-
-    </div>
-    <div class="house_r" id="hosueid">
-        <div class="house">
-            <a href="https://zz.sofang.com/houseHelp/rent/xq" class="rent"><i></i>业主出租</a>
-            <!--<a href="https://zz.sofang.com/houseHelp/rent/xq/entrust" class="entrust"><i></i>委托出租</a>-->
-        </div>
-        <div class="list_adv" id="list_adv0" style="display: none;"></div>
-        <div class="list_adv" id="list_adv1" style="display: none;"></div>
-        <div class="list_adv" id="list_adv2" style="display: none;"></div>
+        <div class="house_r" id="hosueid">
+            <div class="house">
+                <a href="https://zz.sofang.com/houseHelp/rent/xq" class="rent"><i></i>业主出租</a>
+                <!--<a href="https://zz.sofang.com/houseHelp/rent/xq/entrust" class="entrust"><i></i>委托出租</a>-->
+            </div>
+            <div class="list_adv" id="list_adv0" style="display: none;"></div>
+            <div class="list_adv" id="list_adv1" style="display: none;"></div>
+            <div class="list_adv" id="list_adv2" style="display: none;"></div>
 
 
-        <div class="broker_house">
-            <h2><a href="https://zz.sofang.com/new/area">新盘推荐&gt;&gt;</a></h2>
-            <dl>
-                <a href="https://zz.sofang.com/xinfindex/83905/303.html" target="_blank">
-                    <dt>
-                        <img src="search_files/noImage2.png" alt="长德商贸城"></dt>
-                    <dd>
-                        <p class="name_h">长德商贸城</p>
-                        <p class="house_price">
+            <div class="broker_house">
+                <h2><a href="https://zz.sofang.com/new/area">新盘推荐&gt;&gt;</a></h2>
+                <dl>
+                    <a href="https://zz.sofang.com/xinfindex/83905/303.html" target="_blank">
+                        <dt>
+                            <img src="search_files/noImage2.png" alt="长德商贸城"></dt>
+                        <dd>
+                            <p class="name_h">长德商贸城</p>
+                            <p class="house_price">
                                     <span class="fl">
                                          住宅                                     </span>
-                            <span class="fr">
+                                <span class="fr">
                                         均价 6000元/㎡
                                     </span>
-                        </p>
-                    </dd>
-                </a>
-            </dl>
-            <dl>
-                <a href="https://zz.sofang.com/xinfindex/83904/301.html" target="_blank">
-                    <dt>
-                        <img src="search_files/noImage2.png" alt="尚城华府"></dt>
-                    <dd>
-                        <p class="name_h">尚城华府</p>
-                        <p class="house_price">
+                            </p>
+                        </dd>
+                    </a>
+                </dl>
+                <dl>
+                    <a href="https://zz.sofang.com/xinfindex/83904/301.html" target="_blank">
+                        <dt>
+                            <img src="search_files/noImage2.png" alt="尚城华府"></dt>
+                        <dd>
+                            <p class="name_h">尚城华府</p>
+                            <p class="house_price">
                                     <span class="fl">
                                          住宅                                     </span>
-                            <span class="fr">
+                                <span class="fr">
                                         均价 7000元/㎡
                                     </span>
-                        </p>
-                    </dd>
-                </a>
-            </dl>
-            <dl>
-                <a href="https://zz.sofang.com/xinfindex/83903/301.html" target="_blank">
-                    <dt>
-                        <img src="search_files/formal_223412_1579444452_P0OA_3.jpg" alt="诚城三英里"></dt>
-                    <dd>
-                        <p class="name_h">诚城三英里</p>
-                        <p class="house_price">
+                            </p>
+                        </dd>
+                    </a>
+                </dl>
+                <dl>
+                    <a href="https://zz.sofang.com/xinfindex/83903/301.html" target="_blank">
+                        <dt>
+                            <img src="search_files/formal_223412_1579444452_P0OA_3.jpg" alt="诚城三英里"></dt>
+                        <dd>
+                            <p class="name_h">诚城三英里</p>
+                            <p class="house_price">
                                     <span class="fl">
                                          住宅                                     </span>
-                            <span class="fr">
+                                <span class="fr">
                                         均价 7300元/㎡
                                     </span>
-                        </p>
-                    </dd>
-                </a>
-            </dl>
+                            </p>
+                        </dd>
+                    </a>
+                </dl>
+            </div>
         </div>
     </div>
-</div>
 
-<div id="no_data_bj" style="display: none;" data="68">
-    敬告搜房用户：为进一步规范新房发布，自本日起对本网站房源进行核实中！
-</div>
-<script type="text/javascript" src="search_files/highcharts.js"></script>
-<script>
-    //城市城区商圈价格趋势
-    $(function () {
-        var data = [[202002, 202003, 202004, 202005, 202006, 202007], [1, 1, 1, 1, 1, 1]]
-        var punit = '元/月'
-        $('#price_chart').highcharts({
-            credits: enabled = false,
-            xAxis: {
-                tickInterval: 1,
-                categories: data[0],
-                labels: {
-                    formatter: function () {
-                        return this.value.toString().substr(4, 2) + '月'
+    <div id="no_data_bj" style="display: none;" data="68">
+        敬告搜房用户：为进一步规范新房发布，自本日起对本网站房源进行核实中！
+    </div>
+    <script type="text/javascript" src="search_files/highcharts.js"></script>
+    <script>
+        //城市城区商圈价格趋势
+        $(function () {
+            var data = [[202002, 202003, 202004, 202005, 202006, 202007], [1, 1, 1, 1, 1, 1]]
+            var punit = '元/月'
+            $('#price_chart').highcharts({
+                credits: enabled = false,
+                xAxis: {
+                    tickInterval: 1,
+                    categories: data[0],
+                    labels: {
+                        formatter: function () {
+                            return this.value.toString().substr(4, 2) + '月'
+                        }
                     }
-                }
-            },
-            title: {
-                text: '',
-                x: 0,
-                //align:'left'
-            },
-            yAxis: {
-                title: {
-                    text: null
                 },
-                plotLines: [{
-                    value: 0,
-                    width: 1,
-                    color: '#808080'
-                }],
-                lineWidth: 1,
-                labels: {
-                    formatter: function () {
-                        return Highcharts.numberFormat(this.value, 0, '.', ',')
+                title: {
+                    text: '',
+                    x: 0,
+                    //align:'left'
+                },
+                yAxis: {
+                    title: {
+                        text: null
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }],
+                    lineWidth: 1,
+                    labels: {
+                        formatter: function () {
+                            return Highcharts.numberFormat(this.value, 0, '.', ',')
+                        }
                     }
-                }
-            },
-            tooltip: {
-                valueSuffix: punit
-            },
-            legend: {
-                enabled: false,
-                layout: 'horizontal',
-                align: 'right',
-                verticalAlign: 'top',
-                borderWidth: 0
-            },
-            series: [{
-                name: '价格',
-                data: data[1]
-            }]
+                },
+                tooltip: {
+                    valueSuffix: punit
+                },
+                legend: {
+                    enabled: false,
+                    layout: 'horizontal',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    borderWidth: 0
+                },
+                series: [{
+                    name: '价格',
+                    data: data[1]
+                }]
+            })
         })
-    })
-</script>
+    </script>
 
-<script>
-    //底部切换
-    function webMpe (name, curr, obj) {
-        var num = $(obj).parent().find('a').length
-        console.log(num)
-        for (i = 1; i <= num; i++) {
-            var menu = document.getElementById(name + i)
-            var cont = document.getElementById('con_' + name + '_' + i)
-            menu.className = i == curr ? 'colorR' : ''
-            if (i == curr) {
-                cont.style.display = 'block'
-            } else {
-                cont.style.display = 'none'
-            }
-        }
-    }
-
-    //城区切换
-    function webMpe2 (name, curr, obj) {
-        var num = $(obj).parent().find('a').length
-        for (i = 1; i <= num; i++) {
-            var menu = document.getElementById(name + i)
-            var cont = document.getElementById('con_' + name + '_' + i)
-            if (!(cont === null)) {
+    <script>
+        //底部切换
+        function webMpe (name, curr, obj) {
+            var num = $(obj).parent().find('a').length
+            console.log(num)
+            for (i = 1; i <= num; i++) {
+                var menu = document.getElementById(name + i)
+                var cont = document.getElementById('con_' + name + '_' + i)
                 menu.className = i == curr ? 'colorR' : ''
                 if (i == curr) {
                     cont.style.display = 'block'
@@ -985,411 +1105,437 @@
                     cont.style.display = 'none'
                 }
             }
+        }
 
-        }
-    }
+        //城区切换
+        function webMpe2 (name, curr, obj) {
+            var num = $(obj).parent().find('a').length
+            for (i = 1; i <= num; i++) {
+                var menu = document.getElementById(name + i)
+                var cont = document.getElementById('con_' + name + '_' + i)
+                if (!(cont === null)) {
+                    menu.className = i == curr ? 'colorR' : ''
+                    if (i == curr) {
+                        cont.style.display = 'block'
+                    } else {
+                        cont.style.display = 'none'
+                    }
+                }
 
-    //已选择条件
-    var condition = []
-    $('.acon').each(function () {
-        if ($(this).text() != '不限') {
-            condition.push($(this).text())
-        }
-    })
-    if (condition.length != 0) {
-        $('#condition').text(condition.join('+'))
-    } else {
-        if ($('#no_data_bj').attr('data') == 1) {
-            $('.no_data').text($('#no_data_bj').html)
-        } else {
-            $('.no_data').text('很抱歉，没有找到相符的结果！')
-        }
-    }
-
-    var xsearch = window.location.search
-    //均价输入框提交
-    /*$('.avgbtn').bind('click', function () {
-        var startprice = $('.startprice').val()
-        var endprice = $('.endprice').val()
-        var patt = /^\d+(\.?\d{1,2})?$/
-        if (!patt.test(startprice) || !patt.test(endprice)) {
-            alert('请正确填写信息')
-            return false
-        }
-        if (startprice == '' || endprice == '') {
-            alert('请输入开始价格或结束价格！')
-            return false
-        }
-        if (parseInt(startprice) >= parseInt(endprice)) {
-            alert('请保证结束价格大于开始价格！')
-            return false
-        }
-        var areaurl = zhunhuan(url, 'ao')
-        areaurl = zhunhuan(areaurl, 'bm')
-        var areabtn = 'bm' + startprice + ',' + endprice
-        if (areaurl == '') {
-            areaurl = []
-        } else {
-            areaurl = areaurl.split('-')
-        }
-        areaurl.push(areabtn)
-        areaurl = areaurl.join('-')
-        window.location.href = houseurl + '/' + areaurl + xsearch
-    })*/
-
-    //获取已选择条件的链接
-    function zhunhuan (url, par, pid) {
-        url = url.replace(/bl[\w\|,]*/, 'bl1')//默认为第一页
-        if (par == 'aa') {
-            url = url.replace(/ab[\w,]*/, '')
-        }
-        if (par == 'ac') {
-            url = url.replace(/ad[\w,]*/, '')
-        }
-        var urls = []
-        if (url.length != 0) {
-            urls = url.split('-')
-            if (par == 'aa') {
-                urls = xunique(urls)
             }
         }
-        if (par == 'bh') {
-            for (var i in urls) {
-                if (urls[i].substr(0, 2) == 'bh') {
-                    var pp = urls[i].substr(2).replace(pid, '')
-                    if (pp != '') {
-                        pp = xunique(pp.split('|'))
-                        urls[i] = 'bh' + pp.join('|')
-                    } else {
+
+        //已选择条件
+        var condition = []
+        $('.acon').each(function () {
+            if ($(this).text() != '不限') {
+                condition.push($(this).text())
+            }
+        })
+        if (condition.length != 0) {
+            $('#condition').text(condition.join('+'))
+        } else {
+            if ($('#no_data_bj').attr('data') == 1) {
+                $('.no_data').text($('#no_data_bj').html)
+            } else {
+                $('.no_data').text('很抱歉，没有找到相符的结果！')
+            }
+        }
+
+        var xsearch = window.location.search
+        //均价输入框提交
+        /*$('.avgbtn').bind('click', function () {
+            var startprice = $('.startprice').val()
+            var endprice = $('.endprice').val()
+            var patt = /^\d+(\.?\d{1,2})?$/
+            if (!patt.test(startprice) || !patt.test(endprice)) {
+                alert('请正确填写信息')
+                return false
+            }
+            if (startprice == '' || endprice == '') {
+                alert('请输入开始价格或结束价格！')
+                return false
+            }
+            if (parseInt(startprice) >= parseInt(endprice)) {
+                alert('请保证结束价格大于开始价格！')
+                return false
+            }
+            var areaurl = zhunhuan(url, 'ao')
+            areaurl = zhunhuan(areaurl, 'bm')
+            var areabtn = 'bm' + startprice + ',' + endprice
+            if (areaurl == '') {
+                areaurl = []
+            } else {
+                areaurl = areaurl.split('-')
+            }
+            areaurl.push(areabtn)
+            areaurl = areaurl.join('-')
+            window.location.href = houseurl + '/' + areaurl + xsearch
+        })*/
+
+        //获取已选择条件的链接
+        function zhunhuan (url, par, pid) {
+            url = url.replace(/bl[\w\|,]*/, 'bl1')//默认为第一页
+            if (par == 'aa') {
+                url = url.replace(/ab[\w,]*/, '')
+            }
+            if (par == 'ac') {
+                url = url.replace(/ad[\w,]*/, '')
+            }
+            var urls = []
+            if (url.length != 0) {
+                urls = url.split('-')
+                if (par == 'aa') {
+                    urls = xunique(urls)
+                }
+            }
+            if (par == 'bh') {
+                for (var i in urls) {
+                    if (urls[i].substr(0, 2) == 'bh') {
+                        var pp = urls[i].substr(2).replace(pid, '')
+                        if (pp != '') {
+                            pp = xunique(pp.split('|'))
+                            urls[i] = 'bh' + pp.join('|')
+                        } else {
+                            urls.splice(i, 1)
+                        }
+                    }
+                }
+            } else {
+                for (var i in urls) {
+                    if (urls[i].substr(0, 2) == par) {
                         urls.splice(i, 1)
                     }
                 }
             }
-        } else {
-            for (var i in urls) {
-                if (urls[i].substr(0, 2) == par) {
-                    urls.splice(i, 1)
-                }
+            if (urls.length == 0) {
+                return ''
+            } else {
+                return urls.join('-')
             }
         }
-        if (urls.length == 0) {
-            return ''
-        } else {
-            return urls.join('-')
-        }
-    }
 
-    //面积输入框提交
-    $('.areabtn').bind('click', function () {
-        var startarea = $('.startarea').val()
-        var endarea = $('.endarea').val()
-        var patt = /^\d+(\.?\d{1,2})?$/
-        if (!patt.test(startarea) || !patt.test(endarea)) {
-            alert('请正确填写信息')
-            return false
-        }
-        if (startarea == '' || endarea == '') {
-            alert('请输入开始面积或结束面积！')
-            return false
-        }
-        if (parseInt(startarea) >= parseInt(endarea)) {
-            alert('请保证结束面积大于开始面积！')
-            return false
-        }
-        var areaurl = zhunhuan(url, 'ap')
-        areaurl = zhunhuan(areaurl, 'bn')
-        var areabtn = 'bn' + startarea + ',' + endarea
-        if (areaurl == '') {
-            areaurl = []
-        } else {
-            areaurl = areaurl.split('-')
-        }
-        areaurl.push(areabtn)
-        areaurl = areaurl.join('-')
-        window.location.href = houseurl + '/' + areaurl + xsearch
-    })
-
-    /* 配套下拉 */
-    $('.term1').click(function (event) {
-        $('.list_tag').hide()
-        $('#pt').fadeIn()
-        $(document).one('click', function () {//对document绑定一个影藏Div方法
-            $('#pt').hide()
+        //面积输入框提交
+        $('.areabtn').bind('click', function () {
+            var startarea = $('.startarea').val()
+            var endarea = $('.endarea').val()
+            var patt = /^\d+(\.?\d{1,2})?$/
+            if (!patt.test(startarea) || !patt.test(endarea)) {
+                alert('请正确填写信息')
+                return false
+            }
+            if (startarea == '' || endarea == '') {
+                alert('请输入开始面积或结束面积！')
+                return false
+            }
+            if (parseInt(startarea) >= parseInt(endarea)) {
+                alert('请保证结束面积大于开始面积！')
+                return false
+            }
+            var areaurl = zhunhuan(url, 'ap')
+            areaurl = zhunhuan(areaurl, 'bn')
+            var areabtn = 'bn' + startarea + ',' + endarea
+            if (areaurl == '') {
+                areaurl = []
+            } else {
+                areaurl = areaurl.split('-')
+            }
+            areaurl.push(areabtn)
+            areaurl = areaurl.join('-')
+            window.location.href = houseurl + '/' + areaurl + xsearch
         })
-        event.stopPropagation()//点击 www.it165.net Button阻止事件冒泡到document
-    })
-    $('.list_tag').click(function (event) {
-        event.stopPropagation()//在Div区域内的点击事件阻止冒泡到document
-    })
-    $('.list_tag li').click(function () {
-        $(this).parents().find('.list_tag').hide()
-    })
 
-    $('.btn_true').bind('click', function () {
-        var x_pei = []
-        $('input[name=peichild]:checked').each(function () {
-            x_pei.push($(this).val())
-        })
-        if (url != '') {
-            url = url.split('-')
-            for (var i in url) {
-                if (url[i].substr(0, 2) == 'bh') {
-                    url.splice(i, 1)
-                }
-            }
-            url.push('bh' + x_pei.join('|'))
-            url = url.join('-')
-            window.location.href = houseurl + '/' + url + xsearch
-        } else {
-            url = []
-            url.push('bh' + x_pei.join('|'))
-            url = url.join('-')
-            window.location.href = houseurl + '/' + url + xsearch
-        }
-    })
-</script>
-<ul class="right_nav" id="right_nav" style="display: block;bottom: 160px;">
-    <li style="height: 42px; padding: 8px 0px 9px; margin-bottom: 6px; overflow: hidden;">
-
-        <a href="javascript:;" id="sofang_load_a">
-            <i class="icon6"></i><h6>下载</h6>
-        </a>
-    </li>
-    <li class="backtop" style="height: 42px; padding: 8px 0px 9px; margin-bottom: 6px; overflow: hidden;">
-        <a href="javascript:;">
-            <i></i>
-        </a>
-    </li>
-
-</ul>
-<a href="http://bj.sofang.com/sofangAPP/index.html" target="_blank">
-    <img src="search_files/sofang_APP.png" id="sofang_load"
-         style="display: none;position: fixed;bottom:158px;right:58px;">
-</a>
-<script>
-    $(document).ready(function (e) {
-        $('#right_nav li').eq(0).css({'height': '42px', padding: '8px 0 9px', marginBottom: '6px', overflow: 'hidden'})
-        $('#right_nav li').eq(1).css({'height': '42px', padding: '8px 0 9px', marginBottom: '6px', overflow: 'hidden'})
-    })
-    $('#sofang_load_a').on('mouseover', function () {
-        $('#sofang_load').show()
-    })
-    $('#sofang_load_a').on('mouseout', function () {
-        $('#sofang_load').hide()
-    })
-    $('#sofang_load').on('mouseout', function () {
-        $('#sofang_load').hide()
-    })
-    $('#sofang_load').on('mouseover', function () {
-        $('#sofang_load').show()
-    })
-    $('.right_nav li').on('mouseover', function () {
-        $('.right_nav li').siblings().removeClass('current')
-        $(this).addClass('current')
-    })
-    $('.right_nav .backtop').on('click', function () {
-        var n = $(document).scrollTop()
-        var timer = setInterval(function () {
-            n -= 110
-            $(document).scrollTop(n)
-            if (n <= 0) {
-                clearInterval(timer)
-            }
-        }, 30)
-    })
-</script>
-<script>
-    //关注方法
-    point_interest('focus', 'xcy')
-
-    var _token = $('#token').val()
-    $(function () {
-
-    })
-
-    function staClick (id, st, type) {
-        var styles
-        var csale = []
-        var crent = []
-        if (st == 't') {
-            styles = 'housestickstatus'
-        } else if (st == 'p') {
-            styles = 'houseputstatus'
-        }
-        if (type == 's') {
-            csale.push(id)
-        }
-        if (type == 'r') {
-            crent.push(id)
-        }
-        if (csale.length > 0 || crent.length > 0) {
-            $.post('/ajax/clickstatistic/click', {
-                'sty': styles,
-                'sale': csale,
-                'rent': crent,
-                '_token': _token
-            }, function (m) {
-
+        /* 配套下拉 */
+        $('.term1').click(function (event) {
+            $('.list_tag').hide()
+            $('#pt').fadeIn()
+            $(document).one('click', function () {//对document绑定一个影藏Div方法
+                $('#pt').hide()
             })
+            event.stopPropagation()//点击 www.it165.net Button阻止事件冒泡到document
+        })
+        $('.list_tag').click(function (event) {
+            event.stopPropagation()//在Div区域内的点击事件阻止冒泡到document
+        })
+        $('.list_tag li').click(function () {
+            $(this).parents().find('.list_tag').hide()
+        })
+
+        $('.btn_true').bind('click', function () {
+            var x_pei = []
+            $('input[name=peichild]:checked').each(function () {
+                x_pei.push($(this).val())
+            })
+            if (url != '') {
+                url = url.split('-')
+                for (var i in url) {
+                    if (url[i].substr(0, 2) == 'bh') {
+                        url.splice(i, 1)
+                    }
+                }
+                url.push('bh' + x_pei.join('|'))
+                url = url.join('-')
+                window.location.href = houseurl + '/' + url + xsearch
+            } else {
+                url = []
+                url.push('bh' + x_pei.join('|'))
+                url = url.join('-')
+                window.location.href = houseurl + '/' + url + xsearch
+            }
+        })
+    </script>
+    <ul class="right_nav" id="right_nav" style="display: block;bottom: 160px;">
+        <li style="height: 42px; padding: 8px 0px 9px; margin-bottom: 6px; overflow: hidden;">
+
+            <a href="javascript:;" id="sofang_load_a">
+                <i class="icon6"></i><h6>下载</h6>
+            </a>
+        </li>
+        <li class="backtop" style="height: 42px; padding: 8px 0px 9px; margin-bottom: 6px; overflow: hidden;">
+            <a href="javascript:;">
+                <i></i>
+            </a>
+        </li>
+
+    </ul>
+    <a href="http://bj.sofang.com/sofangAPP/index.html" target="_blank">
+        <img src="search_files/sofang_APP.png" id="sofang_load"
+             style="display: none;position: fixed;bottom:158px;right:58px;">
+    </a>
+    <script>
+        $(document).ready(function (e) {
+            $('#right_nav li').eq(0).css({
+                'height': '42px',
+                padding: '8px 0 9px',
+                marginBottom: '6px',
+                overflow: 'hidden'
+            })
+            $('#right_nav li').eq(1).css({
+                'height': '42px',
+                padding: '8px 0 9px',
+                marginBottom: '6px',
+                overflow: 'hidden'
+            })
+        })
+        $('#sofang_load_a').on('mouseover', function () {
+            $('#sofang_load').show()
+        })
+        $('#sofang_load_a').on('mouseout', function () {
+            $('#sofang_load').hide()
+        })
+        $('#sofang_load').on('mouseout', function () {
+            $('#sofang_load').hide()
+        })
+        $('#sofang_load').on('mouseover', function () {
+            $('#sofang_load').show()
+        })
+        $('.right_nav li').on('mouseover', function () {
+            $('.right_nav li').siblings().removeClass('current')
+            $(this).addClass('current')
+        })
+        $('.right_nav .backtop').on('click', function () {
+            var n = $(document).scrollTop()
+            var timer = setInterval(function () {
+                n -= 110
+                $(document).scrollTop(n)
+                if (n <= 0) {
+                    clearInterval(timer)
+                }
+            }, 30)
+        })
+    </script>
+    <script>
+        //关注方法
+        point_interest('focus', 'xcy')
+
+        var _token = $('#token').val()
+        $(function () {
+
+        })
+
+        function staClick (id, st, type) {
+            var styles
+            var csale = []
+            var crent = []
+            if (st == 't') {
+                styles = 'housestickstatus'
+            } else if (st == 'p') {
+                styles = 'houseputstatus'
+            }
+            if (type == 's') {
+                csale.push(id)
+            }
+            if (type == 'r') {
+                crent.push(id)
+            }
+            if (csale.length > 0 || crent.length > 0) {
+                $.post('/ajax/clickstatistic/click', {
+                    'sty': styles,
+                    'sale': csale,
+                    'rent': crent,
+                    '_token': _token
+                }, function (m) {
+
+                })
+            }
         }
-    }
-</script>
-<!--<script type="text/javascript" src="search_files/adShow_005.htm"></script>
-<script type="text/javascript" src="search_files/adShow_002.htm"></script>-->
-<style>
-    /*点击字体变色*/
-    .fontRed {
+    </script>
+    <!--<script type="text/javascript" src="search_files/adShow_005.htm"></script>
+    <script type="text/javascript" src="search_files/adShow_002.htm"></script>-->
+    <style>
+        /*点击字体变色*/
+        .fontRed {
+            font-weight: bolder;
+            color: red;
+        }
 
-        font-weight: bold;
-        color: red;
-    }
+        .selectStyle {
+            width: 60px;
+            height: 22px;
+            text-align: center;
+            margin-top: 10px;
+            border: 1px antiquewhite solid;
+            background: white;
 
-    .selectStyle {
-        width: 60px;
-        height: 22px;
-        text-align: center;
-        margin-top: 10px;
-        border: 1px antiquewhite solid;
-        background: white;
+        }
 
-    }
+        #hosueid {
+            width: 200px;
+            height: auto;
+            float: left;
+            position: absolute;
+            top: 390px;
+            left: 1080px;
+        }
 
-    #hosueid {
-        width: 200px;
-        height: auto;
-        float: left;
-        position: absolute;
-        top: 390px;
-        left: 1080px;
-    }
+        .subnav {
+            width: 1055px;
+            border: 1px solid #cbcbcb;
+            margin: 20px 0 0 40px;
+            padding-bottom: 10px;
+        }
 
-    .subnav {
-        width: 1055px;
-        border: 1px solid #cbcbcb;
-        margin: 20px 0 0 40px;
-        padding-bottom: 10px;
-    }
+        .search_info dl dd {
+            float: left;
+            width: 1090px;
+        }
 
-    .search_info dl dd {
-        float: left;
-        width: 1090px;
-    }
+        .litterSpan {
+            width: 36px;
+            height: 17px;
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(142, 142, 142, 1);
+            line-height: 17px;
+            margin-right: 7px;
+        }
 
-    .litterSpan {
-        width: 36px;
-        height: 17px;
-        font-size: 12px;
-        font-weight: 400;
-        color: rgba(142, 142, 142, 1);
-        line-height: 17px;
-        margin-right: 7px;
-    }
+        .subnav span {
+            float: left;
+            font-weight: bold;
+            color: #f8d347;
+            height: 14px;
+            line-height: 14px;
+            margin: 10px 0 0 25px;
+            font-size: 14px;
+        }
 
-    .subnav span {
-        float: left;
-        font-weight: bold;
-        color: #f8d347;
-        height: 14px;
-        line-height: 14px;
-        margin: 10px 0 0 25px;
-        font-size: 14px;
-    }
+        .info_r .info {
+            width: 550px !important;
+        }
+    </style>
+    <!--PC自定义代码填写start-->
+    <!--PC自定义代码填写end-->
 
-    .info_r .info {
-        width: 550px !important;
-    }
-</style>
-<!--PC自定义代码填写start-->
-<!--PC自定义代码填写end-->
-
-<!-- PC共用尾部   可定义尾部 -->
-<div class="addressbg footerBg">
-    <div>
-        <p class="clearfix">
-            <a href="https://zz.sofang.com/about/aboutus.html" target="_blank">关于我们</a><span>|</span>
-            <a href="https://zz.sofang.com/about/contactusNew.html" target="_blank">联系我们</a><span>|</span>
-            <a href="https://zz.sofang.com/about/disclaimer.html" target="_blank">免责声明</a><span>|</span>
-            <a href="https://zz.sofang.com/about/recruit.html" target="_blank">招聘信息</a><span>|</span>
-            <a href="https://zz.sofang.com/about/secret.html" target="_blank">隐私协议</a><span>|</span>
-            <a href="https://zz.sofang.com/questionHelp/usehelp.html" target="_blank">使用帮助</a>
-        </p>
-        <p class="clearfix">
-            <span>Copyright&nbsp;©&nbsp;2020</span>
-            <span>Sofang.com,&nbsp;All&nbsp;Rights&nbsp;Reserved</span>
-            <span>
+    <!-- PC共用尾部   可定义尾部 -->
+    <div class="addressbg footerBg">
+        <div>
+            <p class="clearfix">
+                <a href="https://zz.sofang.com/about/aboutus.html" target="_blank">关于我们</a><span>|</span>
+                <a href="https://zz.sofang.com/about/contactusNew.html" target="_blank">联系我们</a><span>|</span>
+                <a href="https://zz.sofang.com/about/disclaimer.html" target="_blank">免责声明</a><span>|</span>
+                <a href="https://zz.sofang.com/about/recruit.html" target="_blank">招聘信息</a><span>|</span>
+                <a href="https://zz.sofang.com/about/secret.html" target="_blank">隐私协议</a><span>|</span>
+                <a href="https://zz.sofang.com/questionHelp/usehelp.html" target="_blank">使用帮助</a>
+            </p>
+            <p class="clearfix">
+                <span>Copyright&nbsp;©&nbsp;2020</span>
+                <span>Sofang.com,&nbsp;All&nbsp;Rights&nbsp;Reserved</span>
+                <span>
                   北京道杰士投资咨询服务有限责任公司
               </span>
 
-            <span>版权所有</span>
-            <a href="https://zz.sofang.com/pdf/company_img.pdf" target="_blank">营业执照</a>
-            <a href="http://www.beian.miit.gov.cn/" target="_blank">京ICP备13049052号-2</a>
-            <a class="ba" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502032964"
-               target="_blank"><i></i>京公网安备11010502032964号</a>
-        </p>
+                <span>版权所有</span>
+                <a href="https://zz.sofang.com/pdf/company_img.pdf" target="_blank">营业执照</a>
+                <a href="http://www.beian.miit.gov.cn/" target="_blank">京ICP备13049052号-2</a>
+                <a class="ba" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502032964"
+                   target="_blank"><i></i>京公网安备11010502032964号</a>
+            </p>
+        </div>
     </div>
-</div>
-<script>
-    if (parseInt('68') == 144) {
-        var _hmt = _hmt || [];
+    <script>
+        if (parseInt('68') == 144) {
+            var _hmt = _hmt || [];
+            (function () {
+                var hm = document.createElement('script')
+                hm.src = 'https://hm.baidu.com/hm.js?5e6ab07ba487ab82aabfe5051b2d98ef'
+                var s = document.getElementsByTagName('script')[0]
+                s.parentNode.insertBefore(hm, s)
+            })()
+        }
+    </script>
+    <script type="text/javascript">
+        /*$(function () {
+            $.ajax({
+                type: 'POST',
+                url: '/about/takenotes',
+                data: {_token: 'sVQQhn8tN3ZzH7RYuBsTJFpzxKZJLGx8NX4gwGEe'},
+                success: function (data) {
+                },
+                error: function () {
+                }
+            })
+        })*/
+        var cnzz_protocol = (('https:' == document.location.protocol) ? ' https://' : ' http://')
+        document.write(unescape('%3Cspan id=\'cnzz_stat_icon_1262285598\'%3E%3C/span%3E%3Cscript src=\'' + cnzz_protocol + 's13.cnzz.com/z_stat.php%3Fid%3D1262285598 \' type=\'text/javascript\'%3E%3C/script%3E'))
+    </script>
+    <span id="cnzz_stat_icon_1262285598"><a href="https://www.cnzz.com/stat/website.php?web_id=1262285598"
+                                            target="_blank"
+                                            title="站长统计">站长统计</a></span>
+    <!--<script src="search_files/z_stat.php" type="text/javascript"></script>-->
+    <!--<script src="search_files/core.php" charset="utf-8" type="text/javascript"></script>-->
+
+    <!-- PC共用尾部  end -->
+    <script type="text/javascript" src="search_files/weblog.js"></script>
+    <script type="text/javascript" src="search_files/jquery.js"></script>
+    <!-- PC不可修改 -->
+    <script>
+        $(document).ready(function (e) {
+            $(this).keydown(function (e) {
+                if (e.which == '13') {
+                    $('#login').click()
+                }
+            })
+        })
+        $('#lproname').val('')
+        $('#lpropwd').val('')
+    </script>
+    <script>
         (function () {
-            var hm = document.createElement('script')
-            hm.src = 'https://hm.baidu.com/hm.js?5e6ab07ba487ab82aabfe5051b2d98ef'
+            var bp = document.createElement('script')
+            var curProtocol = window.location.protocol.split(':')[0]
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js'
+            }
             var s = document.getElementsByTagName('script')[0]
-            s.parentNode.insertBefore(hm, s)
+            s.parentNode.insertBefore(bp, s)
         })()
-    }
-</script>
-<script type="text/javascript">
-    /*$(function () {
-        $.ajax({
-            type: 'POST',
-            url: '/about/takenotes',
-            data: {_token: 'sVQQhn8tN3ZzH7RYuBsTJFpzxKZJLGx8NX4gwGEe'},
-            success: function (data) {
-            },
-            error: function () {
-            }
-        })
-    })*/
-    var cnzz_protocol = (('https:' == document.location.protocol) ? ' https://' : ' http://')
-    document.write(unescape('%3Cspan id=\'cnzz_stat_icon_1262285598\'%3E%3C/span%3E%3Cscript src=\'' + cnzz_protocol + 's13.cnzz.com/z_stat.php%3Fid%3D1262285598 \' type=\'text/javascript\'%3E%3C/script%3E'))
-</script>
-<span id="cnzz_stat_icon_1262285598"><a href="https://www.cnzz.com/stat/website.php?web_id=1262285598" target="_blank"
-                                        title="站长统计">站长统计</a></span>
-<!--<script src="search_files/z_stat.php" type="text/javascript"></script>-->
-<!--<script src="search_files/core.php" charset="utf-8" type="text/javascript"></script>-->
+    </script>
+    <!-- PC不可修改 end-->
 
-<!-- PC共用尾部  end -->
-<script type="text/javascript" src="search_files/weblog.js"></script>
-<script type="text/javascript" src="search_files/jquery.js"></script>
-<!-- PC不可修改 -->
-<script>
-    $(document).ready(function (e) {
-        $(this).keydown(function (e) {
-            if (e.which == '13') {
-                $('#login').click()
-            }
-        })
-    })
-    $('#lproname').val('')
-    $('#lpropwd').val('')
-</script>
-<script>
-    (function () {
-        var bp = document.createElement('script')
-        var curProtocol = window.location.protocol.split(':')[0]
-        if (curProtocol === 'https') {
-            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
-        }
-        else {
-            bp.src = 'http://push.zhanzhang.baidu.com/push.js'
-        }
-        var s = document.getElementsByTagName('script')[0]
-        s.parentNode.insertBefore(bp, s)
-    })()
-</script>
-<!-- PC不可修改 end-->
-
-
+</div>
 </body>
 </html>

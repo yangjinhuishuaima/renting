@@ -1,0 +1,163 @@
+.detail-dialog {
+    position: fixed;
+    left:0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+    z-index: 999;
+    display: none;
+}
+.detail-dialog .content{
+    width: 750px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    padding: 20px 20px 20px 40px;
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+.detail-dialog .content .title {
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+    line-height: 36px;
+    padding-bottom: 30px;
+}
+.detail-dialog .content .close {
+    background: url('/image/newimage/close.png');
+    width: 18px;
+    height: 18px;
+    float: right;
+    cursor: pointer;
+}
+.detail-dialog .content .block {
+    box-sizing: border-box;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+.detail-dialog .content .block .label {
+    display: inline-block;
+    font-size: 16px;
+    width: 160px;
+    vertical-align: top;
+}
+.detail-dialog .content .block .label .red {
+    color: red;
+}
+.detail-dialog .content .block .value {
+    display: inline-block;
+    width: 520px;
+}
+.detail-dialog .content .block .value .submit0 {
+    background-color: #ccc;
+    color: white;
+    font-size: 14px;
+    border: none;
+    width: 400px;
+    height: 50px;
+    border-radius: 3px;
+    margin: 20px 0px 10px 0px;
+}
+.detail-dialog .content .block .value .submit {
+    background-color: #F8D347;
+    font-size: 14px;
+    border: none;
+    width: 400px;
+    height: 50px;
+    border-radius: 3px;
+    margin: 20px 0px 10px 0px;
+}
+.detail-dialog .content .block .value .item {
+    display: inline-block;
+    width: 250px;
+    padding-bottom: 15px;
+    line-height: 18px;
+    cursor: pointer;
+}
+.detail-dialog .content .block .value .item .unchecked {
+    background: url('/image/newimage/xuankuang.png');
+    width:18px;
+    height: 18px;
+    display: block;
+    float: left;
+    margin-right: 5px;
+}
+.detail-dialog .content .block .value .item .checked {
+    background: url('/image/newimage/gouxuan.png');
+    width:18px;
+    height: 18px;
+    display: block;
+    float: left;
+    margin-right: 5px;
+}
+.detail-dialog .content .block .value .memo {
+    width: 400px;
+    height: 180px;
+    border: #ccc 1px solid;
+    border-radius: 3px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+.detail-dialog .content .block .value .text {
+    height: 50px;
+    width: 400px;
+    box-sizing: border-box;
+    padding: 5px;
+    border: #ccc 1px solid;
+    border-radius: 3px;
+}
+.detail-dialog .content .block .value .valid {
+    height: 50px;
+    width: 240px;
+    box-sizing: border-box;
+    padding: 5px;
+    border: #ccc 1px solid;
+    border-radius: 3px;
+}
+.detail-dialog .content .block .value .code {
+    width: 150px;
+    text-align: center;
+    display: inline-block;
+}
+
+.detail-dialog .result {
+    width: 450px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+.detail-dialog .result .image {
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.detail-dialog .result .row {
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+}
+.detail-dialog .result .bottom {
+    border-top: #ccc 2px solid;
+    margin-top: 40px;
+    box-sizing: border-box;
+}
+.detail-dialog .result .bottom span {
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    width: 220px;
+    line-height: 50px;
+    cursor: pointer;
+}
+.detail-dialog .result .bottom .btn1 {
+    display: inline-block;
+    border-right: #ccc 1px solid;
+}

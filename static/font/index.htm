@@ -165,8 +165,8 @@
     <script type="text/javascript">
         $(function () {
             $('#enterSearch').click(function () {
-                //alert($("#searchInfo").val())
-                window.location.href = 'http://localhost:8080/static/font/search.htm'
+                var searchs = $("#searchInfo").val()
+                window.location.href = 'http://localhost:8080/static/font/search.htm?searchs='+searchs
             })
         })
     </script>
@@ -182,7 +182,7 @@
 
     <div class="head clearfix">
         <h1 class="fl">
-            <a href="https://zz.sofang.com/"><img src="
+            <a href="http://localhost:8080/static/font/index.htm"><img src="
 https://rentins-1302959334.cos.ap-nanjing.myqcloud.com/guanggao/BigShow/index_files/tab_logo.png" alt="搜房网"></a>
             <span>搜房网</span>
         </h1>
@@ -197,10 +197,10 @@ https://rentins-1302959334.cos.ap-nanjing.myqcloud.com/guanggao/BigShow/index_fi
         </div>
         <ul class="fl nav">
             <li>
-                <a href="https://zz.sofang.com/">首页</a>
+                <a href="http://localhost:8080/static/font/index.htm">首页</a>
             </li>
             <li>
-                <a href="https://zz.sofang.com/esfrent/area">租房</a>
+                <a href="http://localhost:8080/static/font/search.htm">租房</a>
                 <div class="nav_list">
                     <i class="arrow"></i>
                     <ul>
@@ -284,13 +284,12 @@ https://rentins-1302959334.cos.ap-nanjing.myqcloud.com/guanggao/BigShow/index_fi
     </ul>
     <div class="point rslides_point"></div>
     <div class="search clearfix">
+        <ul class="topnav clearfix">
+            <li class="nav2 current" id="home2"  value="/new/area">
+                <a href="/new/area" target="_blank">郑州搜房</a>
+            </li>
+        </ul>
         <div class="txt search_txt clearfix">
-            <div class="searchjt" id="searchjtId2" style="display: block;"></div>
-            <div class="searchjt" id="searchjtId3" style="margin-left: 65px; display: none;"></div>
-            <div class="searchjt" id="searchjtId4" style="margin-left: 137px; display: none;"></div>
-            <div class="searchjt" id="searchjtId7" style="margin-left: 203px; display: none;"></div>
-            <div class="searchjt" id="searchjtId1" style="margin-left: 268px; display: none;"></div>
-            <div class="searchjt" id="searchjtId5" style="margin-left: 343px; display: none;"></div>
 
             <input type="text" id="searchInfo" tp="new" autocomplete="off" placeholder="请输入内容"
                    class="buildname searchInput">
@@ -312,56 +311,35 @@ https://rentins-1302959334.cos.ap-nanjing.myqcloud.com/guanggao/BigShow/index_fi
 <div class="moduleBlock">
     <div class="moduleHead">
 
-        <a href="https://zz.sofang.com/esfrent/area" target="_blank">更多租房 &gt;</a>
+        <a href="http://localhost:8080/static/font/search.htm" target="_blank">更多租房 &gt;</a>
     </div>
     <span class="moduleLine"></span>
     <div class="esf modulInfo over_auto">
-        <div class="leftInfo">
+        <!--<div class="leftInfo">
             <div class="cat">
                 <ul class="height_144">
                     <li>
-                        <a href="https://zz.sofang.com/esfrent/area/aa696" target="_blank">中原</a>
+                        <a href="http://localhost:8080/static/font/search.htm?searchs=中原" target="_blank">中原</a>
                         <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aa697" target="_blank">二七</a>
+                        <a href="http://localhost:8080/static/font/search.htm?searchs=二七" target="_blank">二七</a>
                         <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aa698" target="_blank">管城</a>
+                        <a href="http://localhost:8080/static/font/search.htm?searchs=管城" target="_blank">管城</a>
                         <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aa699" target="_blank">金水</a>
+                        <a href="http://localhost:8080/static/font/search.htm?searchs=金水" target="_blank">金水</a>
                         <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aa701" target="_blank">中牟</a>
+                        <a href="http://localhost:8080/static/font/search.htm?searchs=中牟" target="_blank">中牟</a>
                         <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aa702" target="_blank">巩义</a>
+                        <a href="http://localhost:8080/static/font/search.htm?searchs=巩义" target="_blank">巩义</a>
                         <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aa703" target="_blank">荥阳</a>
+                        <a href="http://localhost:8080/static/font/search.htm?searchs=荥阳" target="_blank">荥阳</a>
                         <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aa704" target="_blank">新密</a>
+                        <a href="http://localhost:8080/static/font/search.htm?searchs=新密" target="_blank">新密</a>
                         <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aa705" target="_blank">新郑</a>
+                        <a href="http://localhost:8080/static/font/search.htm?searchs=新郑" target="_blank">新郑</a>
                         <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aa706" target="_blank">登封</a>
+                        <a href="http://localhost:8080/static/font/search.htm?searchs=登封" target="_blank">登封</a>
                         <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aa707" target="_blank">郑东新区</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aa708" target="_blank">惠济</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aa709" target="_blank">高新区</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aa710" target="_blank">经济开发区</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aa711" target="_blank">郑东</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aa716" target="_blank">上街</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aa3636" target="_blank">航空港区</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aa3687" target="_blank">管城回族</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aa3688" target="_blank">经开区</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aa3689" target="_blank">郑州周边</a>
-                        <em></em>
-                        <a href="https://zz.sofang.com/esfrent/area/aa3690" target="_blank">平原新区</a>
-                        <em></em>
+
                     </li>
                     <li>
                         <a href="https://zz.sofang.com/esfrent/area/aq1" target="_blank">一居</a>
@@ -423,7 +401,7 @@ https://rentins-1302959334.cos.ap-nanjing.myqcloud.com/guanggao/BigShow/index_fi
             </div>
             <img class="mt32" src="index_files/zfdefault.png">
 
-        </div>
+        </div>-->
         <div class="rightInfo">
             <ul class="catInfo" style="display: block;">
                 <li>
