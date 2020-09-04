@@ -139,80 +139,6 @@
         /** 关键字下拉搜索 **/
         var num = -1
         var searchKeyWords = {keyword: '', tp: '', tp1: '', sr: '', obj: null}
-        /*$('#searchBtn').on('click', function () {
-            var kw = 'kw=' + $('#keyword').val().replace(/(^\s*)|(\s*$)/g, '')
-            window.location.href = houseurl + '/' + url + '?' + kw
-        })*/
-        /*$('#keyword').on('keyup focus', function (ev) {
-            var obj = $(this)
-            if (ev.keyCode == 40) {
-                num++
-                navSelectNextWord(obj)
-                return false
-            } else if (ev.keyCode == 38) {
-                num--
-                navSelectLastWord(obj)
-                return false
-            } else if (ev.keyCode == 13) {
-                var kw = 'kw=' + $('#keyword').val().replace(/(^\s*)|(\s*$)/g, '')
-                url = zhunhuan(url, 'ba')
-                if (kw != 'kw=') {
-                    window.location.href = houseurl + '/' + url + '?' + kw
-                } else {
-                    window.location.href = houseurl + '/' + url
-                }
-            } else if (ev.keyCode == 37 || ev.keyCode == 39) {
-                return false
-            } else {
-                var xtp = $(obj).attr('tp')
-                var val = $.trim($(obj).val())
-                if (xtp == 'new' || xtp == 'shops' || xtp == 'office' || xtp == 'villa') {
-                    searchKeyWords.tp = 'new'
-                    searchKeyWords.sr = 2
-                    if (xtp == 'new' || xtp == 'villa') {
-                        searchKeyWords.tp1 = '3'
-                    } else if (xtp == 'office') {
-                        searchKeyWords.tp1 = '2'
-                    } else {
-                        searchKeyWords.tp1 = '1'
-                    }
-                } else {
-                    searchKeyWords.tp = 'old'
-                    if (xtp == 'saleesb') {
-                        searchKeyWords.tp1 = '3'
-                        searchKeyWords.sr = 2
-                    } else if (xtp == 'rentesb') {
-                        searchKeyWords.tp1 = '3'
-                        searchKeyWords.sr = 1
-                    } else {
-                        if (xtp.indexOf('sale') == '-1') {
-                            searchKeyWords.sr = 1
-                            if (xtp == 'esfrent' || xtp == 'bsrent') {
-                                searchKeyWords.tp1 = '3'
-                            } else if (xtp == 'xzlrent') {
-                                searchKeyWords.tp1 = '2'
-                            } else {
-                                searchKeyWords.tp1 = '1'
-                            }
-                        } else {
-                            searchKeyWords.sr = 2
-                            if (xtp == 'esfsale' || xtp == 'bssale') {
-                                searchKeyWords.tp1 = '3'
-                            } else if (xtp == 'xzlsale') {
-                                searchKeyWords.tp1 = '2'
-                            } else {
-                                searchKeyWords.tp1 = '1'
-                            }
-                        }
-                    }
-                }
-                searchKeyWords.keyword = val
-                searchKeyWords.obj = obj
-                //console.log(searchKeyWords);
-                x_getRecommend(searchKeyWords)
-                $('.mai').show()
-            }
-        })*/
         $(document).click(function (ev) {
             //alert(ev.target.className.indexOf('border_blue'))
             if (ev.target.className.indexOf('border_blue') == -1) {
@@ -501,7 +427,7 @@
                     /*选择区/县模糊查询*/
                     setAddress: function (val) {
                         this.$delete(this.fuzzySearch, 'harea')
-                        $('[name=\'harea\']').removeClass('fontRed')
+                        /*$('[name=\'harea\']').removeClass('fontRed')*/
                         this.fuzzySearch.hadress = val
                         this.streetInfo = this.streetlist['' + val + '']
                         this.streetState = true
@@ -587,8 +513,8 @@
                         let id = event.target.id
                         let name = event.target.name
                         if (name == 'hadress') {
-
                             $('[name="hadress"]').siblings().removeAttr("style")
+                            $('[name="harea"]').removeAttr("style")
                             $('[id=' + id + ']').css({color:'red',fontWeight:'bolder'})
                             return
 
@@ -672,13 +598,13 @@
                     },
                     /*默认*/
                     resit: function () {
-                        this.fuzzySearch = {}
+                        /*this.fuzzySearch = {}
                         this.fuzzySearch.pageNum = 1
                         this.fuzzySearch.pageSize = 10
                         $('#f1').text('↑↓')
                         $('#f2').text('↑↓')
-                        this.houseShow()
-                        /*window.location.href='http://localhost:8080/static/font/search.htm'*/
+                        this.houseShow()*/
+                        window.location.href='http://localhost:8080/static/font/search.htm'
                     },
                     /*租金排序*/
                     orderPrice: function () {
