@@ -14,7 +14,8 @@
 
         /*Start天气*/
         #watherContent {
-            margin-left: 500px;
+            margin-top: 3px;
+            margin-left: 300px;
         }
 
         #today {
@@ -31,17 +32,17 @@
         #watherInfo {
             position: absolute;
             top: 58px;
-            left: 500px;
+            left: 325px;
             z-index: 99;
             width: 400px;
             height: 400px;
-            background-color: gray;
-            background-color: rgba(0, 0, 0, 0.6); /*设置透明度*/
+            background-color: ghostwhite;
+            /*background-color: rgba(0, 0, 0, 0.9); !*设置透明度*!*/
         }
 
         .wat {
             font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-            color: lightskyblue;
+            color: black;
             text-align: center;
             float: left;
             margin-top: 20px;
@@ -58,7 +59,7 @@
         .infos {
             margin-left: 40px;
             font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-            color: lightskyblue;
+            color: black;
         }
         .el-carousel__item h3 {
             color: #475669;
@@ -261,25 +262,25 @@ https://rentins-1302959334.cos.ap-nanjing.myqcloud.com/guanggao/BigShow/index_fi
             </div>
             <div id="watherInfo" v-show="watherInfoState">
                 <div style="width: 400px;border-bottom: 1px dotted gainsboro;font-family: Georgia;
-            color: lightskyblue;font-size: 20px;padding-top: 20px">
+            color: black;font-size: 20px;padding-top: 20px">
                     &nbsp;&nbsp;&nbsp;&nbsp;{{watherInfo.cityInfo.c5}}
                 </div>
                 <div style="width:400px;height:230px;border-bottom: 1px dotted gainsboro;">
                     <div class="wat">
                         今天
-                        <img class="wimg" v-bind:src="watherInfo.f1.day_weather_pic"/>
+                        <img class="wimg" v-bind:src="watherInfo.f1.day_weather_pic"/><br>
                         {{watherInfo.f1.day_weather}}<br>
                         {{watherInfo.f1.day_air_temperature}}℃~{{watherInfo.f1.night_air_temperature}}℃
                     </div>
                     <div class="wat">
                         明天
-                        <img class="wimg" v-bind:src="watherInfo.f2.day_weather_pic"/>
+                        <img class="wimg" v-bind:src="watherInfo.f2.day_weather_pic"/><br>
                         {{watherInfo.f2.day_weather}}<br>
                         {{watherInfo.f2.day_air_temperature}}℃~{{watherInfo.f2.night_air_temperature}}℃
                     </div>
                     <div class="wat">
                         后天
-                        <img class="wimg" v-bind:src="watherInfo.f3.day_weather_pic"/>
+                        <img class="wimg" v-bind:src="watherInfo.f3.day_weather_pic"/><br>
                         {{watherInfo.f3.day_weather}}<br>
                         {{watherInfo.f3.day_air_temperature}}℃~{{watherInfo.f3.night_air_temperature}}℃
                     </div>
@@ -322,7 +323,7 @@ https://rentins-1302959334.cos.ap-nanjing.myqcloud.com/guanggao/BigShow/index_fi
         </ul>
         <div class="txt search_txt clearfix">
 
-            <input type="text" id="searchInfo" tp="new" autocomplete="off" placeholder="请输入内容"
+            <input type="text" id="searchInfo" tp="new" autocomplete="off" placeholder="请输入搜索地址，如：（区/县/街道/小区）"
                    class="buildname searchInput">
             <input type="button" value="搜索" class="btn ss" id="enterSearch">
             <ul class="js-searchlist mai mai1"></ul>

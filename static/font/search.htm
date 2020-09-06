@@ -60,15 +60,10 @@
 
                     <li>
                         <a href="http://localhost:8080/static/font/search.htm" class=" default ">租房</a>
-                        <div class="nav_list">
-                            <i class="arrow"></i>
-                            <ul>
-                                <li><a href="https://zz.sofang.com/esfrent/area/ar1">整租房源</a></li>
-                                <li><a href="https://zz.sofang.com/esfrent/area/ar2">合租房源</a></li>
-                                <li><a href="https://zz.sofang.com/rentesb/area">找小区</a></li>
-                                <li><a href="https://zz.sofang.com/map/rent/house">地图搜房</a></li>
-                            </ul>
-                        </div>
+                       <!-- <div class="nav_list">
+                            &lt;!&ndash;<i class="arrow"></i>&ndash;&gt;
+
+                        </div>-->
                     </li>
 
                     <ul class="fr top_r" style="margin-left: 700px">
@@ -370,12 +365,26 @@
                         /*配套保留*/
                         /*价钱按钮*/
                         priceBtnState: false,
+                        advList:{}
                     }
                 }, created: function () {
                     this.getSearch()
                     this.houseShow()
                     this.getStreet()
+                    this.advShow()
                 }, methods: {
+                    advShow:function () {
+                        let that = this
+                        $.ajax({
+                            url:'http://localhost:8090/rentings/av/findLimit',
+                            type:'POST',
+                            dataType:'JSON',
+                            success:function (data) {
+                                that.advlist = data
+                            }
+                        })
+                    },
+
                     /*获取首页地址栏跳转时传过来的参数*/
                     getSearch: function () {
                         var name = 'searchs'
@@ -662,6 +671,8 @@
                 },
             })
 
+
+
         })
 
     </script>
@@ -883,75 +894,71 @@
                     </div>
                 </div>
             </div>
+            <div class="house_r">
+                <!--<div class="house">
+                    <a href="https://zz.sofang.com/houseHelp/rent/xq" class="rent"><i></i>业主出租</a>
+                </div>-->
+                <div class="list_adv" id="list_adv0" style="display: none;"></div>
+                <div class="list_adv" id="list_adv1" style="display: none;"></div>
+                <div class="list_adv" id="list_adv2" style="display: none;"></div>
+                <script type="text/javascript" src="search_files/adShow.htm"></script>
+                <script type="text/javascript" src="search_files/adShow_004.htm"></script>
+                <script type="text/javascript" src="search_files/adShow_003.htm"></script>
 
-        </div>
-        <div class="house_r" id="hosueid" style="position: relative;top: -16590px;left: 1070px">
-            <div class="house">
-                <a href="https://zz.sofang.com/houseHelp/rent/xq" class="rent"><i></i>业主出租</a>
-                <!--<a href="https://zz.sofang.com/houseHelp/rent/xq/entrust" class="entrust"><i></i>委托出租</a>-->
-            </div>
-            <div class="list_adv" id="list_adv0" style="display: none;"></div>
-            <div class="list_adv" id="list_adv1" style="display: none;"></div>
-            <div class="list_adv" id="list_adv2" style="display: none;"></div>
-            <script type="text/javascript" src="search_files/adShow.htm"></script>
-            <script type="text/javascript" src="search_files/adShow_004.htm"></script>
-            <script type="text/javascript" src="search_files/adShow_003.htm"></script>
-
-
-
-
-            <div class="broker_house">
-                <h2><a href="https://zz.sofang.com/new/area">新盘推荐&gt;&gt;</a></h2>
-                <dl>
-                    <a href="https://zz.sofang.com/xinfindex/83905/303.html" target="_blank">
-                        <dt>
-                            <img src="search_files/noImage2.png" alt="长德商贸城"></dt>
-                        <dd>
-                            <p class="name_h">长德商贸城</p>
-                            <p class="house_price">
-									<span class="fl">
-										住宅 </span>
-                                <span class="fr">
+                <div class="broker_house" v-if="advlist" style="margin-top: 40px">
+                    <h2><a href="https://zz.sofang.com/new/area" _bank>优质房源&gt;&gt;</a></h2>
+                    <dl v-for="a in advlist" >
+                        <a href="https://zz.sofang.com/xinfindex/83905/303.html" target="_blank">
+                            <dt>
+                                <img v-bind:src="a.list[0].adphoto"></dt>
+                            <dd>
+                                <p class="name_h">{{a.adname}}</p>
+                                <p class="house_price">
+									<!--<span class="fl">
+										住宅 </span>-->
+                                    <!--<span class="fr">
 										均价 6000元/㎡
-									</span>
-                            </p>
-                        </dd>
-                    </a>
-                </dl>
-                <dl>
-                    <a href="https://zz.sofang.com/xinfindex/83904/301.html" target="_blank">
-                        <dt>
-                            <img src="search_files/noImage2.png" alt="尚城华府"></dt>
-                        <dd>
-                            <p class="name_h">尚城华府</p>
-                            <p class="house_price">
+									</span>-->
+                                </p>
+                            </dd>
+                        </a>
+                    </dl>
+                    <!--<dl>
+                        <a href="https://zz.sofang.com/xinfindex/83904/301.html" target="_blank">
+                            <dt>
+                                <img src="search_files/noImage2.png" alt="尚城华府"></dt>
+                            <dd>
+                                <p class="name_h">尚城华府</p>
+                                <p class="house_price">
 									<span class="fl">
 										住宅 </span>
-                                <span class="fr">
+                                    <span class="fr">
 										均价 7000元/㎡
 									</span>
-                            </p>
-                        </dd>
-                    </a>
-                </dl>
-                <dl>
-                    <a href="https://zz.sofang.com/xinfindex/83903/301.html" target="_blank">
-                        <dt>
-                            <img src="search_files/formal_223412_1579444452_P0OA_3.jpg" alt="诚城三英里"></dt>
-                        <dd>
-                            <p class="name_h">诚城三英里</p>
-                            <p class="house_price">
+                                </p>
+                            </dd>
+                        </a>
+                    </dl>
+                    <dl>
+                        <a href="https://zz.sofang.com/xinfindex/83903/301.html" target="_blank">
+                            <dt>
+                                <img src="search_files/formal_223412_1579444452_P0OA_3.jpg" alt="诚城三英里"></dt>
+                            <dd>
+                                <p class="name_h">诚城三英里</p>
+                                <p class="house_price">
 									<span class="fl">
 										住宅 </span>
-                                <span class="fr">
+                                    <span class="fr">
 										均价 7300元/㎡
 									</span>
-                            </p>
-                        </dd>
-                    </a>
-                </dl>
+                                </p>
+                            </dd>
+                        </a>
+                    </dl>-->
+                </div>
             </div>
         </div>
+
     </div>
 
     <div id="no_data_bj" style="display: none;" data="68">
