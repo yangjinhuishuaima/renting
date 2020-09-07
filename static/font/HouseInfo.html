@@ -24,6 +24,12 @@
     <!--<script src="HouseInfo_files/share.js"></script>
     <link rel="stylesheet" href="HouseInfo_files/share_style0_24.css">-->
     <style type="text/css">
+        [v-cloak] {
+
+            display: none;
+
+        }
+
         .BMap_mask {
             background: transparent url(https://api.map.baidu.com/images/blank.gif);
         }
@@ -2239,7 +2245,7 @@
     </script>
 </head>
 <body>
-<div id="house" v-if="thisHouse">
+<div id="house" v-cloak v-if="thisHouse">
     <!--<input type="hidden" name = "houseAddress" v-bind:value="郑州市+thisHouse.hadress+thisHouse.harea+thisHouse.hcommunity">-->
     <span v-if="thisHouse.hadress"><input type="hidden" name='address' v-bind:value="thisHouse.hadress"></span>
     <span v-if="thisHouse.harea"><input type="hidden" name='address' v-bind:value="thisHouse.harea"></span>
