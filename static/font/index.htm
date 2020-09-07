@@ -3,6 +3,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <style class="vjs-styles-defaults">
+        [v-cloak] {
+
+            display: none;
+
+        }
+
         .video-js {
             width: 300px;
             height: 150px;
@@ -250,7 +256,7 @@ https://rentins-1302959334.cos.ap-nanjing.myqcloud.com/guanggao/BigShow/index_fi
         </ul>
 
         <!--天气-->
-        <div id="wather" v-if="watherInfo.cityInfo">
+        <div id="wather" v-cloak v-if="watherInfo.cityInfo">
             <div id="watherContent">
                 <div id="today" @mousemove="watherSetState()" @mouseout="watherSetState2()">
                     天气&nbsp;&nbsp;

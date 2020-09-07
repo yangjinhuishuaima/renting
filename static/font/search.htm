@@ -28,10 +28,17 @@
     <!--axios插件-->
     <script src="../../../static/axios.min.js"></script>
     <script src="../myaxios.js"></script>
+    <style type="text/css">
+        [v-cloak] {
+
+            display: none;
+
+        }
+    </style>
 </head>
 <body>
 
-<div id="houseList">
+<div id="houseList" v-cloak>
     <input type="hidden" name="viewBill" value="0b379c5536929cb345c657a5c2c4ad16">
     <!-- PC共用头部   可定义头部，自定义头部需要有logo返回首页和登录注册功能 -->
     <script src="search_files/index3.js"></script>
