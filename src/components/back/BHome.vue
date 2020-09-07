@@ -154,23 +154,26 @@
             },
             Mg: function (clickname) {
                 console.log(clickname)
-                if (clickname === 'managermg') {
-                    this.$router.push({name: 'Mana'})
-                } else if (clickname === 'rolemg') {
-                    this.$router.push({name: 'Role'})
-                } else if (clickname === 'PermissionMg') {
-                    this.$axios.post('menu/menu_query')
-                        .then(response => {
-                            console.log(response)
-                            this.$router.push({name: 'permission', query: {menu_one: response}})
-                        })
-                } else if (clickname === 'CustomerMg') {
-                    this.$axios.post('CustomerCon/customer_selectAll')
-                        .then(response => {
-                            console.log(response)
-                            this.$router.push({name: 'customer', query: {customer: response}})
-                        })
-                }
+                this.$router.push({name: clickname})
+                // if (clickname === 'managermg') {
+                //     this.$router.push({name: 'Mana'})
+                // } else if (clickname === 'rolemg') {
+                //     this.$router.push({name: 'Role'})
+                // } else if (clickname === 'advertsmg') {
+                //     this.$router.push({name: 'BAdphoto'})
+                // //     this.$axios.post('menu/menu_query')
+                // //         .then(response => {
+                // //             console.log(response)
+                // //             this.$router.push({name: 'permission', query: {menu_one: response}})
+                // //         })
+                // } else if (clickname === 'servicemg') {
+                //     this.$router.push({name: 'Bservice'})
+                //     // this.$axios.post('server/findsah')
+                //     //     .then(response => {
+                //     //         console.log(response)
+                //     //         this.$router.push({name: 'customer', query: {customer: response}})
+                //     //     })
+                // }
             },
             showPersonaldialog: function () {
                 this.personal_visible = true

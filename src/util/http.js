@@ -2,13 +2,33 @@ import axios from 'axios'
 
 let http = axios.create({
   // 访问的根路径
-  baseURL: 'http://localhost:8090/renting/',
+  baseURL: 'http://localhost:8090/rentings/',
   // 请求超时时间
-  timeout: 5000,
+  timeout: 8000,
   // 是否携带凭证
   withCredentials: true,
   responseType: 'json'
 })
+//
+// let http = axios.create({
+//     // 访问的根路径
+//     baseURL:'http://localhost:8081/',
+//     // 请求超时时间
+//     timeout:8000,
+//     // 是否携带凭证
+//     withCredentials:true,
+//     responseType:"json",
+//     //允许在向服务器发送前，修改请求数据
+//     transformRequest: [function (data) {
+//         //不是表单提交
+//         //返回
+//         let ret = '';
+//         for (let it in data) {
+//             ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+//         }
+//         return ret;
+//     }],
+
 
 // 添加请求拦截器
 http.interceptors.request.use(function (config) {
