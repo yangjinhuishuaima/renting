@@ -11,10 +11,10 @@
             <el-button type="primary" plain round @click="Login">Login</el-button>
         </el-form>
 
-        <el-form label-width="100px" label-suffix=":" class="form" ref="rfm">
+        <el-form label-width="100px" label-suffix=":" :model="user" class="form" ref="rfm" :rules="rules1">
             <h3>注册</h3>
             <el-form-item label="手机号" prop="registerPhone">
-                <el-input v-model="registerPhone"></el-input>
+                <el-input v-model="user.registerPhone"></el-input>
             </el-form-item>
             <el-form-item label="验证码" prop="valiCode">
                 <el-input v-model="valiCode"></el-input>
@@ -50,7 +50,17 @@ export default {
         userPassword: [
           {required: true, message: '密码不能为空', trigger: ['blur', 'onblur']}
         ]
-      }
+      },
+        rules1: {
+            registerPhone: [
+                {required: true, message: '用户名不能为空！', trigger: ['blur', 'onblur']},
+                {min: 3, message: '用户名长度不符合规定！', trigger: ['blur', 'onblur']},
+                {validator: valiUserName, trigger: ['blur', 'onblur']}
+            ],
+            valiCode: [
+                {required: true, message: '密码不能为空', trigger: ['blur', 'onblur']}
+            ]
+        }
     }
   },
   methods: {

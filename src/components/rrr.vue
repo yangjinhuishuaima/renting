@@ -11,7 +11,7 @@ export default {
   name: 'rrr',
   methods: {
     'home': function () {
-      this.$router.push({name: 'FLogin'})
+      this.$router.push({name: 'FHouseadd'})
     },
     'login': function () {
       this.$router.push({name: 'back'})

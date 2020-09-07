@@ -33,98 +33,98 @@
                     </div>
                 </div>
             </el-header>
-            <el-container>
-                <el-aside>
-                    <!--
-                        default-active=index：默认激活
-                        router:当行菜单是否启用路由，启用之后，item作为route-link来使用
-                    -->
-                    <el-submenu index="0">
-                        <template slot="title">
-                            <i class="el-icon-aim"></i>
-                            <span>用户管理</span>
-                        </template>
-                        <el-menu-item index="0-1">
-                            <i class="el-icon-camera"></i>
-                            <span></span>
-                        </el-menu-item>
-                        <el-menu-item index="0-2">
-                            <i class="el-icon-dessert"></i>
-                            <span>已认证用户</span>
-                        </el-menu-item>
-                    </el-submenu>
+            <!--<el-container>-->
+                <!--<el-aside>-->
+                    <!--&lt;!&ndash;-->
+                        <!--default-active=index：默认激活-->
+                        <!--router:当行菜单是否启用路由，启用之后，item作为route-link来使用-->
+                    <!--&ndash;&gt;-->
+                    <!--<el-submenu index="0">-->
+                        <!--<template slot="title">-->
+                            <!--<i class="el-icon-aim"></i>-->
+                            <!--<span>用户管理</span>-->
+                        <!--</template>-->
+                        <!--<el-menu-item index="0-1">-->
+                            <!--<i class="el-icon-camera"></i>-->
+                            <!--<span></span>-->
+                        <!--</el-menu-item>-->
+                        <!--<el-menu-item index="0-2">-->
+                            <!--<i class="el-icon-dessert"></i>-->
+                            <!--<span>已认证用户</span>-->
+                        <!--</el-menu-item>-->
+                    <!--</el-submenu>-->
 
-                    <el-menu default-active="1" class="el-menu-vertical-demo" :router="true">
-                        <!-- 可展开的导航 -->
-                        <el-submenu index="1">
-                            <template slot="title">
-                                <i class="el-icon-aim"></i>
-                                <span>房源管理</span>
-                            </template>
-                            <!-- 启用之后，item作为router-link来使用 route:匹配要访问的路由路径-->
-                            <el-menu-item index="1-1" :route="{name:'/back/House'}">
-                                <i class="el-icon-camera"></i>
-                                <span>房源</span>
-                            </el-menu-item>
-                            <el-menu-item index="1-2" :route="{name:'/back/404'}">
-                                <i class="el-icon-dessert"></i>
-                                <span>房源类型</span>
-                            </el-menu-item>
-                            <el-menu-item index="1-3" :route="{name:'/back/House'}">
-                                <i class="el-icon-dessert"></i>
-                                <span>筛选房源</span>
-                            </el-menu-item>
-                        </el-submenu>
+                    <!--<el-menu default-active="1" class="el-menu-vertical-demo" :router="true">-->
+                        <!--&lt;!&ndash; 可展开的导航 &ndash;&gt;-->
+                        <!--<el-submenu index="1">-->
+                            <!--<template slot="title">-->
+                                <!--<i class="el-icon-aim"></i>-->
+                                <!--<span>房源管理</span>-->
+                            <!--</template>-->
+                            <!--&lt;!&ndash; 启用之后，item作为router-link来使用 route:匹配要访问的路由路径&ndash;&gt;-->
+                            <!--<el-menu-item index="1-1" :route="{name:'/back/House'}">-->
+                                <!--<i class="el-icon-camera"></i>-->
+                                <!--<span>房源</span>-->
+                            <!--</el-menu-item>-->
+                            <!--<el-menu-item index="1-2" :route="{name:'/back/404'}">-->
+                                <!--<i class="el-icon-dessert"></i>-->
+                                <!--<span>房源类型</span>-->
+                            <!--</el-menu-item>-->
+                            <!--<el-menu-item index="1-3" :route="{name:'/back/House'}">-->
+                                <!--<i class="el-icon-dessert"></i>-->
+                                <!--<span>筛选房源</span>-->
+                            <!--</el-menu-item>-->
+                        <!--</el-submenu>-->
 
-                        <el-submenu index="2">
-                            <template slot="title">
-                                <i class="el-icon-aim"></i>
-                                <span>广告管理</span>
-                            </template>
-                            <el-menu-item index="2-1">
-                                <i class="el-icon-camera"></i>
-                                <span>广告</span>
-                            </el-menu-item>
-                            <el-menu-item index="2-2">
-                                <i class="el-icon-dessert"></i>
-                                <span>广告收费</span>
-                            </el-menu-item>
-                        </el-submenu>
+                        <!--<el-submenu index="2">-->
+                            <!--<template slot="title">-->
+                                <!--<i class="el-icon-aim"></i>-->
+                                <!--<span>广告管理</span>-->
+                            <!--</template>-->
+                            <!--<el-menu-item index="2-1">-->
+                                <!--<i class="el-icon-camera"></i>-->
+                                <!--<span>广告</span>-->
+                            <!--</el-menu-item>-->
+                            <!--<el-menu-item index="2-2">-->
+                                <!--<i class="el-icon-dessert"></i>-->
+                                <!--<span>广告收费</span>-->
+                            <!--</el-menu-item>-->
+                        <!--</el-submenu>-->
 
-                        <el-submenu index="3">
-                            <template slot="title">
-                                <i class="el-icon-aim"></i>
-                                <span>黑名单管理</span>
-                            </template>
-                            <el-menu-item index="3-1">
-                                <i class="el-icon-camera"></i>
-                                <span>黑名单</span>
-                            </el-menu-item>
-                        </el-submenu>
+                        <!--<el-submenu index="3">-->
+                            <!--<template slot="title">-->
+                                <!--<i class="el-icon-aim"></i>-->
+                                <!--<span>黑名单管理</span>-->
+                            <!--</template>-->
+                            <!--<el-menu-item index="3-1">-->
+                                <!--<i class="el-icon-camera"></i>-->
+                                <!--<span>黑名单</span>-->
+                            <!--</el-menu-item>-->
+                        <!--</el-submenu>-->
 
-                        <el-submenu index="4">
-                            <template slot="title">
-                                <i class="el-icon-aim"></i>
-                                <span>权限管理</span>
-                            </template>
-                            <el-menu-item index="4-1">
-                                <i class="el-icon-camera"></i>
-                                <span>权限分配</span>
-                            </el-menu-item>
-                            <el-menu-item index="4-1">
-                                <i class="el-icon-camera"></i>
-                                <span>管理员管理</span>
-                            </el-menu-item>
-                        </el-submenu>
+                        <!--<el-submenu index="4">-->
+                            <!--<template slot="title">-->
+                                <!--<i class="el-icon-aim"></i>-->
+                                <!--<span>权限管理</span>-->
+                            <!--</template>-->
+                            <!--<el-menu-item index="4-1">-->
+                                <!--<i class="el-icon-camera"></i>-->
+                                <!--<span>权限分配</span>-->
+                            <!--</el-menu-item>-->
+                            <!--<el-menu-item index="4-1">-->
+                                <!--<i class="el-icon-camera"></i>-->
+                                <!--<span>管理员管理</span>-->
+                            <!--</el-menu-item>-->
+                        <!--</el-submenu>-->
 
-                    </el-menu>
-                </el-aside>
+                    <!--</el-menu>-->
+                <!--</el-aside>-->
 
-                <el-main>
-                    <!-- 二级路由 -->
-                    <router-view></router-view>
-                </el-main>
-            </el-container>
+                <!--<el-main>-->
+                    <!--&lt;!&ndash; 二级路由 &ndash;&gt;-->
+                    <!--<router-view></router-view>-->
+                <!--</el-main>-->
+            <!--</el-container>-->
             <el-footer height="30px">
 
             </el-footer>
