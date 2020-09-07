@@ -80,6 +80,7 @@ export default {
                 this.$axios.post('menu/menuone?role_id=' + response[0].role_id)
                   .then(response2 => {
                     // console.log('123' + response2[0].mname)
+
                     this.$message.success({
                       message: '登录成功',
                       showClose: true
