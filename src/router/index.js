@@ -11,6 +11,33 @@ export default new Router({
   // 顶层路由视图：App.vue <router-view/>
   routes: [
       {
+          path: '/fadmins',
+          name: 'Fadmins',
+          component: () => import('../components/font/Fadmins'),
+          children: [
+              {
+                  path: 'fadmin',
+                  name: 'Fhouseshow',
+                  component: () => import('../components/font/Fhouseshow')
+              },
+              {
+                  path: 'fadmin',
+                  name: 'Fadmin',
+                  component: () => import('../components/font/Fadmin')
+              },
+              {
+                  path: 'fser',
+                  name: 'Fservice',
+                  component: () => import('../components/font/Fservice')
+              },
+              {
+                  path: 'fuppwd',
+                  name: 'Fuppwd',
+                  component: () => import('../components/font/Fuppwd')
+              }
+          ]
+      },
+      {
           path: 'fh',
           name: 'FHouseadd',
           component: () => import('../components/font/FHouseadd')

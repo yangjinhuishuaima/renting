@@ -8,7 +8,7 @@
             <el-form-item label="密码" prop="userPassword">
                 <el-input show-password v-model="user.userPassword" clearable></el-input>
             </el-form-item>
-            <el-button type="primary" plain round @click="Login">Login</el-button>
+            <el-button type="primary" plain round @click="Login()">Login</el-button>
         </el-form>
 
         <el-form label-width="100px" label-suffix=":" :model="user" class="form" ref="rfm" :rules="rules1">
@@ -64,13 +64,29 @@ export default {
     }
   },
   methods: {
-    'Login': function () {
+    Login: function () {
       this.$refs.fm.validate(valid => {
         if (valid) {
           this.$axios.post('users/UserLogin', this.user)
             .then(response => {
-              sessionStorage.setItem('LoginUser', JSON.stringify(response.data))
-              this.$router.push({name: 'Main'})
+                alert(response.aid)
+                if(response>=0){
+                    this.$message.success({
+                        message: '登录成功',
+                        showClose: true
+                    })
+                    sessionStorage.setItem('LoginUser', JSON.stringify(response))
+                    sessionStorage.setItem('id',JSON.stringify(response.aid))
+                    // this.$router.push({name: 'Main'})
+                    // window.location.href="index.html";
+
+                }else{
+                    this.$message.error({
+                        message: '登录失败',
+                        showClose: true
+                    })
+                }
+
             }).catch(err => this.$message(err))
         }
       })

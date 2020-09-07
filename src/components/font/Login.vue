@@ -138,6 +138,7 @@ export default {
               } else {
                 if (this.list.astate === 0) {
                   if (this.checked) {
+                      this.$message.success('登录成功')
                     // 保存cookie
                     localStorage.setItem('account', JSON.stringify({
                       aphone: response[0].aphone,
@@ -146,12 +147,13 @@ export default {
                     localStorage.setItem('checked', 'true')
                   } else {
                     // 删除cookie
-                    localStorage.removeItem('manager')
+                    localStorage.removeItem('account')
                     localStorage.removeItem('checked')
                   }
                   // 保存session的登录信息
-                  sessionStorage.setItem('manager', JSON.stringify(response))
-                  this.$router.push({name: 'Home'})
+                  sessionStorage.setItem('account', JSON.stringify(response))
+                  sessionStorage.setItem('aid',JSON.stringify(response.aid))
+                  // this.$router.push({name: 'Home'})
                   window.location.href = '../../static/font/index.htm'
                 }
               }
